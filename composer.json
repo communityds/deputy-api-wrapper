@@ -1,0 +1,29 @@
+{
+    "name": "communityds/deputy-api-wrapper",
+    "description": "Deputy API Wrapper",
+    "keywords": [
+        "deputy"
+    ],
+    "homepage": "https://github.com/communityds/deputy-api-wrapper.git",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Community Data Solutions",
+            "homepage": "https://communityds.com.au/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0 || ^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CommunityDS\\Deputy\\Api\\": "src/",
+            "CommunityDS\\Deputy\\Api\\Tests\\": "tests/"
+        }
+    }
+}

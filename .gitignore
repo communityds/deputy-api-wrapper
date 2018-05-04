@@ -1,0 +1,9 @@
+# Composer
+/composer.lock
+/vendor
+
+# Testing
+/tests/Adapter/config.php
+/tests/Adapter/*/composer.lock
+/tests/Adapter/*/vendor
+/tests/Local

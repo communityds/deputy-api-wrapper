@@ -1,0 +1,9 @@
+<?php
+// make a copy of this file called `config.php` within this directory
+return [
+    'domain' => 'sandbox.au.deputy.com', // replace with actual Deputy domain
+    'token' => 'e9d60c4e518815fc92430bc76deb7567', // replace with actual Authentication token
+    'me' => [
+        'PrimaryEmail' => 'test@example.org', // replace with email address associated with token
+    ],
+];
