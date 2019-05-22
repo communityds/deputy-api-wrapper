@@ -12,14 +12,23 @@ This package can be installed via Composer:
 composer require communityds/deputy-api-wrapper
 ```
 
+By default, this package uses Guzzle library to send the API requests.
+Install the package via Composer:
+
+```bash
+composer require guzzlehttp/guzzle ^6.0
+```
+
+See the [HTTP Clients documentation](docs/http_clients.md) to see what other libraries can be used instead.
+
 ## Usage
 
-Create a new instance of the wrapper and provide at a minimum the target and authentication configurations:
+Create a singleton instance of the wrapper and provide at a minimum the authentication and target component configurations:
 
 ```php
 use CommunityDS\Deputy\Api\Wrapper;
 
-$wrapper = new Wrapper(
+$wrapper = Wrapper::setInstance(
     [
         'auth' => [
             'class' => 'CommunityDS\Deputy\Api\Adapter\Config\PermanentToken',
@@ -33,7 +42,7 @@ $wrapper = new Wrapper(
 );
 ```
 
-Then use the [helper functions](docs/resources.md) to get the records you are after.
+Use the [helper functions](docs/resources.md) to get the records you are after.
 The example below returns all of today's schedules/rosters:
 
 ```php
@@ -53,5 +62,5 @@ foreach ($shifts as $shift) {
 }
 ```
 
-More examples can be found in the [documentation](docs/index.md).
+More details and examples can be found in the [documentation](docs/index.md).
 
