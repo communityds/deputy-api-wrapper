@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.0
+
+* Added `Guzzle6` adapter.
+
 ## 1.0.1
 
 * Added helper functions to find related objects on `Address`, `Employee` and `TrainingModule` models.

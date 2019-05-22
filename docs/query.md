@@ -1,7 +1,7 @@
 # Querying resources
 
-The wrapper allows lists of resources to be filtered using a query object which is a wrapper of the `resource/:Name/QUERY` endpoint.
-To create a query use the `find<Name>` helper function on the wrapper object.
+The wrapper allows lists of resources to be filtered using a query object that abstracts the `resource/:Name/QUERY` endpoint.
+To create a query use the `find<Name>` helper function on the wrapper instance.
 
 ## Retrieving results
 
@@ -100,7 +100,8 @@ $employees = $wrapper->findEmployees()->limit(10)->offset(10)->all();  // return
 ## Determining number of results
 
 Due to API limitations it is not possible to determine the number of results for a potentially filtered list of records.
-So the only approach is to return the entire result set but this is not ideal as it requires the complete data set to be loaded.
+So at this stage the only approach is to return the entire result set.
+This is not ideal as it requires the complete data set to be loaded.
 
 ```php
 $count = count($wrapper->findEmployees()->where(['active' => true])->all());

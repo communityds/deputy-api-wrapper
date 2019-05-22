@@ -1,8 +1,8 @@
 # Deputy API Wrapper
 
-Allows interaction with the [Deputy API Version 1](https://www.deputy.com/api-doc/Welcome) using an object based interface that abstracts sending and receiving content from the REST interfaces.
+Allows interaction with the [Deputy API (Version 1)](https://www.deputy.com/api-doc/Welcome) using an object based interface that abstracts sending and receiving content from the REST interfaces.
 
-[Documentation](docs/index.md) on how to use the wrapper.
+[View the documentation](docs/index.md) on how to use the wrapper.
 
 ## Installation
 
@@ -17,6 +17,8 @@ composer require communityds/deputy-api-wrapper
 Create a new instance of the wrapper and provide at a minimum the target and authentication configurations:
 
 ```php
+use CommunityDS\Deputy\Api\Wrapper;
+
 $wrapper = new Wrapper(
     [
         'auth' => [
@@ -31,8 +33,8 @@ $wrapper = new Wrapper(
 );
 ```
 
-The use the [helper functions](docs/resources.md) to get handles on the records you are after.
-For example the below returns all of today's schedules/rosters:
+Then use the [helper functions](docs/resources.md) to get the records you are after.
+The example below returns all of today's schedules/rosters:
 
 ```php
 $today = mktime(0, 0, 0);

@@ -25,5 +25,8 @@
             "CommunityDS\\Deputy\\Api\\": "src/",
             "CommunityDS\\Deputy\\Api\\Tests\\": "tests/"
         }
+    },
+    "archive": {
+        "exclude": ["/tests"]
     }
 }

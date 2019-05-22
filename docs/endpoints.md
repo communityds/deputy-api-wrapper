@@ -83,7 +83,6 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
     * @todo
     * Add as `getUnavailabilities` function on `Me` class
 
-
 ## Management Calls
 
 * Rather than directly using the Resource API, where possible use the Management Call endpoints.
@@ -169,8 +168,6 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
     * @todo
     * Add `getUnavailability` on `Employee` class
 
-
-
 ## Resource Calls
 
 * https://www.deputy.com/api-doc/API/Resource_Calls
@@ -196,8 +193,6 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
 * POST /resource/:object/:id/:ForeignObject
     * Implemented by `Record` and `Query`.
     * To update parent object would need to add event handler that updates relationship id upon save.
-
-
 
 ## Timesheet Methods
 
@@ -228,7 +223,6 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
     * @todo
     * Overload `insert` and `update` functions on `Timesheet` class
 
-
 ## Utility Methods
 
 * https://www.deputy.com/api-doc/API/Utility_Methods
@@ -255,7 +249,6 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
 * /userinfo/:id
     * Implemented by `User` class.
     
-    
 ## Custom Data
 
 * https://www.deputy.com/api-doc/API/Custom_Data
@@ -274,7 +267,6 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
     * @todo
 * DELETE /customdata/:documentId/:id
     * @todo
-
 
 ## Payroll
 
