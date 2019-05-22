@@ -2,7 +2,6 @@
 
 The Deputy API Wrapper allows for interacting with the Deputy API Version 1 using an object-based interface.
 
-* [Configuration](config.md)
 * [CRUD operations](crud.md)
 * [Filtering results](query.md)
 

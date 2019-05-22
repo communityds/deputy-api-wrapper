@@ -2,8 +2,6 @@
 
 This is a list of features that should be added to the wrapper.
 
-
-
 ## General
 
 ### Add PHP 5.6 support
@@ -17,8 +15,6 @@ This is a list of features that should be added to the wrapper.
 
 * Once PHP 5.6 support has been completed.
 * Investigate if recent Composer dependencies can be used.
-
-
 
 ## Resources
 
@@ -65,8 +61,6 @@ This is a list of features that should be added to the wrapper.
 
 * Allow custom data to be attached to the resource instances as if they are local properties.
 
-
-
 ## Querying
 
 ### Mass-Update
@@ -82,8 +76,6 @@ This is a list of features that should be added to the wrapper.
 
 * Via the `Query` object, allow multiple-level relationship joins.
 * Implement Eager Loading methodologies to resolve the primary keys of the joins, then use a separate Query to return them and populate into the models.
-
-
 
 ## Functionality
 
