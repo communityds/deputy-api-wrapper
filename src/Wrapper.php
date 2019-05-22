@@ -356,7 +356,7 @@ class Wrapper extends Component
      *
      * @var ClientInterface|array
      */
-    public $client = 'CommunityDS\Deputy\Api\Adapter\Guzzle3\Client';
+    public $client = 'CommunityDS\Deputy\Api\Adapter\Guzzle6\Client';
 
     /**
      * Configuration or instance of persistent Cache.
@@ -468,12 +468,16 @@ class Wrapper extends Component
     /**
      * Sets the current instance of the API wrapper.
      *
-     * @param static $instance Wrapper instance
+     * @param static|array $instance Wrapper instance; or instance configuration
      *
-     * @return void
+     * @return static Wrapper instance
      */
     public static function setInstance($instance)
     {
+        if (is_array($instance)) {
+            $instance = new static($instance);
+        }
         static::$instance = $instance;
+        return $instance;
     }
 }

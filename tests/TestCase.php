@@ -44,7 +44,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function getWrapperConfig()
     {
         return [
-            'class' => 'CommunityDS\Deputy\Api\Wrapper',
             'auth' => [
                 'class' => 'CommunityDS\Deputy\Api\Adapter\Config\PermanentToken',
                 'token' => $this->getAuthToken(),
@@ -68,8 +67,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $instance = Wrapper::getInstance();
         if ($instance == null) {
-            $instance = Wrapper::createObject($this->getWrapperConfig());
-            Wrapper::setInstance($instance);
+            $instance = Wrapper::setInstance($this->getWrapperConfig());
         }
         return $instance;
     }
