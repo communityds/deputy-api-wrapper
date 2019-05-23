@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.2.0
+
+* Added PHP 7 support.
+* Added TravisCI integration.
+
 ## 1.1.1
 
 * Using `Guzzle6` adapter by default.
