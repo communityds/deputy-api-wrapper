@@ -2,11 +2,9 @@
 
 Thank you for considering contributing to the Deputy API Wrapper.
 
-Community Data Solutions (CDS) is looking for contributors to help adding new features,
-functionality and responding to changes made to the API by Deputy.
+Community Data Solutions (CDS) is looking for contributors to help adding new features, functionality and responding to changes made to the API by Deputy.
 
-The aim of the wrapper is to simplify or abstract the API to allow developers
-to perform more complex interactions without needing to know how it is achieved.
+The aim of the wrapper is to simplify or abstract the API to allow developers to perform more complex interactions without needing to know how it is achieved.
 
 ## Found a bug?
 
@@ -28,8 +26,8 @@ Submit the report as an Issue on GitHub.
 
 There is an active [To-Do list](docs/todo.md).
 
-Contact CDS via opensource@communityds.com.au if you would like to know when
-a certain item is on our road map. We may ask you to implement the feature.   
+Contact CDS via opensource@communityds.com.au if you would like to know when a certain item is on our road map.
+We may ask you to implement the feature.   
 
 When submitting a feature request:
 
@@ -48,17 +46,18 @@ Submit the request as an Issue.
     * Changes have been covered via a unit test.
     * Changes comply with the PSR2 Coding Standard.
     * Documentation has been written or updated explaining the change.
+    * Each commit should reflect a working version (i.e. no work-in-progress commits).
 5. Submit a Pull Request to the `develop` branch.
 
 ## Review process
 
-CDS will review Pull Requests and Issues monthly.
+CDS will review Issues and Pull Requests monthly.
 
-The repository uses a GitFlow model to manage the release process.
+The repository uses a [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) model to manage the release process.
 
-Approved Pull Requests will have their commits squashed during merging in to `master`.
-CDS will update [CHANGELOG.md](CHANGELOG.md) with each official release and attribute the author.
+Approved Pull Requests will have their commits merged in to the `develop` branch.
 Once the `develop` branch is considered stable, CDS will manage the release process.
+CDS will update [CHANGELOG.md](CHANGELOG.md) with each official release and attribute the author.
 
 ## Code of Conduct
 
