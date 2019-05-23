@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.1
+
+* Using `Guzzle6` adapter by default.
+
 ## 1.1.0
 
 * Added `Guzzle6` adapter.
