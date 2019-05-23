@@ -1,6 +1,11 @@
 # Deputy API Wrapper
 
-Allows interaction with the [Deputy API (Version 1)](https://www.deputy.com/api-doc/Welcome) using an object based interface that abstracts sending and receiving content from the REST interfaces.
+[![Latest Stable Version](https://img.shields.io/packagist/v/communityds/deputy-api-wrapper.svg)](https://packagist.org/packages/communityds/deputy-api-wrapper)
+[![Total Downloads](https://img.shields.io/packagist/dt/communityds/deputy-api-wrapper.svg)](https://packagist.org/packages/communityds/deputy-api-wrapper)
+[![Build Status](https://img.shields.io/travis/communityds/deputy-api-wrapper.svg)](https://travis-ci.org/communityds/deputy-api-wrapper)
+[![License](https://img.shields.io/github/license/communityds/deputy-api-wrapper.svg)](LICENSE)
+
+Allows interaction with the [Deputy API (Version 1)](https://www.deputy.com/api-doc/Welcome) using an object based interface that abstracts sending and receiving content from the REST API.
 
 [View the documentation](docs/index.md) on how to use the wrapper.
 
@@ -12,7 +17,7 @@ This package can be installed via Composer:
 composer require communityds/deputy-api-wrapper
 ```
 
-By default, this package uses Guzzle library to send the API requests.
+By default, this package uses the Guzzle library to send the API requests.
 Install the package via Composer:
 
 ```bash
