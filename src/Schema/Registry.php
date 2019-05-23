@@ -380,7 +380,7 @@ class Registry extends Component
             'Blob'          => 'CommunityDS\Deputy\Api\Schema\DataType\Blob',
             'Date'          => 'CommunityDS\Deputy\Api\Schema\DataType\Date',
             'DateTime'      => 'CommunityDS\Deputy\Api\Schema\DataType\DateTime',
-            'Float'         => 'CommunityDS\Deputy\Api\Schema\DataType\Float',
+            'Float'         => 'CommunityDS\Deputy\Api\Schema\DataType\FloatingPoint',
             'Integer'       => 'CommunityDS\Deputy\Api\Schema\DataType\Integer',
             'Time'          => 'CommunityDS\Deputy\Api\Schema\DataType\Time',
             'UnixTimestamp' => 'CommunityDS\Deputy\Api\Schema\DataType\UnixTimestamp',
