@@ -65,7 +65,7 @@ class ClientHelperTest extends TestCase
             ClientHelper::checkResponse(['other' => 'value'])
         );
 
-        $this->setExpectedException(
+        $this->expectException(
             'CommunityDS\Deputy\Api\DeputyException',
             'Not Found',
             404

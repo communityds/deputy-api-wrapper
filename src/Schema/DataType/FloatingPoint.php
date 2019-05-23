@@ -5,7 +5,7 @@ namespace CommunityDS\Deputy\Api\Schema\DataType;
 /**
  * Values are stored as floats or null values in both API and PHP land.
  */
-class Float extends DataType
+class FloatingPoint extends DataType
 {
 
     public function fromApi($value)

@@ -2,15 +2,15 @@
 
 namespace CommunityDS\Deputy\Api\Tests\Schema\DataType;
 
-use CommunityDS\Deputy\Api\Schema\DataType\Float;
+use CommunityDS\Deputy\Api\Schema\DataType\FloatingPoint;
 use CommunityDS\Deputy\Api\Tests\TestCase;
 
-class FloatTest extends TestCase
+class FloatingPointTest extends TestCase
 {
 
     protected function dataType()
     {
-        return new Float();
+        return new FloatingPoint();
     }
 
     protected function assertDataType($expected, $actual, $message = '')

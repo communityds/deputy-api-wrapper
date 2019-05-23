@@ -48,7 +48,7 @@ class CompanyTest extends TestCase
     public function testUpdate()
     {
         $company = $this->wrapper()->getCompany(MockClient::COMPANY_FIRST);
-        $this->setExpectedException('CommunityDS\Deputy\Api\NotSupportedException');
+        $this->expectException('CommunityDS\Deputy\Api\NotSupportedException');
         $company->save();
     }
 
@@ -60,7 +60,7 @@ class CompanyTest extends TestCase
         $company->operationalUnitNames = ['First', 'Second'];
         $company->timeZone = 'Australia/Adelaide';
         $company->tradingName = 'FAKE';
-        $this->setExpectedException('CommunityDS\Deputy\Api\NotSupportedException');
+        $this->expectException('CommunityDS\Deputy\Api\NotSupportedException');
         $company->save();
     }
 
