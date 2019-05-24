@@ -4,17 +4,9 @@ This is a list of features that should be added to the wrapper.
 
 ## General
 
-### Add PHP 5.6 support
+### Code Helpers
 
-* Once the dependency on PHP 5.3 has been removed.
-* Use short-hand array notation.
 * Look to using Traits to share code and reduce need for statically defined helpers.
-* Update versions of Composer dependencies.
-
-### Add PHP 7 support
-
-* Once PHP 5.6 support has been completed.
-* Investigate if recent Composer dependencies can be used.
 
 ## Resources
 
