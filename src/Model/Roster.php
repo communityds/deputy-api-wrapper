@@ -109,7 +109,7 @@ class Roster extends Record
             $this->updatePayload($attributeNames)
         );
     }
-
+    
     /**
      * Sends a payload to the POST /supervise/roster endpoint
      * and then sends remaining payload to POST /resource/Roster/:id endpoint.
@@ -124,6 +124,14 @@ class Roster extends Record
         $payload = [];
         if ($this->getPrimaryKey()) {
             $payload['intRosterId'] = $this->getPrimaryKey();
+            /*
+             * Default to the current instance values
+             * otherwise, API would give error of "Date must be given." and/or remove the Employee or Comment
+             */
+            $payload['intStartTimestamp']   = $this->getSchema()->fieldDataType('startTime')->toApi($this->startTime);
+            $payload['intEndTimestamp']     = $this->getSchema()->fieldDataType('endTime')->toApi($this->endTime);
+            $payload['intRosterEmployee']   = $this->getSchema()->fieldDataType('employee')->toApi($this->employee);
+            $payload['strComment']          = $this->getSchema()->fieldDataType('comment')->toApi($this->comment);
         } else {
             $payload['intRosterEmployee'] = 0;
             $payload['blnPublish'] = false;
