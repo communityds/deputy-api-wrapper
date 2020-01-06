@@ -29,7 +29,13 @@ class MockClient implements ClientInterface
     const COUNTRY_AUSTRALIA = 13;
 
     const COUNTRY_INVALID = 9999;
-
+    
+    const CUSTOM_FIELD_FIRST = 401;
+    
+    const CUSTOM_FIELD_SECOND = 402;
+    
+    const CUSTOM_FIELD_NEW = 422;
+    
     const EMPLOYEE_FIRST = 987235;
     
     const MEMO_FIRST = 432;
@@ -755,7 +761,177 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown company: ' . $id);
     }
+    
+    
+    /**
+     * Returns response from GET /resource/CustomField/:id endpoint.
+     *
+     * @param string $id CustomField id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceCustomfield($id)
+    {
+        switch (strtolower($id)) {
+            case 'info':
+                return [
+                    'fields'=> [
+                        'Id' => 'Integer',
+                        'System' => 'VarChar',
+                        'Name' => 'VarChar',
+                        'ApiName' => 'VarChar',
+                        'DeputyField' => 'VarChar',
+                        'SortOrder' => 'Integer',
+                        'Default' => 'VarChar',
+                        'Type' => 'Integer',
+                        'Valuelist' => 'Blob',
+                        'TriggerScript' => 'Integer',
+                        'Validation' => 'VarChar',
+                        'Helptext' => 'VarChar',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                    ],
+                    'joins' => [],
+                    'assocs' => [],
+                    'count' => 0,
+                ];
+            case static::CUSTOM_FIELD_NEW:
+                return [
+                    'Id' => $id,
+                    'System' => 'Timesheet',
+                    'Name' => 'New Custom Field',
+                    'ApiName' => 'casenotes',
+                    'DeputyField' => 'f03',
+                    'SortOrder' => 3,
+                    'Default' => '',
+                    'Type' => 2,
+                    'Valuelist' => '[]',
+                    'TriggerScript' => 0,
+                    'Validation' => '[
+                                        "nempty"
+                                    ]',
+                    'Helptext' => 'Help Text',
+                    'Creator' => static::USER_FIRST,
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                ];
+            case static::CUSTOM_FIELD_FIRST:
+                return [
+                    'Id' => $id,
+                    'System' => 'Timesheet',
+                    'Name' => 'Travel Distance',
+                    'ApiName' => 'traveldistance',
+                    'DeputyField' => 'f01',
+                    'SortOrder' => 1,
+                    'Default' => '',
+                    'Type' => 2,
+                    'Valuelist' => '[]',
+                    'TriggerScript' => 0,
+                    'Validation' => '[
+                                        "nempty"
+                                    ]',
+                    'Helptext' => 'Help Text',
+                    'Creator' => static::USER_FIRST,
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                ];
+            case static::CUSTOM_FIELD_SECOND:
+                return [
+                    'Id' => $id,
+                    'System' => 'Timesheet',
+                    'Name' => 'Travel Time',
+                    'ApiName' => 'traveltime',
+                    'DeputyField' => 'f02',
+                    'SortOrder' => 2,
+                    'Default' => '',
+                    'Type' => 2,
+                    'Valuelist' => '[]',
+                    'TriggerScript' => 0,
+                    'Validation' => '[
+                                        "nempty"
+                                    ]',
+                    'Helptext' => 'Help Text',
+                    'Creator' => static::USER_FIRST,
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                ];
+        }
+        throw new InvalidCallException('Unknown customField unid ' . $id);
+    }
+    
+    /**
+     * Returns response from POST /resource/CustomField/:Id endpoint
+     *
+     * @param integer $id CustomField id
+     * @param array $payload POST data
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function postResourceCustomfield($id, $payload)
+    {
+        switch ($id) {
+            case 'info':
+                return $this->postResourceCustomfieldQuery($payload);
+            case 'query':
+                return $this->postResourceCustomfieldQuery($payload);
+            case self::CUSTOM_FIELD_NEW:
+            case self::CUSTOM_FIELD_FIRST:
+            case self::CUSTOM_FIELD_SECOND:
+                return [$this->getResourceCustomfield($id)];
+        }
+        throw new InvalidCallException('Unknown customField object #' . $id);
+    }
+    
+    /**
+     * Returns response from POST /resource/CustomField/QUERY endpoint.
+     *
+     * @param array $payload Query data
+     *
+     * @return array
+     */
+    protected function postResourceCustomfieldQuery($payload)
+    {
+        $queryLimit = isset($payload['max']) ? $payload['max'] : null;
 
+        if ($queryLimit == 1) {
+            return [$this->getResourceCustomfield(MockClient::CUSTOM_FIELD_FIRST)];
+        }
+
+        return [
+            $this->getResourceCustomfield(MockClient::CUSTOM_FIELD_FIRST),
+            $this->getResourceCustomfield(MockClient::CUSTOM_FIELD_SECOND),
+        ];
+    }
+    
+    /**
+     * Returns response to PUT /resource/CustomField endpoint.
+     *
+     * @param array $payload PUT payload
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When payload is unknown
+     * @throws MockErrorException When $name is 'Invalid Custom Field'
+     */
+    protected function putResourceCustomfield($payload)
+    {
+        $name = isset($payload['Name']) ? $payload['Name'] : null;
+        switch ($name) {
+            case 'New Custom Field':
+                return $this->getResourceCustomfield(static::CUSTOM_FIELD_NEW);
+            case 'Update Custom Field':
+                return $this->getResourceCustomfield(static::CUSTOM_FIELD_FIRST);
+            case 'Invalid Custom Field':
+                throw new MockErrorException('Manually forcing failure', 500);
+        }
+        throw new InvalidCallException('Unknown customField payload: ' . var_export($payload, true));
+    }
+    
     /**
      * Returns response from GET /userinfo/:Id endpoint.
      *

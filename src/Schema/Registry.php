@@ -168,6 +168,12 @@ class Registry extends Component
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Country',
                 'pluralName' => 'Countries',
             ],
+            'CustomField' => [
+                'modelClass' => 'CommunityDS\Deputy\Api\Model\CustomField',
+            ],
+            'CustomFieldData' => [
+                'modelClass' => 'CommunityDS\Deputy\Api\Model\CustomFieldData',
+            ],
             'Employee' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Employee',
             ],
@@ -388,7 +394,37 @@ class Registry extends Component
             'VarCharArray'  => 'CommunityDS\Deputy\Api\Schema\DataType\VarCharArray',
         ];
     }
-
+    
+    /**
+     * Helper to translate from Deputy type id (as returned by the API) to the name of the relevant DataType Class Name
+     * eg.
+     * 0 => 'Varchar'
+     * 2 => 'Integer'
+     *
+     * @param integer $typeId
+     *
+     * @return DataTypeInterface|null Instance of DataType or null if not found
+     */
+    public static function getDataTypeById($typeId)
+    {
+        $typeIdToDataTypeClassNameMap = [
+            1 => 'VarChar',         // Text
+            2 => 'Integer',         // Number
+            3 => 'VarChar',         // Large text
+            4 => 'Bit',             // Boolean/Checkbox
+            5 => 'VarCharArray',    // List
+            6 => 'VarCharArray',    // Multi list
+            7 => 'Blob',            // File
+        ];
+        
+        $dataTypeClassName = key_exists($typeId, $typeIdToDataTypeClassNameMap) ? $typeIdToDataTypeClassNameMap[$typeId] : null;
+        if (empty($dataTypeClassName)) {
+            return null;
+        }
+        $dataTypeClass = "\\CommunityDS\\Deputy\\Api\\Schema\\DataType\\{$dataTypeClassName}";
+        return new $dataTypeClass();
+    }
+    
     /**
      * Returns wrapper instance.
      *
