@@ -35,17 +35,11 @@ class MemoTest extends TestCase
         $memo = $this->wrapper()->createMemo();
         $this->assertFalse($memo->save());
     }
-
-    public function testUpdate()
-    {
-        $memoContent = 'content of the memo message';
-        
-        $memo = $this->wrapper()->getMemo(MockClient::MEMO_FIRST);
-        $memo->content = $memoContent;
-        $this->assertTrue($memo->isAttributeDirty('content'));
-        $this->assertTrue($memo->save());
     
-        $this->assertFalse($memo->isAttributeDirty('content'));
+    public function testUpdateNotSupported()
+    {
+        $memo = $this->wrapper()->getMemo(MockClient::MEMO_FIRST);
+        $this->assertFalse($memo->save(), 'Expected updating of Memo to NOT be available / not supported by Deputy API');
 
         $this->assertRequestLog(
             [

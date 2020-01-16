@@ -883,33 +883,16 @@ class MockClient implements ClientInterface
     }
     
     /**
-     * Returns response from POST /resource/Memo/:Id endpoint.
+     * Returns response from POST /resource/Memo/:Id endpoint - not supported
      *
      * @param integer $id Memo id
      * @param array $payload POST data
      *
-     * @return array
-     *
-     * @throws InvalidCallException When id is unknown
+     * @throws DeputyException When attempting to update a Memo - not supported
      */
     protected function postResourceMemo($id, $payload)
     {
-        switch ($id) {
-            case static::MEMO_FIRST:
-            case static::MEMO_NEW:
-                $memo = $this->getResourceMemo($id);
-                $content = isset($payload['Content']) ? $payload['Content'] : null;
-                if ($content) {
-                    $memo = array_merge(
-                        $memo,
-                        [
-                            'Content' => $content,
-                        ]
-                    );
-                }
-                return $memo;
-        }
-        throw new InvalidCallException('Unknown memo id ' . $id);
+        throw new DeputyException('Resource not allowed for modification', 404);
     }
     
     /**
