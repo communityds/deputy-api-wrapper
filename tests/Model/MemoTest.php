@@ -30,10 +30,18 @@ class MemoTest extends TestCase
         );
     }
 
-    public function testCreateFail()
+    public function testCreateFailNoRecipients()
     {
         $memo = $this->wrapper()->createMemo();
         $this->assertFalse($memo->save());
+    }
+
+    public function testCreateFailNoContent()
+    {
+        $memo = $this->wrapper()->createMemo();
+        $memo->addAssignedUserId(MockClient::EMPLOYEE_FIRST);
+        $this->assertTrue($memo->save());   // Returns success, however...
+        $this->assertNull($memo->id);       // id is null
     }
     
     public function testUpdateNotSupported()
