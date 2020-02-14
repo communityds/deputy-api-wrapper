@@ -31,7 +31,15 @@ class MockClient implements ClientInterface
     const COUNTRY_INVALID = 9999;
 
     const EMPLOYEE_FIRST = 987235;
-
+    
+    const MEMO_FIRST = 432;
+    
+    const MEMO_SECOND = 321;
+    
+    const MEMO_NEW = 5432;
+    
+    const MEMO_NULL = null;
+    
     const PORTFOLIO_FIRST = 213;
 
     const ROSTER_FIRST = 9283;
@@ -799,7 +807,141 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unexpected payload: ' . var_export($payload, true));
     }
-
+    
+    /**
+     * Returns response to GET /resource/Memo/:Id endpoint.
+     *
+     * @param integer $id Memo id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceMemo($id)
+    {
+        switch (strtolower($id)) {
+            case 'info':
+                return [
+                    'fields'=> [
+                        'Id' => 'Integer',
+                        'ShowFrom' => 'Date',
+                        'Active' => 'Bit',
+                        'ShowTill' => 'Date',
+                        'Title' => 'VarChar',
+                        'Content' => 'Blob',
+                        'Type' => 'Integer',
+                        'File' => 'Integer',
+                        'Url' => 'VarChar',
+                        'ConfirmText' => 'VarChar',
+                        'Keyword' => 'Blob',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                    ],
+                    'joins'=> [],
+                    'assocs'=> [
+                        'Company' => 'Company',
+                        'Role' => 'EmployeeRole',
+                        'Team' => 'Team',
+                    ],
+                    'count'=> 0,
+                ];
+            case static::MEMO_FIRST:
+                return [
+                    'Id' => $id,
+                    'ShowFrom' => '2018-07-31T00:00:00+09:30',
+                    'Active' => true,
+                    'ShowTill' => null,
+                    'Title' => null,
+                    'Content' => 'First Memo Content',
+                    'Type' => 1,
+                    'File' => null,
+                    'Url' => null,
+                    'ConfirmText' => '',
+                    'Keyword' => 'First Memo Content',
+                    'Creator' => static::USER_ADMIN,
+                    'Created' => '2018-07-31T14:36:34+09:30',
+                    'Modified' => '2018-07-31T14:36:34+09:30',
+                ];
+            case static::MEMO_NEW:
+                return [
+                    'Id' => $id,
+                    'ShowFrom' => '2018-08-01T00:00:00+09:30',
+                    'Active' => true,
+                    'ShowTill' => null,
+                    'Title' => null,
+                    'Content' => 'New Memo Content',
+                    'Type' => 1,
+                    'File' => null,
+                    'Url' => null,
+                    'ConfirmText' => '',
+                    'Keyword' => 'New Memo Content',
+                    'Creator' => static::USER_ADMIN,
+                    'Created' => '2018-08-01T14:36:34+09:30',
+                    'Modified' => '2018-08-01T14:36:34+09:30',
+                ];
+            case static::MEMO_NULL:
+                return [
+                    'Id' => null,
+                    'ShowFrom' => '2018-08-01T00:00:00+09:30',
+                    'Active' => true,
+                    'ShowTill' => null,
+                    'Title' => null,
+                    'Content' => 'New Memo Content',
+                    'Type' => 1,
+                    'File' => null,
+                    'Url' => null,
+                    'ConfirmText' => '',
+                    'Keyword' => null,
+                    'Creator' => static::USER_ADMIN,
+                    'Created' => '2018-08-01T14:36:34+09:30',
+                    'Modified' => '2018-08-01T14:36:34+09:30',
+                ];
+        }
+        throw new InvalidCallException('Unknown memo id ' . $id);
+    }
+    
+    /**
+     * Returns response from POST /resource/Memo/:Id endpoint - not supported
+     *
+     * @param integer $id Memo id
+     * @param array $payload POST data
+     *
+     * @throws DeputyException When attempting to update a Memo - not supported
+     */
+    protected function postResourceMemo($id, $payload)
+    {
+        throw new DeputyException('Resource not allowed for modification', 404);
+    }
+    
+    /**
+     * Returns response from POST /supervise/memo endpoint.
+     *
+     * @param array $payload POST data
+     *
+     * @return array
+     *
+     * @throws MockErrorException When payload has no Company recipients
+     */
+    protected function postSuperviseMemo($payload)
+    {
+        $content = isset($payload['strContent']) ? $payload['strContent'] : null;
+        $assignedCompanyIds = isset($payload['arrAssignedCompanyIds']) ? $payload['arrAssignedCompanyIds'] : null;
+        $assignedUserIds = isset($payload['arrAssignedUserIds']) ? $payload['arrAssignedUserIds'] : null;
+        
+        // Handle no recipients
+        if (empty($assignedCompanyIds) && empty($assignedUserIds)) {
+            throw new MockErrorException('Sorry, you need to select some active Location or some employed people.', 400);
+        }
+        
+        // Handle no content - Deputy API returns Memo with id as null when no content is provided
+        if (empty($content)) {
+            return $this->getResourceMemo(static::MEMO_NULL);
+        }
+        
+        return $this->getResourceMemo(static::MEMO_NEW);
+    }
+    
     /**
      * Returns response from GET /resource/OperationalUnit/:id endpoint.
      *
