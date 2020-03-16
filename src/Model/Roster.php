@@ -109,7 +109,7 @@ class Roster extends Record
             $this->updatePayload($attributeNames)
         );
     }
-    
+
     /**
      * Sends a payload to the POST /supervise/roster endpoint
      * and then sends remaining payload to POST /resource/Roster/:id endpoint.
