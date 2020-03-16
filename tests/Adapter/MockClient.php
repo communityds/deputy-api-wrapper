@@ -138,7 +138,8 @@ class MockClient implements ClientInterface
                     $bits[] = $foreign;
                 }
             }
-        } elseif ($bits[0] == 'supervise' && count($bits) >=2 && count($bits) <= 4) {
+        } elseif ($bits[0] == 'supervise' && count($bits) >=3 && count($bits) <= 4) {
+            $action = null;
             if (count($bits) == 4) {
                 $action = array_pop($bits);
             }
