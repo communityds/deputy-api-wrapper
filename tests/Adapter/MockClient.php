@@ -4,6 +4,7 @@ namespace CommunityDS\Deputy\Api\Tests\Adapter;
 
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\DeputyException;
+use CommunityDS\Deputy\Api\Model\Company;
 
 /**
  * Mocks the Deputy API to allow automated tests to occur without
@@ -142,6 +143,15 @@ class MockClient implements ClientInterface
                 if ($foreign) {
                     $bits[] = $foreign;
                 }
+            }
+        } elseif ($bits[0] == 'supervise' && count($bits) >=3 && count($bits) <= 4) {
+            $action = null;
+            if (count($bits) == 4) {
+                $action = array_pop($bits);
+            }
+            $id = array_pop($bits);
+            if ($action) {
+                $bits[] = $action;
             }
         } elseif ($bits[0] == 'userinfo') {
             $id = array_pop($bits);
@@ -761,6 +771,101 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown company: ' . $id);
     }
+    
+    /**
+     * Returns response to GET /resource/company/:Id/settings endpoint.
+     *
+     * @param mixed $id Company id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceCompanySettings($id)
+    {
+        switch ($id) {
+            case static::COMPANY_NEW:
+            case static::COMPANY_FIRST:
+                return [
+                    Company::SETTING_ACTIVE_HOURS_END => "00:00",
+                    Company::SETTING_ACTIVE_HOURS_START => "09:00",
+                    Company::SETTING_AUTO_SUGGEST_BREAK => true,
+                    Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK => true,
+                    Company::SETTING_CAN_CLOCKIN_SHIFT_EARLIER => true,
+                    Company::SETTING_CAN_CLOCKIN_SHIFT_EARLIER_MINS => 5,
+                    Company::SETTING_CAN_DISPLAY_BREAK_WARNING => false,
+                    Company::SETTING_CAN_END_BREAK_EARLIER => true,
+                    Company::SETTING_CAN_MOBILE_BUMP_SHIFT => true,
+                    Company::SETTING_CAN_MODIFY_TIMESHEET_ON_END => true,
+                    Company::SETTING_CAN_SMS_BUMP_SHIFT => false,
+                    Company::SETTING_CAN_SUBMIT_SHIFT_VIA_DESK => true,
+                    Company::SETTING_DEFAULT_MEALBREAK_DURATION => 0,
+                    Company::SETTING_MEALBREAK_IS_PAID => false,
+                    Company::SETTING_REQUIRE_KIOSK_PHOTO_BUMP_SHIFT => true,
+                    Company::SETTING_ROSTER_ALLOW_OFFER_SHIFT => false,
+                    Company::SETTING_ROSTER_ALLOW_PEER_VIEW => 1,
+                    Company::SETTING_ROSTER_ALLOW_SMS_WITH_FULL_NAME => false,
+                    Company::SETTING_ROSTER_ALLOW_SWAP_SHIFT => false,
+                    Company::SETTING_ROSTER_DEFAULT_SHIFT_LEN => 6,
+                    Company::SETTING_ROSTER_NOTIFICATION_MANAGER => 2,
+                    Company::SETTING_ROSTER_PREVENT_CHANGE_HOURS => 72,
+                    Company::SETTING_ROSTER_RECOMMENDATION_SORTING => "BEST",
+                    Company::SETTING_ROSTER_REQUIRE_CONFIRM_HOURS => 336,
+                    Company::SETTING_ROSTER_SWAP_REQUIRE_APPROVAL => false,
+                    Company::SETTING_SHIFT_COST_ADDITIONAL => 30,
+                    Company::SETTING_TIMESHEET_AUTO_ROUND => false,
+                    Company::SETTING_TIMESHEET_AUTO_TIME_APPROVE => 0,
+                    Company::SETTING_TIMESHEET_CLOSEST_BLOCK => 15,
+                    Company::SETTING_TIMESHEET_MATCH_ROSTER => 0,
+                    Company::SETTING_TIMESHEET_MATCH_ROSTER_TIME => 0,
+                    Company::SETTING_TIMESHEET_MATURITY => 15,
+                    Company::SETTING_TIMESHEET_ROUND_END_TIME => "c15",
+                    Company::SETTING_TIMESHEET_ROUND_END_TIME_RS => false,
+                    Company::SETTING_TIMESHEET_ROUND_MEALBREAK => "c15",
+                    Company::SETTING_TIMESHEET_ROUND_MEALBREAK_RS => false,
+                    Company::SETTING_TIMESHEET_ROUND_START_TIME => "c15",
+                    Company::SETTING_TIMESHEET_ROUND_START_TIME_RS => false,
+                    Company::SETTING_WEEK_START => 1,
+                ];
+        }
+        throw new InvalidCallException('Unknown CompanySetting id ' . $id);
+    }
+    
+    
+    /**
+     * Returns response to POST /resource/company/:Id/settings endpoint.
+     *
+     * @param integer $id Company id
+     * @param array $payload POST data
+     *
+     * @return boolean
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function postSuperviseCompanySettings($id, $payload)
+    {
+        switch ($id) {
+            case static::COMPANY_NEW:
+            case static::COMPANY_FIRST:
+                return true;
+        }
+        throw new InvalidCallException('Unknown Company id ' . $id);
+    }
+    
+    /**
+     * Returns response to GET /resource/company/:Id/settings endpoint.
+     *
+     * @param integer $id Company id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getSuperviseCompanySettings($id)
+    {
+        return $this->getResourceCompanySettings($id);
+    }
+    
     
     
     /**

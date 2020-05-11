@@ -111,6 +111,22 @@ class Roster extends Record
     }
 
     /**
+     * Check for related Timesheet and that it is not discarded
+     *
+     * @return boolean
+     */
+    public function isTimesheetCreated()
+    {
+        $timesheetAvailable = false;
+        if (is_int($this->matchedByTimesheet) && $this->matchedByTimesheetObject instanceof Timesheet) {
+            if ($this->matchedByTimesheetObject->discarded == false) {
+                $timesheetAvailable = true;
+            }
+        }
+        return $timesheetAvailable;
+    }
+
+    /**
      * Sends a payload to the POST /supervise/roster endpoint
      * and then sends remaining payload to POST /resource/Roster/:id endpoint.
      *
@@ -124,6 +140,14 @@ class Roster extends Record
         $payload = [];
         if ($this->getPrimaryKey()) {
             $payload['intRosterId'] = $this->getPrimaryKey();
+            /*
+             * Default to the current instance values
+             * otherwise, API would give error of "Date must be given." and/or remove the Employee or Comment
+             */
+            $payload['intStartTimestamp']   = $this->getSchema()->fieldDataType('startTime')->toApi($this->startTime);
+            $payload['intEndTimestamp']     = $this->getSchema()->fieldDataType('endTime')->toApi($this->endTime);
+            $payload['intRosterEmployee']   = $this->getSchema()->fieldDataType('employee')->toApi($this->employee);
+            $payload['strComment']          = $this->getSchema()->fieldDataType('comment')->toApi($this->comment);
         } else {
             $payload['intRosterEmployee'] = 0;
             $payload['blnPublish'] = false;

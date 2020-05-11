@@ -40,8 +40,10 @@ use DateTime;
  * @property string $operationalUnitNames
  * @property string $timeZone
  */
-class Company extends Record
+class Company extends Record implements CompanySettingsInterface
 {
+    
+    use CompanySettingsTrait;
 
     /**
      * Names of operational units to create for new companies.
