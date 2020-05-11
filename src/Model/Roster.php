@@ -111,6 +111,22 @@ class Roster extends Record
     }
 
     /**
+     * Check for related Timesheet and that it is not discarded
+     *
+     * @return boolean
+     */
+    public function isTimesheetCreated()
+    {
+        $timesheetAvailable = false;
+        if (is_int($this->matchedByTimesheet) && $this->matchedByTimesheetObject instanceof Timesheet) {
+            if ($this->matchedByTimesheetObject->discarded == false) {
+                $timesheetAvailable = true;
+            }
+        }
+        return $timesheetAvailable;
+    }
+
+    /**
      * Sends a payload to the POST /supervise/roster endpoint
      * and then sends remaining payload to POST /resource/Roster/:id endpoint.
      *
