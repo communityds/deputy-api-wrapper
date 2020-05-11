@@ -109,7 +109,7 @@ class Roster extends Record
             $this->updatePayload($attributeNames)
         );
     }
-    
+
     /**
      * Check for related Timesheet and that it is not discarded
      *
@@ -125,6 +125,7 @@ class Roster extends Record
         }
         return $timesheetAvailable;
     }
+
     /**
      * Sends a payload to the POST /supervise/roster endpoint
      * and then sends remaining payload to POST /resource/Roster/:id endpoint.
