@@ -6,6 +6,7 @@ use CommunityDS\Deputy\Api\Adapter\AuthenticationInterface;
 use CommunityDS\Deputy\Api\Adapter\CacheInterface;
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\Adapter\TargetConfigInterface;
+use CommunityDS\Deputy\Api\Model\CustomField;
 use CommunityDS\Deputy\Api\Model\Me;
 use CommunityDS\Deputy\Api\Schema\Registry;
 
@@ -53,6 +54,18 @@ use CommunityDS\Deputy\Api\Schema\Registry;
  * @method Model\Country getCountry($id)
  * @method Model\Country[] getCountries()
  * @method Query findCountries()
+ *
+ * @method Model\CustomField createCustomField()
+ * @method Model\CustomField deleteCustomField($id)
+ * @method Model\CustomField getCustomField($id)
+ * @method Model\CustomField[] getCustomFields()
+ * @method Query findCustomFields()
+ *
+ * @method Model\CustomFieldData createCustomFieldData()
+ * @method Model\CustomFieldData deleteCustomFieldData($id)
+ * @method Model\CustomFieldData getCustomFieldData($id)
+ * @method Model\CustomFieldData[] getCustomFieldDatas()
+ * @method Query findCustomFieldDatas()
  *
  * @method Model\Employee createEmployee()
  * @method Model\Employee deleteEmployee($id)
@@ -479,5 +492,37 @@ class Wrapper extends Component
         }
         static::$instance = $instance;
         return $instance;
+    }
+    
+    /**
+     * Get CustomFields from cache; populate cache if not already set
+     *
+     * @return CustomField[] Empty array if none found
+     */
+    public function getCustomFieldsCached()
+    {
+        $cacheKey = strtolower('resource-customFields-Collection');
+        $customFields = $this->persistent->get($cacheKey, null);
+        if ($customFields === null) {
+            $customFields = $this->findCustomFields()->all();
+            $this->persistent->set($cacheKey, $customFields);
+        }
+        return $customFields;
+    }
+    
+    /**
+     * Get the internal 'deputyfield' (eg. f03) from given 'apiname' (eg. 'casenotes')
+     *
+     * @param string $apiName Eg. 'casenotes'
+     *
+     * @return CustomField|null The matching CustomField instance where 'apiName' (eg. 'casenotes') matches param - otherwise, null
+     */
+    public function getCustomFieldByApiName($apiName)
+    {
+        $customFieldsCollection = $this->getCustomFieldsCached();
+        $customFieldsMatching = array_filter($customFieldsCollection, function ($customField) use ($apiName) {
+            return ($customField->apiName == $apiName) ? true : false;
+        });
+        return array_pop($customFieldsMatching); // matching item or null
     }
 }

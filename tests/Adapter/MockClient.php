@@ -4,6 +4,7 @@ namespace CommunityDS\Deputy\Api\Tests\Adapter;
 
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\DeputyException;
+use CommunityDS\Deputy\Api\Model\Company;
 
 /**
  * Mocks the Deputy API to allow automated tests to occur without
@@ -29,9 +30,23 @@ class MockClient implements ClientInterface
     const COUNTRY_AUSTRALIA = 13;
 
     const COUNTRY_INVALID = 9999;
-
+    
+    const CUSTOM_FIELD_FIRST = 401;
+    
+    const CUSTOM_FIELD_SECOND = 402;
+    
+    const CUSTOM_FIELD_NEW = 422;
+    
     const EMPLOYEE_FIRST = 987235;
-
+    
+    const MEMO_FIRST = 432;
+    
+    const MEMO_SECOND = 321;
+    
+    const MEMO_NEW = 5432;
+    
+    const MEMO_NULL = null;
+    
     const PORTFOLIO_FIRST = 213;
 
     const ROSTER_FIRST = 9283;
@@ -128,6 +143,15 @@ class MockClient implements ClientInterface
                 if ($foreign) {
                     $bits[] = $foreign;
                 }
+            }
+        } elseif ($bits[0] == 'supervise' && count($bits) >=3 && count($bits) <= 4) {
+            $action = null;
+            if (count($bits) == 4) {
+                $action = array_pop($bits);
+            }
+            $id = array_pop($bits);
+            if ($action) {
+                $bits[] = $action;
             }
         } elseif ($bits[0] == 'userinfo') {
             $id = array_pop($bits);
@@ -747,7 +771,272 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown company: ' . $id);
     }
+    
+    /**
+     * Returns response to GET /resource/company/:Id/settings endpoint.
+     *
+     * @param mixed $id Company id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceCompanySettings($id)
+    {
+        switch ($id) {
+            case static::COMPANY_NEW:
+            case static::COMPANY_FIRST:
+                return [
+                    Company::SETTING_ACTIVE_HOURS_END => "00:00",
+                    Company::SETTING_ACTIVE_HOURS_START => "09:00",
+                    Company::SETTING_AUTO_SUGGEST_BREAK => true,
+                    Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK => true,
+                    Company::SETTING_CAN_CLOCKIN_SHIFT_EARLIER => true,
+                    Company::SETTING_CAN_CLOCKIN_SHIFT_EARLIER_MINS => 5,
+                    Company::SETTING_CAN_DISPLAY_BREAK_WARNING => false,
+                    Company::SETTING_CAN_END_BREAK_EARLIER => true,
+                    Company::SETTING_CAN_MOBILE_BUMP_SHIFT => true,
+                    Company::SETTING_CAN_MODIFY_TIMESHEET_ON_END => true,
+                    Company::SETTING_CAN_SMS_BUMP_SHIFT => false,
+                    Company::SETTING_CAN_SUBMIT_SHIFT_VIA_DESK => true,
+                    Company::SETTING_DEFAULT_MEALBREAK_DURATION => 0,
+                    Company::SETTING_MEALBREAK_IS_PAID => false,
+                    Company::SETTING_REQUIRE_KIOSK_PHOTO_BUMP_SHIFT => true,
+                    Company::SETTING_ROSTER_ALLOW_OFFER_SHIFT => false,
+                    Company::SETTING_ROSTER_ALLOW_PEER_VIEW => 1,
+                    Company::SETTING_ROSTER_ALLOW_SMS_WITH_FULL_NAME => false,
+                    Company::SETTING_ROSTER_ALLOW_SWAP_SHIFT => false,
+                    Company::SETTING_ROSTER_DEFAULT_SHIFT_LEN => 6,
+                    Company::SETTING_ROSTER_NOTIFICATION_MANAGER => 2,
+                    Company::SETTING_ROSTER_PREVENT_CHANGE_HOURS => 72,
+                    Company::SETTING_ROSTER_RECOMMENDATION_SORTING => "BEST",
+                    Company::SETTING_ROSTER_REQUIRE_CONFIRM_HOURS => 336,
+                    Company::SETTING_ROSTER_SWAP_REQUIRE_APPROVAL => false,
+                    Company::SETTING_SHIFT_COST_ADDITIONAL => 30,
+                    Company::SETTING_TIMESHEET_AUTO_ROUND => false,
+                    Company::SETTING_TIMESHEET_AUTO_TIME_APPROVE => 0,
+                    Company::SETTING_TIMESHEET_CLOSEST_BLOCK => 15,
+                    Company::SETTING_TIMESHEET_MATCH_ROSTER => 0,
+                    Company::SETTING_TIMESHEET_MATCH_ROSTER_TIME => 0,
+                    Company::SETTING_TIMESHEET_MATURITY => 15,
+                    Company::SETTING_TIMESHEET_ROUND_END_TIME => "c15",
+                    Company::SETTING_TIMESHEET_ROUND_END_TIME_RS => false,
+                    Company::SETTING_TIMESHEET_ROUND_MEALBREAK => "c15",
+                    Company::SETTING_TIMESHEET_ROUND_MEALBREAK_RS => false,
+                    Company::SETTING_TIMESHEET_ROUND_START_TIME => "c15",
+                    Company::SETTING_TIMESHEET_ROUND_START_TIME_RS => false,
+                    Company::SETTING_WEEK_START => 1,
+                ];
+        }
+        throw new InvalidCallException('Unknown CompanySetting id ' . $id);
+    }
+    
+    
+    /**
+     * Returns response to POST /resource/company/:Id/settings endpoint.
+     *
+     * @param integer $id Company id
+     * @param array $payload POST data
+     *
+     * @return boolean
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function postSuperviseCompanySettings($id, $payload)
+    {
+        switch ($id) {
+            case static::COMPANY_NEW:
+            case static::COMPANY_FIRST:
+                return true;
+        }
+        throw new InvalidCallException('Unknown Company id ' . $id);
+    }
+    
+    /**
+     * Returns response to GET /resource/company/:Id/settings endpoint.
+     *
+     * @param integer $id Company id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getSuperviseCompanySettings($id)
+    {
+        return $this->getResourceCompanySettings($id);
+    }
+    
+    
+    
+    /**
+     * Returns response from GET /resource/CustomField/:id endpoint.
+     *
+     * @param string $id CustomField id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceCustomfield($id)
+    {
+        switch (strtolower($id)) {
+            case 'info':
+                return [
+                    'fields'=> [
+                        'Id' => 'Integer',
+                        'System' => 'VarChar',
+                        'Name' => 'VarChar',
+                        'ApiName' => 'VarChar',
+                        'DeputyField' => 'VarChar',
+                        'SortOrder' => 'Integer',
+                        'Default' => 'VarChar',
+                        'Type' => 'Integer',
+                        'Valuelist' => 'Blob',
+                        'TriggerScript' => 'Integer',
+                        'Validation' => 'VarChar',
+                        'Helptext' => 'VarChar',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                    ],
+                    'joins' => [],
+                    'assocs' => [],
+                    'count' => 0,
+                ];
+            case static::CUSTOM_FIELD_NEW:
+                return [
+                    'Id' => $id,
+                    'System' => 'Timesheet',
+                    'Name' => 'New Custom Field',
+                    'ApiName' => 'casenotes',
+                    'DeputyField' => 'f03',
+                    'SortOrder' => 3,
+                    'Default' => '',
+                    'Type' => 2,
+                    'Valuelist' => '[]',
+                    'TriggerScript' => 0,
+                    'Validation' => '[
+                                        "nempty"
+                                    ]',
+                    'Helptext' => 'Help Text',
+                    'Creator' => static::USER_FIRST,
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                ];
+            case static::CUSTOM_FIELD_FIRST:
+                return [
+                    'Id' => $id,
+                    'System' => 'Timesheet',
+                    'Name' => 'Travel Distance',
+                    'ApiName' => 'traveldistance',
+                    'DeputyField' => 'f01',
+                    'SortOrder' => 1,
+                    'Default' => '',
+                    'Type' => 2,
+                    'Valuelist' => '[]',
+                    'TriggerScript' => 0,
+                    'Validation' => '[
+                                        "nempty"
+                                    ]',
+                    'Helptext' => 'Help Text',
+                    'Creator' => static::USER_FIRST,
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                ];
+            case static::CUSTOM_FIELD_SECOND:
+                return [
+                    'Id' => $id,
+                    'System' => 'Timesheet',
+                    'Name' => 'Travel Time',
+                    'ApiName' => 'traveltime',
+                    'DeputyField' => 'f02',
+                    'SortOrder' => 2,
+                    'Default' => '',
+                    'Type' => 2,
+                    'Valuelist' => '[]',
+                    'TriggerScript' => 0,
+                    'Validation' => '[
+                                        "nempty"
+                                    ]',
+                    'Helptext' => 'Help Text',
+                    'Creator' => static::USER_FIRST,
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                ];
+        }
+        throw new InvalidCallException('Unknown customField unid ' . $id);
+    }
+    
+    /**
+     * Returns response from POST /resource/CustomField/:Id endpoint
+     *
+     * @param integer $id CustomField id
+     * @param array $payload POST data
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function postResourceCustomfield($id, $payload)
+    {
+        switch ($id) {
+            case 'info':
+                return $this->postResourceCustomfieldQuery($payload);
+            case 'query':
+                return $this->postResourceCustomfieldQuery($payload);
+            case self::CUSTOM_FIELD_NEW:
+            case self::CUSTOM_FIELD_FIRST:
+            case self::CUSTOM_FIELD_SECOND:
+                return [$this->getResourceCustomfield($id)];
+        }
+        throw new InvalidCallException('Unknown customField object #' . $id);
+    }
+    
+    /**
+     * Returns response from POST /resource/CustomField/QUERY endpoint.
+     *
+     * @param array $payload Query data
+     *
+     * @return array
+     */
+    protected function postResourceCustomfieldQuery($payload)
+    {
+        $queryLimit = isset($payload['max']) ? $payload['max'] : null;
 
+        if ($queryLimit == 1) {
+            return [$this->getResourceCustomfield(MockClient::CUSTOM_FIELD_FIRST)];
+        }
+
+        return [
+            $this->getResourceCustomfield(MockClient::CUSTOM_FIELD_FIRST),
+            $this->getResourceCustomfield(MockClient::CUSTOM_FIELD_SECOND),
+        ];
+    }
+    
+    /**
+     * Returns response to PUT /resource/CustomField endpoint.
+     *
+     * @param array $payload PUT payload
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When payload is unknown
+     * @throws MockErrorException When $name is 'Invalid Custom Field'
+     */
+    protected function putResourceCustomfield($payload)
+    {
+        $name = isset($payload['Name']) ? $payload['Name'] : null;
+        switch ($name) {
+            case 'New Custom Field':
+                return $this->getResourceCustomfield(static::CUSTOM_FIELD_NEW);
+            case 'Update Custom Field':
+                return $this->getResourceCustomfield(static::CUSTOM_FIELD_FIRST);
+            case 'Invalid Custom Field':
+                throw new MockErrorException('Manually forcing failure', 500);
+        }
+        throw new InvalidCallException('Unknown customField payload: ' . var_export($payload, true));
+    }
+    
     /**
      * Returns response from GET /userinfo/:Id endpoint.
      *
@@ -799,7 +1088,141 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unexpected payload: ' . var_export($payload, true));
     }
-
+    
+    /**
+     * Returns response to GET /resource/Memo/:Id endpoint.
+     *
+     * @param integer $id Memo id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceMemo($id)
+    {
+        switch (strtolower($id)) {
+            case 'info':
+                return [
+                    'fields'=> [
+                        'Id' => 'Integer',
+                        'ShowFrom' => 'Date',
+                        'Active' => 'Bit',
+                        'ShowTill' => 'Date',
+                        'Title' => 'VarChar',
+                        'Content' => 'Blob',
+                        'Type' => 'Integer',
+                        'File' => 'Integer',
+                        'Url' => 'VarChar',
+                        'ConfirmText' => 'VarChar',
+                        'Keyword' => 'Blob',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                    ],
+                    'joins'=> [],
+                    'assocs'=> [
+                        'Company' => 'Company',
+                        'Role' => 'EmployeeRole',
+                        'Team' => 'Team',
+                    ],
+                    'count'=> 0,
+                ];
+            case static::MEMO_FIRST:
+                return [
+                    'Id' => $id,
+                    'ShowFrom' => '2018-07-31T00:00:00+09:30',
+                    'Active' => true,
+                    'ShowTill' => null,
+                    'Title' => null,
+                    'Content' => 'First Memo Content',
+                    'Type' => 1,
+                    'File' => null,
+                    'Url' => null,
+                    'ConfirmText' => '',
+                    'Keyword' => 'First Memo Content',
+                    'Creator' => static::USER_ADMIN,
+                    'Created' => '2018-07-31T14:36:34+09:30',
+                    'Modified' => '2018-07-31T14:36:34+09:30',
+                ];
+            case static::MEMO_NEW:
+                return [
+                    'Id' => $id,
+                    'ShowFrom' => '2018-08-01T00:00:00+09:30',
+                    'Active' => true,
+                    'ShowTill' => null,
+                    'Title' => null,
+                    'Content' => 'New Memo Content',
+                    'Type' => 1,
+                    'File' => null,
+                    'Url' => null,
+                    'ConfirmText' => '',
+                    'Keyword' => 'New Memo Content',
+                    'Creator' => static::USER_ADMIN,
+                    'Created' => '2018-08-01T14:36:34+09:30',
+                    'Modified' => '2018-08-01T14:36:34+09:30',
+                ];
+            case static::MEMO_NULL:
+                return [
+                    'Id' => null,
+                    'ShowFrom' => '2018-08-01T00:00:00+09:30',
+                    'Active' => true,
+                    'ShowTill' => null,
+                    'Title' => null,
+                    'Content' => 'New Memo Content',
+                    'Type' => 1,
+                    'File' => null,
+                    'Url' => null,
+                    'ConfirmText' => '',
+                    'Keyword' => null,
+                    'Creator' => static::USER_ADMIN,
+                    'Created' => '2018-08-01T14:36:34+09:30',
+                    'Modified' => '2018-08-01T14:36:34+09:30',
+                ];
+        }
+        throw new InvalidCallException('Unknown memo id ' . $id);
+    }
+    
+    /**
+     * Returns response from POST /resource/Memo/:Id endpoint - not supported
+     *
+     * @param integer $id Memo id
+     * @param array $payload POST data
+     *
+     * @throws DeputyException When attempting to update a Memo - not supported
+     */
+    protected function postResourceMemo($id, $payload)
+    {
+        throw new DeputyException('Resource not allowed for modification', 404);
+    }
+    
+    /**
+     * Returns response from POST /supervise/memo endpoint.
+     *
+     * @param array $payload POST data
+     *
+     * @return array
+     *
+     * @throws MockErrorException When payload has no Company recipients
+     */
+    protected function postSuperviseMemo($payload)
+    {
+        $content = isset($payload['strContent']) ? $payload['strContent'] : null;
+        $assignedCompanyIds = isset($payload['arrAssignedCompanyIds']) ? $payload['arrAssignedCompanyIds'] : null;
+        $assignedUserIds = isset($payload['arrAssignedUserIds']) ? $payload['arrAssignedUserIds'] : null;
+        
+        // Handle no recipients
+        if (empty($assignedCompanyIds) && empty($assignedUserIds)) {
+            throw new MockErrorException('Sorry, you need to select some active Location or some employed people.', 400);
+        }
+        
+        // Handle no content - Deputy API returns Memo with id as null when no content is provided
+        if (empty($content)) {
+            return $this->getResourceMemo(static::MEMO_NULL);
+        }
+        
+        return $this->getResourceMemo(static::MEMO_NEW);
+    }
+    
     /**
      * Returns response from GET /resource/OperationalUnit/:id endpoint.
      *
