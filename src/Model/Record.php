@@ -746,7 +746,7 @@ abstract class Record extends Component implements ModelInterface
             if ($field) {
                 $dataType = $schema->fieldDataType($field);
                 if ($dataType === null) {
-                    throw UnknownDataTypeException::create($schema, $field);
+                    throw UnknownDataTypeException::create($record->_resourceName, $field);
                 }
                 $record->{$field} = $dataType->fromApi($value);
                 continue;
