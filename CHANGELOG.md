@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.3.2
+
+* Excluding development files in production archive.
+
+## 1.3.1
+
+* Fixed resource name passed to UnknownDataTypeException ([#10](https://github.com/communityds/deputy-api-wrapper/pull/10)).
+
 ## 1.3.0
 
 * Added ability to create `Memo` to assigned recipients ([#5](https://github.com/communityds/deputy-api-wrapper/pull/5)).
