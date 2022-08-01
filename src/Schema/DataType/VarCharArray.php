@@ -7,7 +7,6 @@ namespace CommunityDS\Deputy\Api\Schema\DataType;
  */
 class VarCharArray extends DataType
 {
-
     public function phpType()
     {
         return 'string[]';

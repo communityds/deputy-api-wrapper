@@ -13,7 +13,6 @@ use CommunityDS\Deputy\Api\Schema\UnknownRelationException;
  */
 class Query extends Component
 {
-
     /**
      * Maximum number of records API can return per request.
      */
@@ -400,7 +399,8 @@ class Query extends Component
         $id = null;
         if (count($search) == 1) {
             foreach ($search as $condition) {
-                if ($condition['field'] == 'Id'
+                if (
+                    $condition['field'] == 'Id'
                     && ($condition['type'] == 'eq' || $condition['type'] == 'in')
                     && is_scalar($condition['data'])
                 ) {

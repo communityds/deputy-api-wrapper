@@ -11,7 +11,6 @@ use CommunityDS\Deputy\Api\Component;
  */
 class RuntimeCache extends Component implements CacheInterface
 {
-
     /**
      * Stored values.
      *

@@ -7,7 +7,6 @@ namespace CommunityDS\Deputy\Api\Schema\DataType;
  */
 class Blob extends VarChar
 {
-
     public function phpType()
     {
         return 'string';

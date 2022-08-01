@@ -23,5 +23,4 @@ use DateTime;
  */
 class EmployeeAgreementHistory extends Record
 {
-
 }

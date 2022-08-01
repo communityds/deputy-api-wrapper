@@ -10,7 +10,6 @@ use CommunityDS\Deputy\Api\InvalidParamException;
  */
 class UnixTimestamp extends DataType
 {
-
     public function fromApi($value)
     {
         if ($value === null) {

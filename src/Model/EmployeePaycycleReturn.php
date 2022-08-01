@@ -22,5 +22,4 @@ use DateTime;
  */
 class EmployeePaycycleReturn extends Record
 {
-
 }

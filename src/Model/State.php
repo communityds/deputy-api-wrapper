@@ -21,7 +21,6 @@ use DateTime;
  */
 class State extends Record
 {
-
     /**
      * Returns the name.
      *

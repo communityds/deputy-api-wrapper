@@ -17,7 +17,6 @@ use Guzzle\Http\Message\RequestInterface;
  */
 class Client extends Component implements ClientInterface
 {
-
     /**
      * The configuration options for the Guzzle client.
      *

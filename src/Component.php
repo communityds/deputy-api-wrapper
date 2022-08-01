@@ -9,7 +9,6 @@ namespace CommunityDS\Deputy\Api;
  */
 class Component
 {
-
     /**
      * Creates a new instance of this component and populates
      * the properties from the configuration array.

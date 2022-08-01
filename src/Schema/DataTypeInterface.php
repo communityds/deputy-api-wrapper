@@ -7,7 +7,6 @@ namespace CommunityDS\Deputy\Api\Schema;
  */
 interface DataTypeInterface
 {
-
     /**
      * Converts a value from the API to the PHP value.
      *

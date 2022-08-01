@@ -9,7 +9,6 @@ use DateTime;
  */
 abstract class DateTimeHelper
 {
-
     /**
      * Returns a DateTime instance corresponding to midnight within the
      * same time zone.

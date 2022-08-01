@@ -43,7 +43,6 @@ use DateTime;
  */
 class PayRules extends Record
 {
-
     /**
      * Hourly remuneration type.
      */

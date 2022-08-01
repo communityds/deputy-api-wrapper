@@ -13,7 +13,6 @@ use CommunityDS\Deputy\Api\Wrapper;
  */
 class Registry extends Component
 {
-
     /**
      * List of resources where key is Resource name and value is model
      * class name or configuration array of used to represent the resource.
@@ -394,7 +393,7 @@ class Registry extends Component
             'VarCharArray'  => 'CommunityDS\Deputy\Api\Schema\DataType\VarCharArray',
         ];
     }
-    
+
     /**
      * Helper to translate from Deputy type id (as returned by the API) to the name of the relevant DataType Class Name
      * eg.
@@ -416,7 +415,7 @@ class Registry extends Component
             6 => 'VarCharArray',    // Multi list
             7 => 'Blob',            // File
         ];
-        
+
         $dataTypeClassName = key_exists($typeId, $typeIdToDataTypeClassNameMap) ? $typeIdToDataTypeClassNameMap[$typeId] : null;
         if (empty($dataTypeClassName)) {
             return null;
@@ -424,7 +423,7 @@ class Registry extends Component
         $dataTypeClass = "\\CommunityDS\\Deputy\\Api\\Schema\\DataType\\{$dataTypeClassName}";
         return new $dataTypeClass();
     }
-    
+
     /**
      * Returns wrapper instance.
      *

@@ -9,5 +9,4 @@ use CommunityDS\Deputy\Api\DeputyException;
  */
 class MockErrorException extends DeputyException
 {
-
 }

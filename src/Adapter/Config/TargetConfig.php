@@ -10,7 +10,6 @@ use CommunityDS\Deputy\Api\Component;
  */
 class TargetConfig extends Component implements TargetConfigInterface
 {
-
     /**
      * Domain name of endpoint.
      *

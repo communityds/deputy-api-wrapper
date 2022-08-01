@@ -28,5 +28,4 @@ use DateTime;
  */
 class EmploymentCondition extends Record
 {
-
 }

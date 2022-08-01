@@ -23,7 +23,6 @@ use CommunityDS\Deputy\Api\Wrapper;
  */
 abstract class Record extends Component implements ModelInterface
 {
-
     /**
      * Data within this model.
      *

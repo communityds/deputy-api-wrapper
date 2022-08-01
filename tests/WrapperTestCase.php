@@ -6,7 +6,6 @@ use CommunityDS\Deputy\Api\Tests\Adapter\MockClient;
 
 class WrapperTestCase extends TestCase
 {
-
     public function testGetSingular()
     {
         $company = $this->wrapper()->getCompany(MockClient::COMPANY_FIRST);

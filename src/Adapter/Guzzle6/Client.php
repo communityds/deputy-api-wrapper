@@ -16,7 +16,6 @@ use GuzzleHttp\Exception\ClientException;
  */
 class Client extends Component implements ClientInterface
 {
-
     /**
      * The configuration settings for the Guzzle client.
      *

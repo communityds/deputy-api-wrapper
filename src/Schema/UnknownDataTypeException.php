@@ -10,7 +10,6 @@ use Throwable;
  */
 class UnknownDataTypeException extends InvalidParamException
 {
-
     /**
      * Name of data type.
      *

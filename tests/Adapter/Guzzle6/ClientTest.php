@@ -6,7 +6,6 @@ use CommunityDS\Deputy\Api\Tests\Adapter\AdapterTestCase;
 
 class ClientTest extends AdapterTestCase
 {
-
     protected function getClientConfig()
     {
         return [

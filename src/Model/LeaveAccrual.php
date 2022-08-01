@@ -23,7 +23,6 @@ use DateTime;
  */
 class LeaveAccrual extends Record
 {
-
     /**
      * Accrual Entry type.
      */

@@ -16,5 +16,4 @@ use DateTime;
  */
 class PayPeriod extends Record
 {
-
 }

@@ -42,7 +42,6 @@ use DateTime;
  */
 class Company extends Record implements CompanySettingsInterface
 {
-    
     use CompanySettingsTrait;
 
     /**

@@ -32,5 +32,4 @@ use DateTime;
  */
 class EmployeeAgreement extends Record
 {
-
 }

@@ -32,7 +32,6 @@ use DateTime;
  */
 class Leave extends Record
 {
-
     /**
      * Awaiting Approval status.
      */

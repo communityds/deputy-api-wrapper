@@ -27,7 +27,6 @@ use DateTime;
  */
 class TaskGroup extends Record
 {
-
     /**
      * Returns the name.
      *

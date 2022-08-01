@@ -53,7 +53,6 @@ use DateTime;
  */
 class Employee extends Record
 {
-
     /**
      * Value for Female gender.
      */

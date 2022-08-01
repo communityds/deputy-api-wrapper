@@ -35,7 +35,6 @@ use DateTime;
  */
 class LeaveRules extends Record
 {
-
     /**
      * Do not export for Payroll export type.
      */

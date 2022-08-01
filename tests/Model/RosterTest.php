@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class RosterTest extends TestCase
 {
-
     public function testCreate()
     {
 
@@ -123,7 +122,7 @@ class RosterTest extends TestCase
         $roster->mealbreakMinutes = 60;
         $this->assertEquals(60, $roster->mealbreakMinutes);
     }
-    
+
     public function testUpdateCommentOnly()
     {
         $roster = $this->wrapper()->getRoster(MockClient::ROSTER_FIRST);
@@ -135,15 +134,15 @@ class RosterTest extends TestCase
         $roster->comment = 'Testing Comments';
         $this->assertTrue($roster->isAttributeDirty('comment'));
         $this->assertTrue($roster->save());
-        
+
         $this->assertEquals('Testing Comments', $roster->comment);
         $this->assertFalse($roster->isAttributeDirty('comment'));
-        
+
         // Testing these values have not changed
         $this->assertEquals($beforeSaveValues['startTime'], $roster->startTime);
         $this->assertEquals($beforeSaveValues['endTime'], $roster->endTime);
         $this->assertEquals($beforeSaveValues['employee'], $roster->employee);
-        
+
         $this->assertRequestLog(
             [
                 ['get' => 'resource/Roster/INFO'],

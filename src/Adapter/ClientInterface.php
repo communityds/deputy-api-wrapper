@@ -7,7 +7,6 @@ namespace CommunityDS\Deputy\Api\Adapter;
  */
 interface ClientInterface
 {
-
     /**
      * Default status code to denote a successful GET request.
      */

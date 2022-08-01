@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class DateTimeTest extends TestCase
 {
-
     protected function dataType()
     {
         return new DateTime();

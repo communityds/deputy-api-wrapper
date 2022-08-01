@@ -9,5 +9,4 @@ use BadMethodCallException;
  */
 class InvalidParamException extends BadMethodCallException
 {
-
 }

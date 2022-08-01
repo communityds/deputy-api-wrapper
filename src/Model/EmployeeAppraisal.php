@@ -22,5 +22,4 @@ use DateTime;
  */
 class EmployeeAppraisal extends Record
 {
-
 }

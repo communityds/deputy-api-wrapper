@@ -8,7 +8,6 @@ namespace CommunityDS\Deputy\Api\Adapter;
  */
 interface TargetConfigInterface
 {
-
     /**
      * Returns the base url of the REST api.
      *

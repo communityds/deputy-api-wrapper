@@ -22,5 +22,4 @@ use DateTime;
  */
 class RosterSwap extends Record
 {
-
 }

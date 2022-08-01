@@ -36,5 +36,4 @@ use DateTime;
  */
 class TaskSetup extends Record
 {
-
 }

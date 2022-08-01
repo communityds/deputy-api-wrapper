@@ -24,5 +24,4 @@ use DateTime;
  */
 class TaskGroupSetup extends Record
 {
-
 }

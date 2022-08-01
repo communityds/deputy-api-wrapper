@@ -4,7 +4,6 @@ namespace CommunityDS\Deputy\Api\Model;
 
 trait CompanySettingsTrait
 {
-    
     /**
      * Get All settings for this Company
      *
@@ -17,10 +16,10 @@ trait CompanySettingsTrait
         } catch (\Exception $e) {
             return [];
         }
-        
+
         return is_array($settings) ? $settings : [];
     }
-    
+
     /**
      * Set All settings for given key/value pairs
      *
@@ -35,7 +34,7 @@ trait CompanySettingsTrait
         $settingsPayLoad = $settingsKeyValues;
         return $this->postSuperviseCompanySettings($settingsPayLoad);
     }
-    
+
     /**
      * Get single setting for this Company
      *
@@ -51,7 +50,7 @@ trait CompanySettingsTrait
         }
         return $allSettings[$settingKey];
     }
-    
+
     /**
      * Set a single setting for this Company
      *
@@ -67,7 +66,7 @@ trait CompanySettingsTrait
         $settingsPayLoad = ["{$settingKey}" => $settingValue];
         return $this->postSuperviseCompanySettings($settingsPayLoad);
     }
-    
+
     /**
      * Sends a payload to the POST /supervise/company/{intCompanyId}/settings endpoint
      *
@@ -94,7 +93,7 @@ trait CompanySettingsTrait
         }
         return true;
     }
-    
+
     /**
      * Sends a request to the GET /supervise/company/{intCompanyId}/settings endpoint
      *
@@ -108,7 +107,7 @@ trait CompanySettingsTrait
         if (empty($companyId)) {
             throw new \Exception('getSuperviseCompanySettings cannot support getting settings for Company without primaryKey');
         }
-        
+
         $response = $this->getWrapper()->client->get(
             "supervise/company/{$companyId}/settings"
         );

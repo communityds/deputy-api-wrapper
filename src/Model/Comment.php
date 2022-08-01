@@ -19,7 +19,6 @@ use DateTime;
  */
 class Comment extends Record
 {
-
     /**
      * Returns the `comment` association as there is a name conflict
      * with the `comment` property.

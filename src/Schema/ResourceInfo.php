@@ -17,7 +17,6 @@ use CommunityDS\Deputy\Api\Wrapper;
  */
 class ResourceInfo extends Component
 {
-
     /**
      * Name of the resource.
      *

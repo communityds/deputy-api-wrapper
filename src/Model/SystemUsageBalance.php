@@ -16,5 +16,4 @@ use DateTime;
  */
 class SystemUsageBalance extends Record
 {
-
 }

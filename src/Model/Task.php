@@ -39,7 +39,6 @@ use DateTime;
  */
 class Task extends Record
 {
-
     /**
      * Returns the question.
      *

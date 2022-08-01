@@ -22,7 +22,6 @@ use DateTime;
  */
 class Country extends Record
 {
-
     /**
      * Returns the country name.
      *

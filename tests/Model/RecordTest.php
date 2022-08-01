@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class RecordTest extends TestCase
 {
-
     /**
      * @return \CommunityDS\Deputy\Api\Model\Company
      */

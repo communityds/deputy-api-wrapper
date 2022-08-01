@@ -10,7 +10,6 @@ use CommunityDS\Deputy\Api\Schema\ResourceInfo;
  */
 interface ModelInterface
 {
-
     /**
      * Returns the id of the resource.
      *

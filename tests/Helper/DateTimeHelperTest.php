@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class DateTimeHelperTest extends TestCase
 {
-
     public function testGetMidnight()
     {
         $expected = new \DateTime('2018-01-01 00:00:00', new \DateTimeZone('Australia/Adelaide'));

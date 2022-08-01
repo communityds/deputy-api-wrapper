@@ -25,5 +25,4 @@ use DateTime;
  */
 class TaskOpunitConfig extends Record
 {
-
 }

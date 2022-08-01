@@ -11,7 +11,6 @@ use CommunityDS\Deputy\Api\DeputyException;
  */
 abstract class ClientHelper
 {
-
     /**
      * Converts payload to JSON string.
      *

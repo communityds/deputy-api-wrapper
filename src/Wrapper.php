@@ -349,7 +349,6 @@ use CommunityDS\Deputy\Api\Schema\Registry;
  */
 class Wrapper extends Component
 {
-
     /**
      * Singleton instance of this wrapper.
      *
@@ -493,7 +492,7 @@ class Wrapper extends Component
         static::$instance = $instance;
         return $instance;
     }
-    
+
     /**
      * Get CustomFields from cache; populate cache if not already set
      *
@@ -509,7 +508,7 @@ class Wrapper extends Component
         }
         return $customFields;
     }
-    
+
     /**
      * Get the internal 'deputyfield' (eg. f03) from given 'apiname' (eg. 'casenotes')
      *

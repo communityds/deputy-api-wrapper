@@ -9,7 +9,6 @@ use CommunityDS\Deputy\Api\InvalidParamException;
  */
 class Bit extends DataType
 {
-
     public function toApi($value)
     {
         if ($value === null || $value === false || $value === true) {

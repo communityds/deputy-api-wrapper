@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class CustomFieldTest extends TestCase
 {
-
     public function testCreate()
     {
         $customField = $this->wrapper()->createCustomField();
@@ -47,7 +46,7 @@ class CustomFieldTest extends TestCase
     {
         $customField = $this->wrapper()->getCustomField(MockClient::CUSTOM_FIELD_FIRST);
         $customField->Name = 'Update Custom Field';
-        
+
         $this->assertTrue($customField->isAttributeDirty('Name'));
         $this->assertTrue($customField->save());
 
@@ -61,7 +60,7 @@ class CustomFieldTest extends TestCase
             ]
         );
     }
-    
+
     public function testQueryAll()
     {
         $query = $this->wrapper()->findCustomFields();
@@ -72,7 +71,7 @@ class CustomFieldTest extends TestCase
         }
         $this->assertEquals($expected, $actual, 'Expecting all records');
     }
-    
+
     public function testQuerySingle()
     {
         $query = $this->wrapper()->findCustomFields();

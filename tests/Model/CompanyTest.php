@@ -8,7 +8,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class CompanyTest extends TestCase
 {
-
     public function testCreate()
     {
 
@@ -93,27 +92,27 @@ class CompanyTest extends TestCase
         }
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testSetSettings()
     {
         $company = $this->wrapper()->getCompany(MockClient::COMPANY_FIRST);
-    
+
         $resultSetSettings = $company->setSettings([
             Company::SETTING_WEEK_START => 1,
             Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK => true,
         ]);
         $this->assertTrue($resultSetSettings, 'Failed to set company settings');
-    
+
         $this->assertEquals(1, $company->getSetting(Company::SETTING_WEEK_START), "Error in getSetting('{Company::SETTING_WEEK_START}')");
         $this->assertEquals(true, $company->getSetting(Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK), "Error in getSetting('{Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK}')");
     }
-    
+
     public function testGetSettings()
     {
         $company = $this->wrapper()->getCompany(MockClient::COMPANY_FIRST);
-    
+
         $this->assertTrue(is_array($company->getSettings()), 'Settings are not an array');
-    
+
         $this->assertEquals(1, $company->getSetting(Company::SETTING_WEEK_START), "Error in getSetting('{Company::SETTING_WEEK_START}')");
         $this->assertEquals(true, $company->getSetting(Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK), "Error in getSetting('{Company::SETTING_CAN_BUMP_SHIFT_VIA_DESK}')");
     }

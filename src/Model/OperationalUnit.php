@@ -40,7 +40,6 @@ use DateTime;
  */
 class OperationalUnit extends Record
 {
-
     /**
      * Returns the operational unit name.
      *

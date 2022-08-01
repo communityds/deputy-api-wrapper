@@ -8,7 +8,6 @@ use PHPUnit\Framework\Assert;
 
 abstract class AdapterTestCase extends TestCase
 {
-
     protected function setUp()
     {
         parent::setUp();

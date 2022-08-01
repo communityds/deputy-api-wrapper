@@ -24,7 +24,6 @@ use DateTime;
  */
 class CustomField extends Record
 {
-
     public function getDataType()
     {
         return Registry::getDataTypeById($this->type);

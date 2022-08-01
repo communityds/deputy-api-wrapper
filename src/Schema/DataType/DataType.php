@@ -10,7 +10,6 @@ use CommunityDS\Deputy\Api\Schema\DataTypeInterface;
  */
 abstract class DataType extends Component implements DataTypeInterface
 {
-
     public function fromApi($value)
     {
         return $value;

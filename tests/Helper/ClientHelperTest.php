@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class ClientHelperTest extends TestCase
 {
-
     protected function valueSerialized()
     {
         return '{"null":null,"string":"value","integer":1,"float":1.23,"boolean":true,"array":[1,2],"object":{"first":1,"second":2}}';

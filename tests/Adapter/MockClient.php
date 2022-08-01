@@ -12,7 +12,6 @@ use CommunityDS\Deputy\Api\Model\Company;
  */
 class MockClient implements ClientInterface
 {
-
     const ADDRESS_COMPANY = 12;
 
     const ADDRESS_COMPANY_NEW = 1245;
@@ -30,23 +29,23 @@ class MockClient implements ClientInterface
     const COUNTRY_AUSTRALIA = 13;
 
     const COUNTRY_INVALID = 9999;
-    
+
     const CUSTOM_FIELD_FIRST = 401;
-    
+
     const CUSTOM_FIELD_SECOND = 402;
-    
+
     const CUSTOM_FIELD_NEW = 422;
-    
+
     const EMPLOYEE_FIRST = 987235;
-    
+
     const MEMO_FIRST = 432;
-    
+
     const MEMO_SECOND = 321;
-    
+
     const MEMO_NEW = 5432;
-    
+
     const MEMO_NULL = null;
-    
+
     const PORTFOLIO_FIRST = 213;
 
     const ROSTER_FIRST = 9283;
@@ -144,7 +143,7 @@ class MockClient implements ClientInterface
                     $bits[] = $foreign;
                 }
             }
-        } elseif ($bits[0] == 'supervise' && count($bits) >=3 && count($bits) <= 4) {
+        } elseif ($bits[0] == 'supervise' && count($bits) >= 3 && count($bits) <= 4) {
             $action = null;
             if (count($bits) == 4) {
                 $action = array_pop($bits);
@@ -244,7 +243,7 @@ class MockClient implements ClientInterface
                 [
                     'Id' => 1,
                     'Category' => 'Positive',
-                    'Group'=> 'Rating',
+                    'Group' => 'Rating',
                     'SortOrder' => 1,
                     'Stafflog' => true,
                     'System' => false,
@@ -771,7 +770,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown company: ' . $id);
     }
-    
+
     /**
      * Returns response to GET /resource/company/:Id/settings endpoint.
      *
@@ -830,8 +829,8 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown CompanySetting id ' . $id);
     }
-    
-    
+
+
     /**
      * Returns response to POST /resource/company/:Id/settings endpoint.
      *
@@ -851,7 +850,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown Company id ' . $id);
     }
-    
+
     /**
      * Returns response to GET /resource/company/:Id/settings endpoint.
      *
@@ -865,9 +864,9 @@ class MockClient implements ClientInterface
     {
         return $this->getResourceCompanySettings($id);
     }
-    
-    
-    
+
+
+
     /**
      * Returns response from GET /resource/CustomField/:id endpoint.
      *
@@ -882,7 +881,7 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
+                    'fields' => [
                         'Id' => 'Integer',
                         'System' => 'VarChar',
                         'Name' => 'VarChar',
@@ -966,7 +965,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown customField unid ' . $id);
     }
-    
+
     /**
      * Returns response from POST /resource/CustomField/:Id endpoint
      *
@@ -991,7 +990,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown customField object #' . $id);
     }
-    
+
     /**
      * Returns response from POST /resource/CustomField/QUERY endpoint.
      *
@@ -1012,7 +1011,7 @@ class MockClient implements ClientInterface
             $this->getResourceCustomfield(MockClient::CUSTOM_FIELD_SECOND),
         ];
     }
-    
+
     /**
      * Returns response to PUT /resource/CustomField endpoint.
      *
@@ -1036,7 +1035,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown customField payload: ' . var_export($payload, true));
     }
-    
+
     /**
      * Returns response from GET /userinfo/:Id endpoint.
      *
@@ -1088,7 +1087,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unexpected payload: ' . var_export($payload, true));
     }
-    
+
     /**
      * Returns response to GET /resource/Memo/:Id endpoint.
      *
@@ -1103,7 +1102,7 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
+                    'fields' => [
                         'Id' => 'Integer',
                         'ShowFrom' => 'Date',
                         'Active' => 'Bit',
@@ -1119,13 +1118,13 @@ class MockClient implements ClientInterface
                         'Created' => 'DateTime',
                         'Modified' => 'DateTime',
                     ],
-                    'joins'=> [],
-                    'assocs'=> [
+                    'joins' => [],
+                    'assocs' => [
                         'Company' => 'Company',
                         'Role' => 'EmployeeRole',
                         'Team' => 'Team',
                     ],
-                    'count'=> 0,
+                    'count' => 0,
                 ];
             case static::MEMO_FIRST:
                 return [
@@ -1181,7 +1180,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown memo id ' . $id);
     }
-    
+
     /**
      * Returns response from POST /resource/Memo/:Id endpoint - not supported
      *
@@ -1194,7 +1193,7 @@ class MockClient implements ClientInterface
     {
         throw new DeputyException('Resource not allowed for modification', 404);
     }
-    
+
     /**
      * Returns response from POST /supervise/memo endpoint.
      *
@@ -1209,20 +1208,20 @@ class MockClient implements ClientInterface
         $content = isset($payload['strContent']) ? $payload['strContent'] : null;
         $assignedCompanyIds = isset($payload['arrAssignedCompanyIds']) ? $payload['arrAssignedCompanyIds'] : null;
         $assignedUserIds = isset($payload['arrAssignedUserIds']) ? $payload['arrAssignedUserIds'] : null;
-        
+
         // Handle no recipients
         if (empty($assignedCompanyIds) && empty($assignedUserIds)) {
             throw new MockErrorException('Sorry, you need to select some active Location or some employed people.', 400);
         }
-        
+
         // Handle no content - Deputy API returns Memo with id as null when no content is provided
         if (empty($content)) {
             return $this->getResourceMemo(static::MEMO_NULL);
         }
-        
+
         return $this->getResourceMemo(static::MEMO_NEW);
     }
-    
+
     /**
      * Returns response from GET /resource/OperationalUnit/:id endpoint.
      *
@@ -1237,41 +1236,41 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
-                        'Id'=> 'Integer',
-                        'Creator'=> 'Integer',
-                        'Created'=> 'DateTime',
-                        'Modified'=> 'DateTime',
-                        'Company'=> 'Integer',
-                        'ParentOperationalUnit'=> 'Integer',
-                        'OperationalUnitName'=> 'VarChar',
-                        'Active'=> 'Bit',
-                        'PayrollExportName'=> 'VarChar',
-                        'Address'=> 'Integer',
-                        'Contact'=> 'Integer',
-                        'RosterSortOrder'=> 'Integer',
-                        'ShowOnRoster'=> 'Bit',
-                        'Colour'=> 'VarChar',
-                        'RosterActiveHoursSchedule'=> 'Integer',
-                        'DailyRosterBudget'=> 'Float',
+                    'fields' => [
+                        'Id' => 'Integer',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                        'Company' => 'Integer',
+                        'ParentOperationalUnit' => 'Integer',
+                        'OperationalUnitName' => 'VarChar',
+                        'Active' => 'Bit',
+                        'PayrollExportName' => 'VarChar',
+                        'Address' => 'Integer',
+                        'Contact' => 'Integer',
+                        'RosterSortOrder' => 'Integer',
+                        'ShowOnRoster' => 'Bit',
+                        'Colour' => 'VarChar',
+                        'RosterActiveHoursSchedule' => 'Integer',
+                        'DailyRosterBudget' => 'Float',
                     ],
-                    'joins'=> [
-                        'CompanyObject'=> 'Company',
-                        'ParentOperationalUnitObject'=> 'OperationalUnit',
-                        'AddressObject'=> 'Address',
-                        'ContactObject'=> 'Contact',
-                        'RosterActiveHoursScheduleObject'=> 'Schedule',
+                    'joins' => [
+                        'CompanyObject' => 'Company',
+                        'ParentOperationalUnitObject' => 'OperationalUnit',
+                        'AddressObject' => 'Address',
+                        'ContactObject' => 'Contact',
+                        'RosterActiveHoursScheduleObject' => 'Schedule',
                     ],
-                    'assocs'=> [
-                        'OperationUnit'=> 'PublicHoliday',
-                        'EmployeeSalaryOpunits'=> 'EmployeeAgreement',
-                        'OperationalUnit'=> 'Event',
-                        'ManagementEmployeeOperationalUnit'=> 'Employee',
-                        'TrainingModule'=> 'TrainingModule',
-                        'RosterEmployeeOperationalUnit'=> 'Employee',
-                        'TaskGroupOpUnit'=> 'TaskGroupSetup',
+                    'assocs' => [
+                        'OperationUnit' => 'PublicHoliday',
+                        'EmployeeSalaryOpunits' => 'EmployeeAgreement',
+                        'OperationalUnit' => 'Event',
+                        'ManagementEmployeeOperationalUnit' => 'Employee',
+                        'TrainingModule' => 'TrainingModule',
+                        'RosterEmployeeOperationalUnit' => 'Employee',
+                        'TaskGroupOpUnit' => 'TaskGroupSetup',
                     ],
-                    'count'=> 45,
+                    'count' => 45,
                 ];
             case static::OP_UNIT_NEW:
                 return [
@@ -1407,41 +1406,41 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
-                        'Id'=> 'Integer',
-                        'Date'=> 'Date',
-                        'StartTime'=> 'Integer',
-                        'EndTime'=> 'Integer',
-                        'Mealbreak'=> 'Time',
-                        'TotalTime'=> 'Float',
-                        'Cost'=> 'Float',
-                        'OperationalUnit'=> 'Integer',
-                        'Employee'=> 'Integer',
-                        'Comment'=> 'VarChar',
-                        'Warning'=> 'VarChar',
-                        'WarningOverrideComment'=> 'VarChar',
-                        'Published'=> 'Bit',
-                        'MatchedByTimesheet'=> 'Integer',
-                        'Open'=> 'Bit',
-                        'ConfirmStatus'=> 'Integer',
-                        'ConfirmComment'=> 'VarChar',
-                        'ConfirmBy'=> 'Integer',
-                        'ConfirmTime'=> 'Integer',
-                        'SwapStatus'=> 'Integer',
-                        'SwapManageBy'=> 'Integer',
-                        'ConnectStatus'=> 'Integer',
-                        'Creator'=> 'Integer',
-                        'Created'=> 'DateTime',
-                        'Modified'=> 'DateTime',
+                    'fields' => [
+                        'Id' => 'Integer',
+                        'Date' => 'Date',
+                        'StartTime' => 'Integer',
+                        'EndTime' => 'Integer',
+                        'Mealbreak' => 'Time',
+                        'TotalTime' => 'Float',
+                        'Cost' => 'Float',
+                        'OperationalUnit' => 'Integer',
+                        'Employee' => 'Integer',
+                        'Comment' => 'VarChar',
+                        'Warning' => 'VarChar',
+                        'WarningOverrideComment' => 'VarChar',
+                        'Published' => 'Bit',
+                        'MatchedByTimesheet' => 'Integer',
+                        'Open' => 'Bit',
+                        'ConfirmStatus' => 'Integer',
+                        'ConfirmComment' => 'VarChar',
+                        'ConfirmBy' => 'Integer',
+                        'ConfirmTime' => 'Integer',
+                        'SwapStatus' => 'Integer',
+                        'SwapManageBy' => 'Integer',
+                        'ConnectStatus' => 'Integer',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
                     ],
-                    'joins'=> [
-                        'OperationalUnitObject'=> 'OperationalUnit',
-                        'EmployeeObject'=> 'Employee',
-                        'MatchedByTimesheetObject'=> 'Timesheet',
-                        'ConfirmByObject'=> 'Employee',
+                    'joins' => [
+                        'OperationalUnitObject' => 'OperationalUnit',
+                        'EmployeeObject' => 'Employee',
+                        'MatchedByTimesheetObject' => 'Timesheet',
+                        'ConfirmByObject' => 'Employee',
                     ],
-                    'assocs'=> [],
-                    'count'=> 0,
+                    'assocs' => [],
+                    'count' => 0,
                 ];
             case static::ROSTER_FIRST:
                 return [
