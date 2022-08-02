@@ -13,6 +13,8 @@ use CommunityDS\Deputy\Api\Schema\UnknownRelationException;
  */
 class Query extends Component
 {
+    use WrapperLocatorTrait;
+
     /**
      * Maximum number of records API can return per request.
      */
@@ -100,16 +102,6 @@ class Query extends Component
      * @see orderBy()
      */
     public $orderBy = null;
-
-    /**
-     * Returns wrapper instance.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
-    }
 
     /**
      * Returns resource schema.

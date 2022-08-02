@@ -5,8 +5,7 @@ namespace CommunityDS\Deputy\Api\Schema;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Model\ModelInterface;
 use CommunityDS\Deputy\Api\Query;
-use CommunityDS\Deputy\Api\Schema\DataTypeInterface;
-use CommunityDS\Deputy\Api\Wrapper;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 
 /**
  * Defines the schema for a specific API Resource.
@@ -17,6 +16,8 @@ use CommunityDS\Deputy\Api\Wrapper;
  */
 class ResourceInfo extends Component
 {
+    use WrapperLocatorTrait;
+
     /**
      * Name of the resource.
      *
@@ -394,16 +395,6 @@ class ResourceInfo extends Component
             }
         }
         return null;
-    }
-
-    /**
-     * Returns instance of wrapper.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
     }
 
     /**

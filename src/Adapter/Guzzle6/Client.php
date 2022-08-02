@@ -5,7 +5,7 @@ namespace CommunityDS\Deputy\Api\Adapter\Guzzle6;
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Helper\ClientHelper;
-use CommunityDS\Deputy\Api\Wrapper;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 
@@ -16,6 +16,8 @@ use GuzzleHttp\Exception\ClientException;
  */
 class Client extends Component implements ClientInterface
 {
+    use WrapperLocatorTrait;
+
     /**
      * The configuration settings for the Guzzle client.
      *
@@ -61,16 +63,6 @@ class Client extends Component implements ClientInterface
             );
         }
         return $this->_httpClient;
-    }
-
-    /**
-     * Returns wrapper instance.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
     }
 
     /**

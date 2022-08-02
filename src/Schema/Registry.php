@@ -5,14 +5,15 @@ namespace CommunityDS\Deputy\Api\Schema;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Model\Me;
 use CommunityDS\Deputy\Api\Model\User;
-use CommunityDS\Deputy\Api\Schema\DataTypeInterface;
-use CommunityDS\Deputy\Api\Wrapper;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 
 /**
  * Registry of the Resources and Data Types that the Schema supports.
  */
 class Registry extends Component
 {
+    use WrapperLocatorTrait;
+
     /**
      * List of resources where key is Resource name and value is model
      * class name or configuration array of used to represent the resource.
@@ -422,15 +423,5 @@ class Registry extends Component
         }
         $dataTypeClass = "\\CommunityDS\\Deputy\\Api\\Schema\\DataType\\{$dataTypeClassName}";
         return new $dataTypeClass();
-    }
-
-    /**
-     * Returns wrapper instance.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
     }
 }

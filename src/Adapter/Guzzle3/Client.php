@@ -5,7 +5,8 @@ namespace CommunityDS\Deputy\Api\Adapter\Guzzle3;
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Helper\ClientHelper;
-use CommunityDS\Deputy\Api\Wrapper;
+use CommunityDS\Deputy\Api\NotSupportedException;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 use Guzzle\Http\Client as HttpClient;
 use Guzzle\Http\Exception\BadResponseException;
 use Guzzle\Http\Message\RequestInterface;
@@ -17,6 +18,8 @@ use Guzzle\Http\Message\RequestInterface;
  */
 class Client extends Component implements ClientInterface
 {
+    use WrapperLocatorTrait;
+
     /**
      * The configuration options for the Guzzle client.
      *
@@ -61,16 +64,6 @@ class Client extends Component implements ClientInterface
     }
 
     /**
-     * Returns wrapper instance.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
-    }
-
-    /**
      * Executes a request and checks the response.
      *
      * @param RequestInterface $request Request instance
@@ -78,7 +71,7 @@ class Client extends Component implements ClientInterface
      *
      * @return string|array|null
      */
-    public function execute($request, $successCode)
+    protected function execute($request, $successCode)
     {
 
         $this->_lastError = null;
