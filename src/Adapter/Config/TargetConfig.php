@@ -21,4 +21,14 @@ class TargetConfig extends Component implements TargetConfigInterface
     {
         return 'https://' . $this->domain . '/api/v1/';
     }
+
+    public function getOAuth2EndPoint()
+    {
+        return $this->domain;
+    }
+
+    public function getOAuth2AccessTokenUrl()
+    {
+        return 'https://' . $this->domain . '/oauth/access_token';
+    }
 }

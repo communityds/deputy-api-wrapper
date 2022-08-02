@@ -73,11 +73,10 @@ class Client extends Component implements ClientInterface
      * @param array $options Request options
      * @param integer $successCode Code that indicates a success
      *
-     * @return string|array|null
+     * @return string|array|false
      */
     public function execute($method, $uri, $options, $successCode)
     {
-
         $this->_lastError = null;
 
         $options['headers']['Content-type'] = 'application/json';
@@ -155,5 +154,30 @@ class Client extends Component implements ClientInterface
     public function getLastError()
     {
         return $this->_lastError;
+    }
+
+    public function postOAuth2($uri, $payload)
+    {
+        try {
+            $response = $this->getHttpClient()->request('POST', $uri, ['form_params' => $payload]);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $content = (string) $response->getBody(true);
+            if ($content) {
+                $this->_lastError = $content;
+            }
+        }
+
+        if ($response->getStatusCode() != 200) {
+            $content = (string) $response->getBody(true);
+            if ($content) {
+                $this->_lastError = $content;
+            }
+            return false;
+        }
+
+        return ClientHelper::unserialize(
+            $response->getBody(true)
+        );
     }
 }

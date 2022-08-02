@@ -156,4 +156,9 @@ class Client extends Component implements ClientInterface
     {
         return $this->_lastError;
     }
+
+    public function postOAuth2($uri, $payload)
+    {
+        throw new NotSupportedException("OAuth2 via Guzzle3 is not supported");
+    }
 }

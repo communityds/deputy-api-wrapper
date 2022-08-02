@@ -16,6 +16,19 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Returns the configuration of the authentication component.
+     *
+     * @return array
+     */
+    protected function getAuthConfig()
+    {
+        return [
+            'class' => 'CommunityDS\Deputy\Api\Adapter\Config\PermanentToken',
+            'token' => $this->getAuthToken(),
+        ];
+    }
+
+    /**
      * Returns the authentication token.
      *
      * @return string
@@ -43,10 +56,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function getWrapperConfig()
     {
         return [
-            'auth' => [
-                'class' => 'CommunityDS\Deputy\Api\Adapter\Config\PermanentToken',
-                'token' => $this->getAuthToken(),
-            ],
+            'auth' => $this->getAuthConfig(),
             'client' => 'CommunityDS\Deputy\Api\Tests\Adapter\MockClient',
             'persistent' => 'CommunityDS\Deputy\Api\Adapter\Native\RuntimeCache',
             'runtime' => 'CommunityDS\Deputy\Api\Adapter\Native\RuntimeCache',
