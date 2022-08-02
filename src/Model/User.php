@@ -10,7 +10,6 @@ namespace CommunityDS\Deputy\Api\Model;
  */
 class User extends Record
 {
-
     /**
      * Returns the default resource configuration for this type of resource.
      *

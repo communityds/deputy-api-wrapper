@@ -60,5 +60,4 @@ use DateTime;
  */
 class Timesheet extends Record
 {
-
 }

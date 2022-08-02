@@ -21,5 +21,4 @@ use DateTime;
  */
 class CompanyPeriod extends Record
 {
-
 }

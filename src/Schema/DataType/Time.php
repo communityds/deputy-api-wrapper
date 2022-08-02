@@ -8,5 +8,4 @@ namespace CommunityDS\Deputy\Api\Schema\DataType;
  */
 class Time extends DateTime
 {
-
 }

@@ -9,5 +9,4 @@ namespace CommunityDS\Deputy\Api\Tests\Adapter;
  */
 class InvalidCallException extends \Exception
 {
-
 }

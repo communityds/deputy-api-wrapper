@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class FloatingPointTest extends TestCase
 {
-
     protected function dataType()
     {
         return new FloatingPoint();

@@ -23,7 +23,6 @@ use DateTime;
  */
 class TrainingModule extends Record
 {
-
     /**
      * Returns module title.
      *

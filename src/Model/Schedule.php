@@ -27,5 +27,4 @@ use DateTime;
  */
 class Schedule extends Record
 {
-
 }

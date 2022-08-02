@@ -43,7 +43,6 @@ use DateTime;
  */
 class Roster extends Record
 {
-
     /**
      * Returns the number of minutes allocated for the mealbreak.
      *

@@ -22,7 +22,6 @@ use DateTime;
  */
 class Category extends Record
 {
-
     /**
      * Returns the category name.
      *

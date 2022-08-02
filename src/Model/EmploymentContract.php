@@ -30,5 +30,4 @@ use DateTime;
  */
 class EmploymentContract extends Record
 {
-
 }

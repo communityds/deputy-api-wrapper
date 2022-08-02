@@ -8,7 +8,6 @@ namespace CommunityDS\Deputy\Api\Schema\DataType;
  */
 class Date extends DateTime
 {
-
     public function phpType()
     {
         return '\DateTime';

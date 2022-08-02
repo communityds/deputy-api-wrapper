@@ -5,14 +5,14 @@ namespace CommunityDS\Deputy\Api\Schema;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Model\Me;
 use CommunityDS\Deputy\Api\Model\User;
-use CommunityDS\Deputy\Api\Schema\DataTypeInterface;
-use CommunityDS\Deputy\Api\Wrapper;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 
 /**
  * Registry of the Resources and Data Types that the Schema supports.
  */
 class Registry extends Component
 {
+    use WrapperLocatorTrait;
 
     /**
      * List of resources where key is Resource name and value is model
@@ -394,7 +394,7 @@ class Registry extends Component
             'VarCharArray'  => 'CommunityDS\Deputy\Api\Schema\DataType\VarCharArray',
         ];
     }
-    
+
     /**
      * Helper to translate from Deputy type id (as returned by the API) to the name of the relevant DataType Class Name
      * eg.
@@ -416,22 +416,12 @@ class Registry extends Component
             6 => 'VarCharArray',    // Multi list
             7 => 'Blob',            // File
         ];
-        
+
         $dataTypeClassName = key_exists($typeId, $typeIdToDataTypeClassNameMap) ? $typeIdToDataTypeClassNameMap[$typeId] : null;
         if (empty($dataTypeClassName)) {
             return null;
         }
         $dataTypeClass = "\\CommunityDS\\Deputy\\Api\\Schema\\DataType\\{$dataTypeClassName}";
         return new $dataTypeClass();
-    }
-    
-    /**
-     * Returns wrapper instance.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
     }
 }

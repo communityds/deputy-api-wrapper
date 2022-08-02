@@ -25,5 +25,4 @@ use DateTime;
  */
 class EmploymentContractLeaveRules extends Record
 {
-
 }

@@ -23,5 +23,4 @@ use DateTime;
  */
 class EmployeeAvailability extends Record
 {
-
 }

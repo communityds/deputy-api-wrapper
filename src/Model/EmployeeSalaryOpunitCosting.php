@@ -24,5 +24,4 @@ use DateTime;
  */
 class EmployeeSalaryOpunitCosting extends Record
 {
-
 }

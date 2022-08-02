@@ -21,7 +21,6 @@ use DateTime;
  */
 class Team extends Record
 {
-
     /**
      * Returns the name.
      *

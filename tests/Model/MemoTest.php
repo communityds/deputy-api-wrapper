@@ -7,18 +7,17 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class MemoTest extends TestCase
 {
-
     public function testCreate()
     {
         $memoContent = 'content of the memo message';
-        
+
         $memo = $this->wrapper()->createMemo();
         $memo->addAssignedUserId(MockClient::EMPLOYEE_FIRST);
         $memo->addAssignedCompanyId(MockClient::COMPANY_FIRST);
         $memo->content = $memoContent;
         $this->assertTrue($memo->isAttributeDirty('content'));
         $this->assertTrue($memo->save());
-        
+
         $this->assertEquals(MockClient::MEMO_NEW, $memo->id);
         $this->assertFalse($memo->isAttributeDirty('content'));
 
@@ -43,7 +42,7 @@ class MemoTest extends TestCase
         $this->assertTrue($memo->save());   // Returns success, however...
         $this->assertNull($memo->id);       // id is null
     }
-    
+
     public function testUpdateNotSupported()
     {
         $memo = $this->wrapper()->getMemo(MockClient::MEMO_FIRST);

@@ -31,5 +31,4 @@ use DateTime;
  */
 class EmployeePaycycle extends Record
 {
-
 }

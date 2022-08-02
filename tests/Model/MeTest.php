@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class MeTest extends TestCase
 {
-
     public function testSchema()
     {
 

@@ -25,7 +25,6 @@ namespace CommunityDS\Deputy\Api\Model;
  */
 class Me extends Record
 {
-
     /**
      * Returns the name.
      *

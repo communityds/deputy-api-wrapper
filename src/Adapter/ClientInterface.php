@@ -7,7 +7,6 @@ namespace CommunityDS\Deputy\Api\Adapter;
  */
 interface ClientInterface
 {
-
     /**
      * Default status code to denote a successful GET request.
      */
@@ -73,6 +72,16 @@ interface ClientInterface
      * @return array|false Response body; or false on failure
      */
     public function delete($uri, $successCode = null);
+
+    /**
+     * Sends a POST request to the OAuth2 endpoint.
+     *
+     * @param string $uri
+     * @param array $payload
+     *
+     * @return array|false Response body; or false on failure
+     */
+    public function postOAuth2($uri, $payload);
 
     /**
      * Returns details of the last error returned by the client.

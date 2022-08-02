@@ -17,5 +17,4 @@ use DateTime;
  */
 class SmsLog extends Record
 {
-
 }

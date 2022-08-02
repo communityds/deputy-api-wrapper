@@ -10,7 +10,6 @@ use Throwable;
  */
 class UnknownFieldException extends InvalidParamException
 {
-
     /**
      * Name of field.
      *

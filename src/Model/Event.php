@@ -24,7 +24,6 @@ use DateTime;
  */
 class Event extends Record
 {
-
     /**
      * Returns the event title.
      *

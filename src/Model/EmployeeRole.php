@@ -25,7 +25,6 @@ use DateTime;
  */
 class EmployeeRole extends Record
 {
-
     /**
      * Returns the role name.
      *

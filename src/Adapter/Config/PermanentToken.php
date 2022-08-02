@@ -12,7 +12,6 @@ use CommunityDS\Deputy\Api\Component;
  */
 class PermanentToken extends Component implements AuthenticationInterface
 {
-
     /**
      * Authentication token.
      *

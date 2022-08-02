@@ -7,7 +7,6 @@ use CommunityDS\Deputy\Api\Tests\TestCase;
 
 class UserTest extends TestCase
 {
-
     protected function schema()
     {
         return $this->wrapper()->schema->resource('User');

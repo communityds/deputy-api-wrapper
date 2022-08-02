@@ -31,7 +31,6 @@ use DateTime;
  */
 class CustomFieldData extends Record
 {
-
     /**
      * Support the setting of CustomFieldData by using either:
      * - the fXX property directly (or any other property)
@@ -56,10 +55,10 @@ class CustomFieldData extends Record
             // Also set the relevant fXX (ie. DeputyField) to match the alias supplied in $var (ie. ApiFieldname)
             $this->$propertyName = $value;
         }
-        
+
         return parent::__set($var, $value);
     }
-    
+
     /**
      * Override Record::getSchema() to add other potential customFields configured through UI of Deputy
      * Merge the base fields for CustomFieldData (ie. F01, F02, etc)
@@ -71,7 +70,7 @@ class CustomFieldData extends Record
     {
         $cacheKey = strtolower('resource-customFieldData-schema');
         $schemaRecourceInfo = $this->getWrapper()->persistent->get($cacheKey, null);
-    
+
         if ($schemaRecourceInfo === null) {
             // Get CustomFieldData Schema fields and update/merge with any Custom Fields
             $schemaRecourceInfo = $this->getWrapper()->schema->resource($this->getResourceName());
@@ -84,7 +83,7 @@ class CustomFieldData extends Record
         }
         return $schemaRecourceInfo;
     }
-    
+
     /**
      * Get fields partial for CustomFields
      * an array that merged with 'fields' schema for CustomFieldData
@@ -101,7 +100,7 @@ class CustomFieldData extends Record
         }
         return $schemaPartialForCustomFields;
     }
-    
+
     /**
      * Get Property Name, also checking customField collection
      *

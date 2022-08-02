@@ -10,7 +10,6 @@ use Throwable;
  */
 class UnknownRelationException extends InvalidParamException
 {
-
     /**
      * Name of relation.
      *

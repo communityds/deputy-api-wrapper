@@ -32,7 +32,6 @@ use DateTime;
  */
 class Address extends Record
 {
-
     /**
      * Returns the details of the address on one line.
      *

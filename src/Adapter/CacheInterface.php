@@ -4,7 +4,6 @@ namespace CommunityDS\Deputy\Api\Adapter;
 
 interface CacheInterface
 {
-
     /**
      * Returns a value from the cache, or the default if not found.
      *

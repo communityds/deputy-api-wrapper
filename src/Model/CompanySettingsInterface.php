@@ -22,7 +22,7 @@ interface CompanySettingsInterface
     const SETTING_ROSTER_SWAP_REQUIRE_APPROVAL = 'ROSTER_SWAP_REQUIRE_APPROVAL';
     const SETTING_ROSTER_ALLOW_OFFER_SHIFT = 'ROSTER_ALLOW_OFFER_SHIFT';
     const SETTING_ROSTER_ALLOW_SMS_WITH_FULL_NAME = 'ROSTER_ALLOW_SMS_WITH_FULL_NAME';
-    
+
     /**
      * Timesheet settings
      */

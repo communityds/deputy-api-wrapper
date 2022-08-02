@@ -10,7 +10,6 @@ use CommunityDS\Deputy\Api\Component;
  */
 class FileCache extends RuntimeCache
 {
-
     /**
      * Path to cache file.
      *

@@ -5,6 +5,7 @@ namespace CommunityDS\Deputy\Api\Tests\Adapter;
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\DeputyException;
 use CommunityDS\Deputy\Api\Model\Company;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 
 /**
  * Mocks the Deputy API to allow automated tests to occur without
@@ -12,6 +13,7 @@ use CommunityDS\Deputy\Api\Model\Company;
  */
 class MockClient implements ClientInterface
 {
+    use WrapperLocatorTrait;
 
     const ADDRESS_COMPANY = 12;
 
@@ -30,23 +32,23 @@ class MockClient implements ClientInterface
     const COUNTRY_AUSTRALIA = 13;
 
     const COUNTRY_INVALID = 9999;
-    
+
     const CUSTOM_FIELD_FIRST = 401;
-    
+
     const CUSTOM_FIELD_SECOND = 402;
-    
+
     const CUSTOM_FIELD_NEW = 422;
-    
+
     const EMPLOYEE_FIRST = 987235;
-    
+
     const MEMO_FIRST = 432;
-    
+
     const MEMO_SECOND = 321;
-    
+
     const MEMO_NEW = 5432;
-    
+
     const MEMO_NULL = null;
-    
+
     const PORTFOLIO_FIRST = 213;
 
     const ROSTER_FIRST = 9283;
@@ -144,7 +146,7 @@ class MockClient implements ClientInterface
                     $bits[] = $foreign;
                 }
             }
-        } elseif ($bits[0] == 'supervise' && count($bits) >=3 && count($bits) <= 4) {
+        } elseif ($bits[0] == 'supervise' && count($bits) >= 3 && count($bits) <= 4) {
             $action = null;
             if (count($bits) == 4) {
                 $action = array_pop($bits);
@@ -171,6 +173,7 @@ class MockClient implements ClientInterface
             );
             if (method_exists($this, $methodName)) {
                 switch (strtolower($method)) {
+                    case 'oauth':
                     case 'put':
                         return $this->{$methodName}($payload);
                     case 'post':
@@ -216,6 +219,15 @@ class MockClient implements ClientInterface
         return $this->requestHandler('delete', $uri);
     }
 
+    public function postOAuth2($uri, $payload)
+    {
+        return $this->requestHandler(
+            'oauth',
+            implode('', array_map('ucfirst', explode('_', $payload['grant_type']))),
+            $payload
+        );
+    }
+
     /**
      * Returns response from /me endpoint.
      *
@@ -244,7 +256,7 @@ class MockClient implements ClientInterface
                 [
                     'Id' => 1,
                     'Category' => 'Positive',
-                    'Group'=> 'Rating',
+                    'Group' => 'Rating',
                     'SortOrder' => 1,
                     'Stafflog' => true,
                     'System' => false,
@@ -771,7 +783,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown company: ' . $id);
     }
-    
+
     /**
      * Returns response to GET /resource/company/:Id/settings endpoint.
      *
@@ -830,8 +842,8 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown CompanySetting id ' . $id);
     }
-    
-    
+
+
     /**
      * Returns response to POST /resource/company/:Id/settings endpoint.
      *
@@ -851,7 +863,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown Company id ' . $id);
     }
-    
+
     /**
      * Returns response to GET /resource/company/:Id/settings endpoint.
      *
@@ -865,9 +877,7 @@ class MockClient implements ClientInterface
     {
         return $this->getResourceCompanySettings($id);
     }
-    
-    
-    
+
     /**
      * Returns response from GET /resource/CustomField/:id endpoint.
      *
@@ -882,7 +892,7 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
+                    'fields' => [
                         'Id' => 'Integer',
                         'System' => 'VarChar',
                         'Name' => 'VarChar',
@@ -966,7 +976,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown customField unid ' . $id);
     }
-    
+
     /**
      * Returns response from POST /resource/CustomField/:Id endpoint
      *
@@ -991,7 +1001,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown customField object #' . $id);
     }
-    
+
     /**
      * Returns response from POST /resource/CustomField/QUERY endpoint.
      *
@@ -1012,7 +1022,7 @@ class MockClient implements ClientInterface
             $this->getResourceCustomfield(MockClient::CUSTOM_FIELD_SECOND),
         ];
     }
-    
+
     /**
      * Returns response to PUT /resource/CustomField endpoint.
      *
@@ -1036,7 +1046,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown customField payload: ' . var_export($payload, true));
     }
-    
+
     /**
      * Returns response from GET /userinfo/:Id endpoint.
      *
@@ -1088,7 +1098,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unexpected payload: ' . var_export($payload, true));
     }
-    
+
     /**
      * Returns response to GET /resource/Memo/:Id endpoint.
      *
@@ -1103,7 +1113,7 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
+                    'fields' => [
                         'Id' => 'Integer',
                         'ShowFrom' => 'Date',
                         'Active' => 'Bit',
@@ -1119,13 +1129,13 @@ class MockClient implements ClientInterface
                         'Created' => 'DateTime',
                         'Modified' => 'DateTime',
                     ],
-                    'joins'=> [],
-                    'assocs'=> [
+                    'joins' => [],
+                    'assocs' => [
                         'Company' => 'Company',
                         'Role' => 'EmployeeRole',
                         'Team' => 'Team',
                     ],
-                    'count'=> 0,
+                    'count' => 0,
                 ];
             case static::MEMO_FIRST:
                 return [
@@ -1181,7 +1191,7 @@ class MockClient implements ClientInterface
         }
         throw new InvalidCallException('Unknown memo id ' . $id);
     }
-    
+
     /**
      * Returns response from POST /resource/Memo/:Id endpoint - not supported
      *
@@ -1194,7 +1204,7 @@ class MockClient implements ClientInterface
     {
         throw new DeputyException('Resource not allowed for modification', 404);
     }
-    
+
     /**
      * Returns response from POST /supervise/memo endpoint.
      *
@@ -1209,20 +1219,20 @@ class MockClient implements ClientInterface
         $content = isset($payload['strContent']) ? $payload['strContent'] : null;
         $assignedCompanyIds = isset($payload['arrAssignedCompanyIds']) ? $payload['arrAssignedCompanyIds'] : null;
         $assignedUserIds = isset($payload['arrAssignedUserIds']) ? $payload['arrAssignedUserIds'] : null;
-        
+
         // Handle no recipients
         if (empty($assignedCompanyIds) && empty($assignedUserIds)) {
             throw new MockErrorException('Sorry, you need to select some active Location or some employed people.', 400);
         }
-        
+
         // Handle no content - Deputy API returns Memo with id as null when no content is provided
         if (empty($content)) {
             return $this->getResourceMemo(static::MEMO_NULL);
         }
-        
+
         return $this->getResourceMemo(static::MEMO_NEW);
     }
-    
+
     /**
      * Returns response from GET /resource/OperationalUnit/:id endpoint.
      *
@@ -1237,41 +1247,41 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
-                        'Id'=> 'Integer',
-                        'Creator'=> 'Integer',
-                        'Created'=> 'DateTime',
-                        'Modified'=> 'DateTime',
-                        'Company'=> 'Integer',
-                        'ParentOperationalUnit'=> 'Integer',
-                        'OperationalUnitName'=> 'VarChar',
-                        'Active'=> 'Bit',
-                        'PayrollExportName'=> 'VarChar',
-                        'Address'=> 'Integer',
-                        'Contact'=> 'Integer',
-                        'RosterSortOrder'=> 'Integer',
-                        'ShowOnRoster'=> 'Bit',
-                        'Colour'=> 'VarChar',
-                        'RosterActiveHoursSchedule'=> 'Integer',
-                        'DailyRosterBudget'=> 'Float',
+                    'fields' => [
+                        'Id' => 'Integer',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                        'Company' => 'Integer',
+                        'ParentOperationalUnit' => 'Integer',
+                        'OperationalUnitName' => 'VarChar',
+                        'Active' => 'Bit',
+                        'PayrollExportName' => 'VarChar',
+                        'Address' => 'Integer',
+                        'Contact' => 'Integer',
+                        'RosterSortOrder' => 'Integer',
+                        'ShowOnRoster' => 'Bit',
+                        'Colour' => 'VarChar',
+                        'RosterActiveHoursSchedule' => 'Integer',
+                        'DailyRosterBudget' => 'Float',
                     ],
-                    'joins'=> [
-                        'CompanyObject'=> 'Company',
-                        'ParentOperationalUnitObject'=> 'OperationalUnit',
-                        'AddressObject'=> 'Address',
-                        'ContactObject'=> 'Contact',
-                        'RosterActiveHoursScheduleObject'=> 'Schedule',
+                    'joins' => [
+                        'CompanyObject' => 'Company',
+                        'ParentOperationalUnitObject' => 'OperationalUnit',
+                        'AddressObject' => 'Address',
+                        'ContactObject' => 'Contact',
+                        'RosterActiveHoursScheduleObject' => 'Schedule',
                     ],
-                    'assocs'=> [
-                        'OperationUnit'=> 'PublicHoliday',
-                        'EmployeeSalaryOpunits'=> 'EmployeeAgreement',
-                        'OperationalUnit'=> 'Event',
-                        'ManagementEmployeeOperationalUnit'=> 'Employee',
-                        'TrainingModule'=> 'TrainingModule',
-                        'RosterEmployeeOperationalUnit'=> 'Employee',
-                        'TaskGroupOpUnit'=> 'TaskGroupSetup',
+                    'assocs' => [
+                        'OperationUnit' => 'PublicHoliday',
+                        'EmployeeSalaryOpunits' => 'EmployeeAgreement',
+                        'OperationalUnit' => 'Event',
+                        'ManagementEmployeeOperationalUnit' => 'Employee',
+                        'TrainingModule' => 'TrainingModule',
+                        'RosterEmployeeOperationalUnit' => 'Employee',
+                        'TaskGroupOpUnit' => 'TaskGroupSetup',
                     ],
-                    'count'=> 45,
+                    'count' => 45,
                 ];
             case static::OP_UNIT_NEW:
                 return [
@@ -1407,41 +1417,41 @@ class MockClient implements ClientInterface
         switch (strtolower($id)) {
             case 'info':
                 return [
-                    'fields'=> [
-                        'Id'=> 'Integer',
-                        'Date'=> 'Date',
-                        'StartTime'=> 'Integer',
-                        'EndTime'=> 'Integer',
-                        'Mealbreak'=> 'Time',
-                        'TotalTime'=> 'Float',
-                        'Cost'=> 'Float',
-                        'OperationalUnit'=> 'Integer',
-                        'Employee'=> 'Integer',
-                        'Comment'=> 'VarChar',
-                        'Warning'=> 'VarChar',
-                        'WarningOverrideComment'=> 'VarChar',
-                        'Published'=> 'Bit',
-                        'MatchedByTimesheet'=> 'Integer',
-                        'Open'=> 'Bit',
-                        'ConfirmStatus'=> 'Integer',
-                        'ConfirmComment'=> 'VarChar',
-                        'ConfirmBy'=> 'Integer',
-                        'ConfirmTime'=> 'Integer',
-                        'SwapStatus'=> 'Integer',
-                        'SwapManageBy'=> 'Integer',
-                        'ConnectStatus'=> 'Integer',
-                        'Creator'=> 'Integer',
-                        'Created'=> 'DateTime',
-                        'Modified'=> 'DateTime',
+                    'fields' => [
+                        'Id' => 'Integer',
+                        'Date' => 'Date',
+                        'StartTime' => 'Integer',
+                        'EndTime' => 'Integer',
+                        'Mealbreak' => 'Time',
+                        'TotalTime' => 'Float',
+                        'Cost' => 'Float',
+                        'OperationalUnit' => 'Integer',
+                        'Employee' => 'Integer',
+                        'Comment' => 'VarChar',
+                        'Warning' => 'VarChar',
+                        'WarningOverrideComment' => 'VarChar',
+                        'Published' => 'Bit',
+                        'MatchedByTimesheet' => 'Integer',
+                        'Open' => 'Bit',
+                        'ConfirmStatus' => 'Integer',
+                        'ConfirmComment' => 'VarChar',
+                        'ConfirmBy' => 'Integer',
+                        'ConfirmTime' => 'Integer',
+                        'SwapStatus' => 'Integer',
+                        'SwapManageBy' => 'Integer',
+                        'ConnectStatus' => 'Integer',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
                     ],
-                    'joins'=> [
-                        'OperationalUnitObject'=> 'OperationalUnit',
-                        'EmployeeObject'=> 'Employee',
-                        'MatchedByTimesheetObject'=> 'Timesheet',
-                        'ConfirmByObject'=> 'Employee',
+                    'joins' => [
+                        'OperationalUnitObject' => 'OperationalUnit',
+                        'EmployeeObject' => 'Employee',
+                        'MatchedByTimesheetObject' => 'Timesheet',
+                        'ConfirmByObject' => 'Employee',
                     ],
-                    'assocs'=> [],
-                    'count'=> 0,
+                    'assocs' => [],
+                    'count' => 0,
                 ];
             case static::ROSTER_FIRST:
                 return [
@@ -1570,5 +1580,61 @@ class MockClient implements ClientInterface
         }
 
         throw new InvalidCallException('Unexpected roster content');
+    }
+
+    /**
+     * Handles the `authorization_code` OAuth2 process.
+     *
+     * @param array $payload
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When the payload is not as expected
+     */
+    protected function oauthAuthorizationCode($payload)
+    {
+        if ($payload['code'] == 'd0d4eb04a4448bfbea671e7b19759e956e07472a') {
+            return [
+                'access_token' => 'bb025805e7f1c362d8502540c5410ea4',
+                'expires_in' => 86400,
+                'scope' => $payload['scope'],
+                'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
+                'refresh_token' => '790efd27619171636d49a03fd24f226a',
+            ];
+        }
+
+        throw new InvalidCallException('Unexpected authorization_code content');
+    }
+
+    /**
+     * Handles the `refresh_token` OAuth2 process.
+     *
+     * @param array $payload
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When the payload is not as expected
+     */
+    protected function oauthRefreshToken($payload)
+    {
+        if ($payload['refresh_token'] == '790efd27619171636d49a03fd24f226a') {
+            return [
+                'access_token' => '71f37de97c34bf379f5ac581f2a833fd',
+                'expires_in' => -100, // Force the updated token to instantly expire
+                'scope' => $payload['scope'],
+                'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
+                'refresh_token' => '19df682ba5db7c613acb0b30a0a2513e',
+            ];
+        } elseif ($payload['refresh_token'] == '19df682ba5db7c613acb0b30a0a2513e') {
+            return [
+                'access_token' => '4ef08849d122ba5c9710768b99bbb0ea',
+                'expires_in' => 86400,
+                'scope' => $payload['scope'],
+                'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
+                'refresh_token' => 'd5a3664b7989598d5ac62dd5069c26ed',
+            ];
+        }
+
+        throw new InvalidCallException('Unexpected refresh_token content');
     }
 }

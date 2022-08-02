@@ -32,5 +32,4 @@ use DateTime;
  */
 class Contact extends Record
 {
-
 }

@@ -19,5 +19,4 @@ use DateTime;
  */
 class Journal extends Record
 {
-
 }

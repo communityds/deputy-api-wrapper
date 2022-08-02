@@ -21,5 +21,4 @@ use DateTime;
  */
 class TimesheetPayReturn extends Record
 {
-
 }

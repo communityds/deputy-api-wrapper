@@ -11,7 +11,7 @@ use CommunityDS\Deputy\Api\Schema\ResourceInfo;
 use CommunityDS\Deputy\Api\Schema\UnknownDataTypeException;
 use CommunityDS\Deputy\Api\Schema\UnknownFieldException;
 use CommunityDS\Deputy\Api\Schema\UnknownRelationException;
-use CommunityDS\Deputy\Api\Wrapper;
+use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 
 /**
  * Foundation for any classes that model a Resource within the API.
@@ -23,6 +23,7 @@ use CommunityDS\Deputy\Api\Wrapper;
  */
 abstract class Record extends Component implements ModelInterface
 {
+    use WrapperLocatorTrait;
 
     /**
      * Data within this model.
@@ -462,16 +463,6 @@ abstract class Record extends Component implements ModelInterface
             return $this->_populated[$key] == true;
         }
         return false;
-    }
-
-    /**
-     * Returns wrapper instance.
-     *
-     * @return Wrapper
-     */
-    protected function getWrapper()
-    {
-        return Wrapper::getInstance();
     }
 
     /**

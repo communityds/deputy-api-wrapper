@@ -31,5 +31,4 @@ use DateTime;
  */
 class EmployeeHistory extends Record
 {
-
 }

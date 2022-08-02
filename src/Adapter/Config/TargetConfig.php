@@ -10,7 +10,6 @@ use CommunityDS\Deputy\Api\Component;
  */
 class TargetConfig extends Component implements TargetConfigInterface
 {
-
     /**
      * Domain name of endpoint.
      *
@@ -21,5 +20,15 @@ class TargetConfig extends Component implements TargetConfigInterface
     public function getBaseUrl()
     {
         return 'https://' . $this->domain . '/api/v1/';
+    }
+
+    public function getOAuth2EndPoint()
+    {
+        return $this->domain;
+    }
+
+    public function getOAuth2AccessTokenUrl()
+    {
+        return 'https://' . $this->domain . '/oauth/access_token';
     }
 }

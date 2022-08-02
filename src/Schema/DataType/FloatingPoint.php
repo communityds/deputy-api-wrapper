@@ -7,7 +7,6 @@ namespace CommunityDS\Deputy\Api\Schema\DataType;
  */
 class FloatingPoint extends DataType
 {
-
     public function fromApi($value)
     {
         if ($value === null) {

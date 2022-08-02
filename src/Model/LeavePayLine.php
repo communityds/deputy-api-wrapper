@@ -27,5 +27,4 @@ use DateTime;
  */
 class LeavePayLine extends Record
 {
-
 }

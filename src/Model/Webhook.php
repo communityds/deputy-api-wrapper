@@ -18,5 +18,4 @@ use DateTime;
  */
 class Webhook extends Record
 {
-
 }
