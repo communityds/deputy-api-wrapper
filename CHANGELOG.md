@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.0
+
+* Added OAuth 2.0 Authentication component ([#11](https://github.com/communityds/deputy-api-wrapper/pull/11)).
+* Added ability to create `Timesheet` records ([#12](https://github.com/communityds/deputy-api-wrapper/pull/12)).
+
 ## 1.3.2
 
 * Excluding development files in production archive.
