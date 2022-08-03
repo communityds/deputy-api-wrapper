@@ -55,6 +55,8 @@ class MockClient implements ClientInterface
 
     const ROSTER_NEW = 92831;
 
+    const TIMESHEET_NEW = 87623;
+
     const USER_ADMIN = 1;
 
     const USER_FIRST = 987235;
@@ -146,14 +148,18 @@ class MockClient implements ClientInterface
                     $bits[] = $foreign;
                 }
             }
-        } elseif ($bits[0] == 'supervise' && count($bits) >= 3 && count($bits) <= 4) {
-            $action = null;
-            if (count($bits) == 4) {
-                $action = array_pop($bits);
-            }
-            $id = array_pop($bits);
-            if ($action) {
-                $bits[] = $action;
+        } elseif ($bits[0] == 'supervise') {
+            if ($bits[1] == 'timesheet' && count($bits) == 3) {
+                // Pass through complete path
+            } elseif (count($bits) >= 3 && count($bits) <= 4) {
+                $action = null;
+                if (count($bits) == 4) {
+                    $action = array_pop($bits);
+                }
+                $id = array_pop($bits);
+                if ($action) {
+                    $bits[] = $action;
+                }
             }
         } elseif ($bits[0] == 'userinfo') {
             $id = array_pop($bits);
@@ -1580,6 +1586,160 @@ class MockClient implements ClientInterface
         }
 
         throw new InvalidCallException('Unexpected roster content');
+    }
+
+    /**
+     * Returns response to GET /resource/Timesheet/:Id endpoint.
+     *
+     * @param integer $id Timesheet id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceTimesheet($id)
+    {
+        switch (strtolower($id)) {
+            case 'info':
+                return [
+                    "fields" => [
+                        "Id" => "Integer",
+                        "Employee" => "Integer",
+                        "EmployeeHistory" => "Integer",
+                        "EmployeeAgreement" => "Integer",
+                        "Date" => "Date",
+                        "StartTime" => "Integer",
+                        "EndTime" => "Integer",
+                        "Mealbreak" => "Time",
+                        "MealbreakSlots" => "VarChar",
+                        "Slots" => "VarChar",
+                        "TotalTime" => "Float",
+                        "TotalTimeInv" => "Float",
+                        "Cost" => "Float",
+                        "Roster" => "Integer",
+                        "EmployeeComment" => "Blob",
+                        "SupervisorComment" => "VarChar",
+                        "Supervisor" => "Integer",
+                        "Disputed" => "Bit",
+                        "TimeApproved" => "Bit",
+                        "TimeApprover" => "Integer",
+                        "Discarded" => "Bit",
+                        "ValidationFlag" => "Integer",
+                        "OperationalUnit" => "Integer",
+                        "IsInProgress" => "Bit",
+                        "IsLeave" => "Bit",
+                        "LeaveId" => "Integer",
+                        "LeaveRule" => "Integer",
+                        "Invoiced" => "Bit",
+                        "InvoiceComment" => "VarChar",
+                        "PayRuleApproved" => "Bit",
+                        "Exported" => "Bit",
+                        "StagingId" => "Integer",
+                        "PayStaged" => "Bit",
+                        "PaycycleId" => "Integer",
+                        "File" => "Integer",
+                        "CustomFieldData" => "Integer",
+                        "RealTime" => "Bit",
+                        "AutoProcessed" => "Bit",
+                        "AutoRounded" => "Bit",
+                        "AutoTimeApproved" => "Bit",
+                        "AutoPayRuleApproved" => "Bit",
+                        "Creator" => "Integer",
+                        "Created" => "DateTime",
+                        "Modified" => "DateTime",
+                    ],
+                    "joins" => [
+                        "EmployeeObject" => "Employee",
+                        "EmployeeAgreementObject" => "EmployeeAgreement",
+                        "RosterObject" => "Roster",
+                        "OperationalUnitObject" => "OperationalUnit",
+                        "Leave" => "Leave",
+                        "LeaveRuleObject" => "LeaveRules",
+                        "Paycycle" => "EmployeePaycycle",
+                        "CustomFieldDataObject" => "CustomFieldData",
+                    ],
+                    "assocs" => [],
+                    "count" => 0,
+                ];
+            case static::TIMESHEET_NEW:
+                return [
+                    'Id' => $id,
+                    'Employee' => static::EMPLOYEE_FIRST,
+                    'EmployeeHistory' => 123,
+                    'EmployeeAgreement' => 123,
+                    'Date' => '2018-01-01T00:00:00+10:30',
+                    'StartTime' => 1514759400,
+                    'EndTime' => 1514766600,
+                    'Mealbreak' => '2018-01-01T00:30:00+10:30',
+                    'MealbreakSlots' => '',
+                    'Slots' => [],
+                    'TotalTime' => 1.5,
+                    'TotalTimeInv' => 1.5,
+                    'Cost' => null,
+                    'Roster' => null,
+                    'EmployeeComment' => '.',
+                    'SupervisorComment' => null,
+                    'Supervisor' => null,
+                    'Disputed' => false,
+                    'TimeApproved' => false,
+                    'TimeApprover' => null,
+                    'Discarded' => null,
+                    'ValidationFlag' => 0,
+                    'OperationalUnit' => static::OP_UNIT_FIRST,
+                    'IsInProgress' => false,
+                    'IsLeave' => false,
+                    'LeaveId' => null,
+                    'LeaveRule' => null,
+                    'Invoiced' => false,
+                    'InvoiceComment' => null,
+                    'PayRuleApproved' => false,
+                    'Exported' => null,
+                    'StagingId' => null,
+                    'PayStaged' => false,
+                    'PaycycleId' => 2124,
+                    'File' => null,
+                    'CustomFieldData' => null,
+                    'RealTime' => 0,
+                    'AutoProcessed' => 0,
+                    'AutoRounded' => 0,
+                    'AutoTimeApproved' => 0,
+                    'AutoPayRuleApproved' => 0,
+                    'Creator' => static::EMPLOYEE_FIRST,
+                    'Created' => '2018-01-01T00:00:00+10:30',
+                    'Modified' => '2018-01-01T00:00:00+10:30',
+                    'OperationalUnitObject' => $this->getResourceOperationalunit(static::OP_UNIT_FIRST),
+                    'OnCost' => 0,
+                    'StartTimeLocalized' => '2018-01-01T09:00:00+10:30',
+                    'EndTimeLocalized' => '2018-01-01T11:00:00+10:30',
+                    'CanEdit' => true,
+                ];
+        }
+        throw new InvalidCallException('Unknown timesheet id ' . $id);
+    }
+
+    /**
+     * Returns response from POST /supervise/timesheet endpoint.
+     *
+     * @param array $payload POST data
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When unexpected content encountered
+     * @throws MockErrorException When `intStartTimestamp` is null
+     */
+    protected function postSuperviseTimesheetUpdate($payload)
+    {
+        $timesheetId = isset($payload['intTimesheetId']) ? $payload['intTimesheetId'] : null;
+        if ($timesheetId == null) {
+            $startTime = isset($payload['intStartTimestamp']) ? $payload['intStartTimestamp'] : null;
+            if ($startTime) {
+                return $this->getResourceTimesheet(static::TIMESHEET_NEW);
+            } else {
+                throw new MockErrorException('Manually triggered error', 500);
+            }
+        }
+
+        throw new InvalidCallException('Unexpected timesheet content');
     }
 
     /**

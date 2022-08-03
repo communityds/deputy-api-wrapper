@@ -220,8 +220,8 @@ Taken from the [Deputy API Documentation](https://www.deputy.com/api-doc/API).
     * @todo
     * Add as `startTimesheet` function on `Employee` class
 * POST /supervise/timesheet/update
-    * @todo
-    * Overload `insert` and `update` functions on `Timesheet` class
+    * Inserting implemented by `Timesheet`
+    * Update not yet implemented (overload `update` function on `Timesheet` class)
 
 ## Utility Methods
 
