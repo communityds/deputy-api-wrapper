@@ -67,6 +67,16 @@ class MockClient implements ClientInterface
 
     const OP_UNIT_NEW = 123;
 
+    const OAUTH_CODE_ACTIVE = 'd0d4eb04a4448bfbea671e7b19759e956e07472a';
+
+    const OAUTH_TOKEN_ACTIVE = 'bb025805e7f1c362d8502540c5410ea4';
+
+    const OAUTH_TOKEN_EXPIRED = '71f37de97c34bf379f5ac581f2a833fd';
+
+    const OAUTH_REFRESH_EXPIRED = '790efd27619171636d49a03fd24f226a';
+
+    const OAUTH_REFRESH_ACTIVE = '19df682ba5db7c613acb0b30a0a2513e';
+
     /**
      * Log of requests.
      *
@@ -1743,6 +1753,36 @@ class MockClient implements ClientInterface
     }
 
     /**
+     * Returns the access token details.
+     *
+     * @param string $token
+     * @param array $payload
+     *
+     * @return array
+     */
+    protected function getOAuthAccessToken($token, $payload)
+    {
+        switch ($token) {
+            case static::OAUTH_TOKEN_ACTIVE:
+                return [
+                    'access_token' => static::OAUTH_TOKEN_ACTIVE,
+                    'expires_in' => 86400,
+                    'scope' => $payload['scope'],
+                    'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
+                    'refresh_token' => static::OAUTH_REFRESH_EXPIRED,
+                ];
+            case static::OAUTH_TOKEN_EXPIRED:
+                return [
+                    'access_token' => static::OAUTH_TOKEN_EXPIRED,
+                    'expires_in' => -100, // Force the updated token to instantly expire
+                    'scope' => $payload['scope'],
+                    'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
+                    'refresh_token' => static::OAUTH_REFRESH_ACTIVE,
+                ];
+        }
+    }
+
+    /**
      * Handles the `authorization_code` OAuth2 process.
      *
      * @param array $payload
@@ -1753,14 +1793,9 @@ class MockClient implements ClientInterface
      */
     protected function oauthAuthorizationCode($payload)
     {
-        if ($payload['code'] == 'd0d4eb04a4448bfbea671e7b19759e956e07472a') {
-            return [
-                'access_token' => 'bb025805e7f1c362d8502540c5410ea4',
-                'expires_in' => 86400,
-                'scope' => $payload['scope'],
-                'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
-                'refresh_token' => '790efd27619171636d49a03fd24f226a',
-            ];
+        switch ($payload['code']) {
+            case static::OAUTH_CODE_ACTIVE:
+                return $this->getOAuthAccessToken(static::OAUTH_TOKEN_ACTIVE, $payload);
         }
 
         throw new InvalidCallException('Unexpected authorization_code content');
@@ -1777,22 +1812,11 @@ class MockClient implements ClientInterface
      */
     protected function oauthRefreshToken($payload)
     {
-        if ($payload['refresh_token'] == '790efd27619171636d49a03fd24f226a') {
-            return [
-                'access_token' => '71f37de97c34bf379f5ac581f2a833fd',
-                'expires_in' => -100, // Force the updated token to instantly expire
-                'scope' => $payload['scope'],
-                'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
-                'refresh_token' => '19df682ba5db7c613acb0b30a0a2513e',
-            ];
-        } elseif ($payload['refresh_token'] == '19df682ba5db7c613acb0b30a0a2513e') {
-            return [
-                'access_token' => '4ef08849d122ba5c9710768b99bbb0ea',
-                'expires_in' => 86400,
-                'scope' => $payload['scope'],
-                'endpoint' => $this->getWrapper()->target->getOAuth2EndPoint(),
-                'refresh_token' => 'd5a3664b7989598d5ac62dd5069c26ed',
-            ];
+        switch ($payload['refresh_token']) {
+            case static::OAUTH_REFRESH_EXPIRED:
+                return $this->getOAuthAccessToken(static::OAUTH_TOKEN_EXPIRED, $payload);
+            case static::OAUTH_REFRESH_ACTIVE:
+                return $this->getOAuthAccessToken(static::OAUTH_TOKEN_ACTIVE, $payload);
         }
 
         throw new InvalidCallException('Unexpected refresh_token content');
