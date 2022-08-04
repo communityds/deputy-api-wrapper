@@ -2,7 +2,6 @@
 
 namespace CommunityDS\Deputy\Api\Adapter\Config;
 
-use Closure;
 use CommunityDS\Deputy\Api\Adapter\AuthenticationInterface;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\WrapperLocatorTrait;
@@ -52,11 +51,17 @@ class OAuth2Token extends Component implements AuthenticationInterface
     private $_longLife = true;
 
     /**
-     * Callback to perform the authentication and return the access token.
+     * Configuration or instance of the access token provider.
      *
-     * @var Closure
+     * @var OAuth2AccessTokenProviderInterface|array
      */
-    private $_authHandler;
+    public $tokenProvider = 'CommunityDS\Deputy\Api\Adapter\Native\OAuth2AccessTokenProvider';
+
+    public function init()
+    {
+        parent::init();
+        $this->tokenProvider = Component::createObject($this->tokenProvider);
+    }
 
     /**
      * Returns the client ID.
@@ -128,29 +133,6 @@ class OAuth2Token extends Component implements AuthenticationInterface
     }
 
     /**
-     * Returns the access token.
-     *
-     * @return OAuth2AccessToken
-     */
-    public function getAccessToken()
-    {
-        return $this->_accessToken;
-    }
-
-    /**
-     * Sets the access token.
-     *
-     * @param OAuth2AccessToken $token Access value
-     *
-     * @return $this
-     */
-    public function setAccessToken($token)
-    {
-        $this->_accessToken = $token;
-        return $this;
-    }
-
-    /**
      * Indicates if long-life refresh tokens will be requested.
      *
      * @return boolean
@@ -174,16 +156,13 @@ class OAuth2Token extends Component implements AuthenticationInterface
     }
 
     /**
-     * Registers the callback that will be called if there is no access token.
+     * Returns the current access token from the token provider.
      *
-     * @param Closure $callback
-     *
-     * @return $this
+     * @return OAuth2AccessToken|null
      */
-    public function setAuthenticateHandler($callback)
+    public function getAccessToken()
     {
-        $this->_authHandler = $callback;
-        return $this;
+        return $this->tokenProvider->getAccessToken();
     }
 
     /**
@@ -214,7 +193,7 @@ class OAuth2Token extends Component implements AuthenticationInterface
      */
     public function verifyCode($code)
     {
-        $this->_accessToken = $this->getTokenInternal(
+        $token = $this->getTokenInternal(
             'https://once.deputy.com/my/oauth/access_token',
             [
                 'client_id' => $this->getClientId(),
@@ -226,31 +205,38 @@ class OAuth2Token extends Component implements AuthenticationInterface
             ]
         );
 
-        return $this->_accessToken;
+        if ($token) {
+            $this->tokenProvider->setAccessToken($token);
+        }
+
+        return $token;
     }
 
     /**
-     * Refreshes the current access token using the refresh token.
+     * Refreshes the provided access token by using the refresh token to
+     * request a new access token.
      *
-     * @param OAuth2AccessToken|null $token
+     * @param OAuth2AccessToken $token
      *
      * @return OAuth2AccessToken|null
      */
     public function refreshToken($token)
     {
-        $this->_accessToken = $this->getTokenInternal(
+        $token = $this->getTokenInternal(
             $this->getWrapper()->target->getOAuth2AccessTokenUrl(),
             [
                 'client_id' => $this->getClientId(),
                 'client_secret' => $this->getClientSecret(),
                 'redirect_uri' => $this->getRedirectUri(),
                 'grant_type' => 'refresh_token',
-                'refresh_token' => $token ? $token->getRefreshToken() : $this->getAccessToken()->getRefreshToken(),
+                'refresh_token' => $token ? $token->getRefreshToken() : $this->tokenProvider->getAccessToken()->getRefreshToken(),
                 'scope' => $this->_longLife ? 'longlife_refresh_token' : '',
             ]
         );
 
-        return $this->_accessToken;
+        $this->tokenProvider->setAccessToken($token);
+
+        return $token;
     }
 
     /**
@@ -272,24 +258,13 @@ class OAuth2Token extends Component implements AuthenticationInterface
 
     public function getToken()
     {
-        $accessToken = $this->getAccessToken();
+        $accessToken = $this->tokenProvider->getAccessToken();
 
-        if ($accessToken == null && $this->_authHandler) {
-            call_user_func($this->_authHandler);
-            $accessToken = $this->getAccessToken();
-        }
-
-        if (!$accessToken->expires(60)) {
+        // Automatically refresh the token if it will expire soon
+        if ($accessToken && !$accessToken->expires(60)) {
             $accessToken = $this->refreshToken($accessToken);
-            if ($accessToken) {
-                $this->setAccessToken($accessToken);
-            }
         }
 
-        if ($accessToken == null) {
-            return null;
-        }
-
-        return $accessToken->getAccessToken();
+        return $accessToken ? $accessToken->getAccessToken() : null;
     }
 }

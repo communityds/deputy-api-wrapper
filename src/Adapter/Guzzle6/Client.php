@@ -79,9 +79,14 @@ class Client extends Component implements ClientInterface
     {
         $this->_lastError = null;
 
+        $token = $this->getWrapper()->auth->getToken();
+        if ($token == null) {
+            return false;
+        }
+
         $options['headers']['Content-type'] = 'application/json';
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['Authorization'] = 'OAuth ' . $this->getWrapper()->auth->getToken();
+        $options['headers']['Authorization'] = "OAuth {$token}";
         $options['headers']['dp-meta-option'] = 'none';
 
         try {
