@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/communityds/deputy-api-wrapper.svg)](https://packagist.org/packages/communityds/deputy-api-wrapper)
 [![Total Downloads](https://img.shields.io/packagist/dt/communityds/deputy-api-wrapper.svg)](https://packagist.org/packages/communityds/deputy-api-wrapper)
-[![Build Status](https://img.shields.io/travis/communityds/deputy-api-wrapper.svg)](https://travis-ci.org/communityds/deputy-api-wrapper)
+![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/communityds/deputy-api-wrapper/run-tests?label=tests)
 [![License](https://img.shields.io/github/license/communityds/deputy-api-wrapper.svg)](LICENSE)
 
 Allows interaction with the [Deputy API (Version 1)](https://www.deputy.com/api-doc/Welcome) using an object based interface that abstracts sending and receiving content from the REST API.
