@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.0
+
+* Added OAuth 2.0 Access Token provider abstraction ([#13](https://github.com/communityds/deputy-api-wrapper/pull/13)).
+
 ## 1.4.0
 
 * Added OAuth 2.0 Authentication component ([#11](https://github.com/communityds/deputy-api-wrapper/pull/11)).
