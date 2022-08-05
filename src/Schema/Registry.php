@@ -344,6 +344,7 @@ class Registry extends Component
             'Timesheet' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Timesheet',
                 'fields' => [
+                    'Slots' => 'Array',
                     'StartTime' => 'UnixTimestamp',
                     'EndTime' => 'UnixTimestamp',
                 ],
@@ -382,6 +383,7 @@ class Registry extends Component
     public function baseDataTypes()
     {
         return [
+            'Array'         => 'CommunityDS\Deputy\Api\Schema\DataType\ArrayType',
             'Bit'           => 'CommunityDS\Deputy\Api\Schema\DataType\Bit',
             'Blob'          => 'CommunityDS\Deputy\Api\Schema\DataType\Blob',
             'Date'          => 'CommunityDS\Deputy\Api\Schema\DataType\Date',
