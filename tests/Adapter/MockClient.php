@@ -57,6 +57,8 @@ class MockClient implements ClientInterface
 
     const TIMESHEET_NEW = 87623;
 
+    const TIMESHEET_WITH_SLOTS = 1;
+
     const USER_ADMIN = 1;
 
     const USER_FIRST = 987235;
@@ -1722,6 +1724,107 @@ class MockClient implements ClientInterface
                     'StartTimeLocalized' => '2018-01-01T09:00:00+10:30',
                     'EndTimeLocalized' => '2018-01-01T11:00:00+10:30',
                     'CanEdit' => true,
+                ];
+            case static::TIMESHEET_WITH_SLOTS:
+                // Sourced from: https://developer.deputy.com/deputy-docs/docs/retrieving-timesheets-from-deputy
+                return [
+                    'Id' => $id,
+                    'Employee' => 3,
+                    'EmployeeHistory' => 2586,
+                    'EmployeeAgreement' => 5,
+                    'Date' => '2022-05-06T00:00:00+10:00',
+                    'StartTime' => 1651791600,
+                    'EndTime' => 1651834800,
+                    'Mealbreak' => '2022-05-06T00:30:00+10:00',
+                    'MealbreakSlots' => [
+                        '1651829880' => 'OUT',
+                        '1651832340' => 'IN',
+                    ],
+                    'Slots' => [
+                        [
+                            'blnEmptySlot' => false,
+                            'strType' => 'B',
+                            'intStart' => 0,
+                            'intEnd' => 1800,
+                            'intUnixStart' => 1651791600,
+                            'intUnixEnd' => 1651793400,
+                            'mixedActivity' => [
+                                'intState' => 4,
+                                'blnCanStartEarly' => 1,
+                                'blnCanEndEarly' => 1,
+                                'blnIsMandatory' => 1,
+                                'strBreakType' => 'M',
+                            ],
+                            'strTypeName' => 'Meal Break',
+                            'strState' => 'Finished Duration',
+                        ],
+                    ],
+                    'TotalTime' => 11.5,
+                    'TotalTimeInv' => 4.48,
+                    'Cost' => 345,
+                    'Roster' => 15,
+                    'EmployeeComment' => null,
+                    'SupervisorComment' => null,
+                    'Supervisor' => null,
+                    'Disputed' => false,
+                    'TimeApproved' => true,
+                    'TimeApprover' => 3,
+                    'Discarded' => null,
+                    'ValidationFlag' => 0,
+                    'OperationalUnit' => 1,
+                    'IsInProgress' => false,
+                    'IsLeave' => false,
+                    'LeaveId' => null,
+                    'LeaveRule' => null,
+                    'Invoiced' => false,
+                    'InvoiceComment' => null,
+                    'PayRuleApproved' => true,
+                    'Exported' => null,
+                    'StagingId' => 1,
+                    'PayStaged' => true,
+                    'PaycycleId' => 1,
+                    'File' => null,
+                    'CustomFieldData' => null,
+                    'RealTime' => true,
+                    'AutoProcessed' => true,
+                    'AutoRounded' => false,
+                    'AutoTimeApproved' => false,
+                    'AutoPayRuleApproved' => true,
+                    'Creator' => 3,
+                    'Created' => '2022-05-06T16:31:29+10:00',
+                    'Modified' => '2022-05-07T14:11:41+10:00',
+                    'OnCost' => 345,
+                    'StartTimeLocalized' => '2022-05-06T09:00:00+10:00',
+                    'EndTimeLocalized' => '2022-05-06T21:00:00+10:00',
+                    '_DPMetaData' => [
+                        'System' => 'Timesheet',
+                        'CreatorInfo' => [
+                            'Id' => 3,
+                            'DisplayName' => 'AdamRhys Sapo',
+                            'EmployeeProfile' => 3,
+                            'Employee' => 3,
+                            'Photo' => 'https://photo2.deputy.com/deputec_b220505063318_11516/-135x135_45ca58e0db1a271fda5c83c399f7221a.jpg?Expires=1662765191&Key-Pair-Id=APKAINP5UVPK4IGBHXOQ&Signature=NciTc-O2aFxvvE23YrP3XkGqqPAtXMJSbAoZ8NQNENtKVTt1hXPHmGiW~Y59KRhpUbjFH08iIybrmH5f8NeSXn0q5RSMdXo0c2KyyYUoCecX97pa1eOqLTEmc6kaPJhiDLXt86~-4BaNvpK20eVa0WZkk4TQL5SgPi7w3skT7jE_',
+                            'Pronouns' => 4,
+                            'CustomPronouns' => 'Carlos',
+                        ],
+                        'OperationalUnitInfo' => [
+                            'Id' => 1,
+                            'OperationalUnitName' => 'Chef',
+                            'Company' => 1,
+                            'CompanyName' => 'Simons Sambos',
+                            'LabelWithCompany' => '[Sim] Chef',
+                        ],
+                        'EmployeeInfo' => [
+                            'Id' => 3,
+                            'DisplayName' => 'AdamRhys Sapo',
+                            'EmployeeProfile' => 3,
+                            'Employee' => 3,
+                            'Photo' => 'https://photo2.deputy.com/deputec_b220505063318_11516/-135x135_45ca58e0db1a271fda5c83c399f7221a.jpg?Expires=1662765191&Key-Pair-Id=APKAINP5UVPK4IGBHXOQ&Signature=NciTc-O2aFxvvE23YrP3XkGqqPAtXMJSbAoZ8NQNENtKVTt1hXPHmGiW~Y59KRhpUbjFH08iIybrmH5f8NeSXn0q5RSMdXo0c2KyyYUoCecX97pa1eOqLTEmc6kaPJhiDLXt86~-4BaNvpK20eVa0WZkk4TQL5SgPi7w3skT7jE_',
+                            'Pronouns' => 4,
+                            'CustomPronouns' => 'Carlos',
+                        ],
+                        'CustomFieldData' => null,
+                    ],
                 ];
         }
         throw new InvalidCallException('Unknown timesheet id ' . $id);
