@@ -344,6 +344,7 @@ class Registry extends Component
             'Timesheet' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Timesheet',
                 'fields' => [
+                    'MealbreakSlots' => 'Array',   // API returns array but defined as VarChar in schema
                     'Slots' => 'Array',
                     'StartTime' => 'UnixTimestamp',
                     'EndTime' => 'UnixTimestamp',

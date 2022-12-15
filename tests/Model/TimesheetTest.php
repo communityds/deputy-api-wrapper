@@ -48,4 +48,23 @@ class TimesheetTest extends TestCase
         $timesheet = $this->wrapper()->getTimesheet(MockClient::TIMESHEET_NEW);
         $this->assertFalse($timesheet->save());
     }
+
+    /**
+     * @see https://github.com/communityds/deputy-api-wrapper/issues/16
+     */
+    public function testSlots()
+    {
+        $timesheet = $this->wrapper()->getTimesheet(MockClient::TIMESHEET_NEW);
+        $this->assertEquals([], $timesheet->mealbreakSlots);
+        $this->assertSame([], $timesheet->mealbreakSlots);
+
+        $timesheet = $this->wrapper()->getTimesheet(MockClient::TIMESHEET_WITH_SLOTS);
+        $this->assertEquals(
+            [
+                '1651829880' => 'OUT',
+                '1651832340' => 'IN',
+            ],
+            $timesheet->mealbreakSlots
+        );
+    }
 }

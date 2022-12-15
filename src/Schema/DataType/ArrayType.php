@@ -11,4 +11,18 @@ class ArrayType extends DataType
     {
         return 'array';
     }
+
+    public function fromApi($value)
+    {
+        // Empty arrays may come through as an empty string
+        if ($value === '') {
+            return [];
+
+        // Convert non-null non-arrays to an array
+        } elseif (!is_array($value) && $value !== null) {
+            return [$value];
+        }
+
+        return parent::fromApi($value);
+    }
 }
