@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.1
+
+* Forced `MealbreakSlots` in `Timesheet` schema to be an array ([#17](https://github.com/communityds/deputy-api-wrapper/pull/17))
+
 ## 1.5.0
 
 * Added OAuth 2.0 Access Token provider abstraction ([#13](https://github.com/communityds/deputy-api-wrapper/pull/13)).
