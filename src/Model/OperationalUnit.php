@@ -10,6 +10,7 @@ use DateTime;
  * @property DateTime $created
  * @property DateTime $modified
  * @property integer $company
+ * @property string $workType
  * @property integer $parentOperationalUnit
  * @property string $operationalUnitName
  * @property boolean $active
@@ -21,6 +22,7 @@ use DateTime;
  * @property string $colour
  * @property integer $rosterActiveHoursSchedule
  * @property float $dailyRosterBudget
+ * @property integer $operationalUnitType
  *
  * @property Company $companyObject
  * @property OperationalUnit $parentOperationalUnitObject
@@ -28,6 +30,8 @@ use DateTime;
  * @property Contact $contactObject
  * @property Schedule $rosterActiveHoursScheduleObject
  *
+ * @property string $companyCode
+ * @property string $companyName
  * @property PublicHoliday $operationUnit
  * @property EmployeeAgreement $employeeSalaryOpunits
  * @property Event $operationalUnit
