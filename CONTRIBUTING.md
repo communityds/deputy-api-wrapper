@@ -39,7 +39,7 @@ Submit the request as an Issue.
 ## How to submit a contribution
 
 1. Fork our GitHub repository.
-2. Create a dedicated branch in your forked repository off of the `develop` branch.
+2. Create a dedicated branch in your forked repository off of the `master` branch.
 3. Make changes within your branch.
 4. Finalise your changes to ensure:
     * All unit tests pass.
@@ -47,16 +47,16 @@ Submit the request as an Issue.
     * Changes comply with the PSR2 Coding Standard.
     * Documentation has been written or updated explaining the change.
     * Each commit should reflect a working version (i.e. no work-in-progress commits).
-5. Submit a Pull Request to the `develop` branch.
+5. Submit a Pull Request to the `master` branch.
 
 ## Review process
 
 CDS will review Issues and Pull Requests monthly.
 
-The repository uses a [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) model to manage the release process.
+The repository uses a [Git Feature Branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) model to manage the release process.
 
-Approved Pull Requests will have their commits merged in to the `develop` branch.
-Once the `develop` branch is considered stable, CDS will manage the release process.
+Approved Pull Requests will have their commits merged in to the `master` branch.
+Once the `master` branch is considered stable, CDS will manage the release process.
 CDS will update [CHANGELOG.md](CHANGELOG.md) with each official release and attribute the author.
 
 ## Code of Conduct
