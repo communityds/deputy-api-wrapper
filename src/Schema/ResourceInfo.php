@@ -4,6 +4,7 @@ namespace CommunityDS\Deputy\Api\Schema;
 
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Model\ModelInterface;
+use CommunityDS\Deputy\Api\Model\Record;
 use CommunityDS\Deputy\Api\Query;
 use CommunityDS\Deputy\Api\WrapperLocatorTrait;
 
@@ -137,16 +138,25 @@ class ResourceInfo extends Component
     }
 
     /**
+     * Fetches the model definitions from the API.
+     *
+     * @return array
+     */
+    public function fetchDefinitions()
+    {
+        return $this->getWrapper()->client->get(
+            $this->route('INFO')
+        );
+    }
+
+    /**
      * Loads the model definitions from the API if not already defined.
      *
      * @return void
      */
     public function loadDefinitions()
     {
-
-        $details = $this->getWrapper()->client->get(
-            $this->route('INFO')
-        );
+        $details = $this->fetchDefinitions();
 
         $this->assocs = array_merge(
             $details['assocs'],
@@ -162,6 +172,16 @@ class ResourceInfo extends Component
         );
 
         $this->warm = true;
+    }
+
+    /**
+     * Returns the names of all fields found in this schema.
+     *
+     * @return string[]
+     */
+    public function fieldNames()
+    {
+        return array_keys($this->fields);
     }
 
     /**
@@ -282,6 +302,19 @@ class ResourceInfo extends Component
     }
 
     /**
+     * Returns the names of all relationships (joins and associations) on this schema.
+     *
+     * @return string[]
+     */
+    public function relationNames()
+    {
+        return array_merge(
+            array_keys($this->joins),
+            array_keys($this->assocs)
+        );
+    }
+
+    /**
      * Returns the relationship name as defined within the API.
      *
      * @param string $name Name to find
@@ -292,7 +325,7 @@ class ResourceInfo extends Component
     {
         $relation = $this->joinName($name);
         if ($relation == null) {
-            $relation = $this->assocName($relation);
+            $relation = $this->assocName($name);
         }
         return $relation;
     }
@@ -330,6 +363,7 @@ class ResourceInfo extends Component
         if ($data instanceof $class) {
             return $data;
         }
+        /** @var Record $instance */
         $instance = $class::instantiate($data, $this);
         $instance::populateRecord($instance, $data);
         return $instance;
