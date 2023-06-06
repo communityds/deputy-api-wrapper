@@ -50,7 +50,6 @@ class Memo extends Record
         return $this->title;
     }
 
-
     /**
      * Creates new Memo resource via the POST /supervise/memo endpoint,
      * and then sends any remaining attributes to POST /resource/Memo/:id endpoint.

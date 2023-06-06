@@ -268,7 +268,7 @@ class Query extends Component
     {
         $models = [];
         $schema = $this->getSchema();
-        foreach ($this->query() as $row) {
+        foreach ($this->sendQuery() as $row) {
             $model = $schema->create($row);
             if ($this->primaryModel && $this->foreignName) {
                 $id = $this->primaryModel->getPrimaryKey();
@@ -295,7 +295,7 @@ class Query extends Component
      * @throws UnknownFieldException When adding a condition on an unknown attribute
      * @throws UnknownRelationException When joining on an unknown relation
      */
-    protected function query()
+    protected function sendQuery()
     {
 
         $schema = $this->getSchema();
