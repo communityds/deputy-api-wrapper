@@ -17,7 +17,7 @@ use DateTime;
  * @property DateTime $startTime
  * @property DateTime $endTime
  * @property DateTime $mealbreak
- * @property string $mealbreakSlots
+ * @property array $mealbreakSlots
  * @property float $totalTime
  * @property float $totalTimeInv
  * @property float $cost
