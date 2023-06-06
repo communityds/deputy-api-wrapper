@@ -861,7 +861,6 @@ class MockClient implements ClientInterface
         throw new InvalidCallException('Unknown CompanySetting id ' . $id);
     }
 
-
     /**
      * Returns response to POST /resource/company/:Id/settings endpoint.
      *
