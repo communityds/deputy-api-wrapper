@@ -13,6 +13,7 @@ use DateTime;
  * @property DateTime $startTime
  * @property DateTime $endTime
  * @property DateTime $mealbreak
+ * @property array $slots
  * @property float $totalTime
  * @property float $cost
  * @property integer $operationalUnit

@@ -116,7 +116,6 @@ class RosterTest extends TestCase
     {
         $roster = $this->wrapper()->getRoster(MockClient::ROSTER_FIRST);
 
-        $mealbreak = $roster->mealbreak;
         $this->assertEquals(30, $roster->mealbreakMinutes);
 
         $roster->mealbreakMinutes = 60;
@@ -151,5 +150,19 @@ class RosterTest extends TestCase
                 ['post' => 'resource/Roster/' . MockClient::ROSTER_FIRST],
             ]
         );
+    }
+
+    /**
+     * @see https://github.com/communityds/deputy-api-wrapper/issues/19
+     */
+    public function testSlots()
+    {
+        $roster = $this->wrapper()->getRoster(MockClient::ROSTER_NEW);
+        $this->assertEquals([], $roster->slots);
+        $this->assertSame([], $roster->slots);
+
+        $roster = $this->wrapper()->getRoster(MockClient::ROSTER_FIRST);
+        $this->assertCount(1, $roster->slots);
+        $this->assertEquals('Meal Break', $roster->slots[0]['strTypeName']);
     }
 }
