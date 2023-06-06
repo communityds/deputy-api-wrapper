@@ -57,5 +57,5 @@ Configured appropriately:
 ## Extending
 
 Additional caches can be added here so long as the class implements the `CacheInterface` interface.
-For example you may want to use an existing cache within your framework of choice.
+For example, you may want to use an existing cache within your framework of choice.
 Check the `Adapter` folder to see if the wrapper has already been created.

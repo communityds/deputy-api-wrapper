@@ -260,6 +260,16 @@ class Query extends Component
     }
 
     /**
+     * Returns the raw response from the query.
+     *
+     * @return array
+     */
+    public function raw()
+    {
+        return $this->sendQuery();
+    }
+
+    /**
      * Sends the query to the API and returns the converted response.
      *
      * @return ModelInterface[]
@@ -297,7 +307,6 @@ class Query extends Component
      */
     protected function sendQuery()
     {
-
         $schema = $this->getSchema();
 
         // Pre-loaded data

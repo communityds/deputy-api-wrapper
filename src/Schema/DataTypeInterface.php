@@ -24,4 +24,11 @@ interface DataTypeInterface
      * @return mixed API value
      */
     public function toApi($value);
+
+    /**
+     * Returns the data type used in PHPDoc definitions.
+     *
+     * @return string
+     */
+    public function phpType();
 }

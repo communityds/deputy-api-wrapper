@@ -54,7 +54,7 @@ class Registry extends Component
     public function resource($name, $cache = true)
     {
         $key = strtolower('resource-' . $name);
-        /* @var ResourceInfo $resource */
+        /** @var ResourceInfo $resource */
         $resource = $this->getWrapper()->persistent->get($key, null);
         if ($resource === null) {
             // Found exact match

@@ -19,6 +19,4 @@ abstract class DataType extends Component implements DataTypeInterface
     {
         return $value;
     }
-
-    abstract public function phpType();
 }
