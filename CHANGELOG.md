@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next
+
+* Forced `Slots` in `Roster` schema to be an array ([#19](https://github.com/communityds/deputy-api-wrapper/pull/19))
+
 ## 1.5.1
 
 * Forced `MealbreakSlots` in `Timesheet` schema to be an array ([#17](https://github.com/communityds/deputy-api-wrapper/pull/17))
