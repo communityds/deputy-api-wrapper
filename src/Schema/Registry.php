@@ -280,6 +280,7 @@ class Registry extends Component
                 'fields' => [
                     'StartTime' => 'UnixTimestamp',
                     'EndTime' => 'UnixTimestamp',
+                    'Slots' => 'Array',
                 ],
             ],
             'RosterOpen' => [
