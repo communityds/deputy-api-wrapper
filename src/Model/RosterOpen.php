@@ -5,20 +5,19 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $roster
- * @property integer $employee
  * @property boolean $accepted
- * @property boolean $seen
+ * @property DateTime $created
+ * @property integer $creator
  * @property boolean $declined
+ * @property integer $employee
  * @property string $link
  * @property string $message
- * @property integer $creator
- * @property DateTime $created
  * @property DateTime $modified
+ * @property integer $roster
+ * @property boolean $seen
  *
- * @property Roster $rosterObject
  * @property Employee $employeeObject
+ * @property Roster $rosterObject
  */
 class RosterOpen extends Record
 {

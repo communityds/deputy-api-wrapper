@@ -5,25 +5,24 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
+ * @property string $city
  * @property string $contactName
- * @property string $unitNo
- * @property string $streetNo
- * @property string $suiteNo
+ * @property integer $country
+ * @property DateTime $created
+ * @property integer $creator
+ * @property integer $format
+ * @property DateTime $modified
+ * @property string $notes
+ * @property string $phone
  * @property string $poBox
+ * @property string $postcode
+ * @property boolean $saved
+ * @property string $state
  * @property string $street1
  * @property string $street2
- * @property string $city
- * @property string $state
- * @property string $postcode
- * @property integer $country
- * @property string $phone
- * @property string $notes
- * @property integer $format
- * @property boolean $saved
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
+ * @property string $streetNo
+ * @property string $suiteNo
+ * @property string $unitNo
  *
  * @property string $displayName
  *

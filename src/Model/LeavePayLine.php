@@ -6,23 +6,24 @@ use DateInterval;
 use DateTime;
 
 /**
- * @property integer $id
+ * @property string $comment
+ * @property float $cost
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $date
+ * @property integer $employeeAgreement
+ * @property DateTime $endTime
+ * @property string $hours
  * @property integer $leaveId
  * @property integer $leaveRule
- * @property integer $employeeAgreement
- * @property DateTime $date
- * @property DateInterval $startTime
- * @property DateInterval $endTime
- * @property string $hours
- * @property string $comment
- * @property integer $timesheetId
- * @property integer $creator
- * @property DateTime $created
  * @property DateTime $modified
+ * @property boolean $recalculateWithReferencePeriod
+ * @property DateTime $startTime
+ * @property integer $timesheetId
  *
+ * @property EmployeeAgreement $employeeAgreementObject
  * @property Leave $leave
  * @property LeaveRules $leaveRuleObject
- * @property EmployeeAgreement $employeeAgreementObject
  * @property Timesheet $timesheet
  */
 class LeavePayLine extends Record

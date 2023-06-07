@@ -5,49 +5,51 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $company
- * @property string $firstName
- * @property string $lastName
- * @property string $displayName
- * @property string $otherName
- * @property string $salutation
- * @property integer $mainAddress
- * @property integer $postalAddress
- * @property integer $contact
- * @property integer $emergencyAddress
- * @property DateTime $dateOfBirth
- * @property integer $gender
- * @property integer $photo
- * @property integer $userId
- * @property integer $jobAppId
  * @property boolean $active
- * @property DateTime $startDate
- * @property DateTime $terminationDate
- * @property integer $stressProfile
- * @property string $position
- * @property boolean $higherDuty
- * @property integer $role
  * @property boolean $allowAppraisal
- * @property integer $historyId
- * @property integer $customFieldData
- * @property integer $creator
+ * @property integer $company
+ * @property integer $contact
  * @property DateTime $created
+ * @property integer $creator
+ * @property integer $customFieldData
+ * @property string $customPronouns
+ * @property DateTime $dateOfBirth
+ * @property string $displayName
+ * @property integer $emergencyAddress
+ * @property string $firstName
+ * @property integer $gender
+ * @property boolean $higherDuty
+ * @property integer $historyId
+ * @property integer $jobAppId
+ * @property string $lastName
+ * @property integer $mainAddress
  * @property DateTime $modified
+ * @property string $onboardingId
+ * @property string $otherName
+ * @property integer $photo
+ * @property string $position
+ * @property integer $postalAddress
+ * @property integer $pronouns
+ * @property integer $role
+ * @property string $salutation
+ * @property DateTime $startDate
+ * @property integer $stressProfile
+ * @property DateTime $terminationDate
+ * @property integer $userId
  *
  * @property Company $companyObject
+ * @property Contact $contactObject
+ * @property CustomFieldData $customFieldDataObject
+ * @property Address $emergencyAddressObject
  * @property Address $mainAddressObject
  * @property Address $postalAddressObject
- * @property Contact $contactObject
- * @property Address $emergencyAddressObject
- * @property StressProfile $stressProfileObject
  * @property EmployeeRole $roleObject
- * @property CustomFieldData $customFieldDataObject
+ * @property StressProfile $stressProfileObject
  *
- * @property PayRules $payRules
- * @property OperationalUnit $managementEmployeeOperationalUnit
- * @property OperationalUnit $rosterEmployeeOperationalUnit
  * @property Team $employee
+ * @property OperationalUnit $managementEmployeeOperationalUnit
+ * @property PayRules $payRules
+ * @property OperationalUnit $rosterEmployeeOperationalUnit
  *
  * @property TrainingRecord[] $trainingRecordObjects
  */

@@ -168,6 +168,9 @@ class Registry extends Component
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Country',
                 'pluralName' => 'Countries',
             ],
+            'CustomAppData' => [
+                'modelClass' => 'CommunityDS\Deputy\Api\Model\CustomAppData',
+            ],
             'CustomField' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\CustomField',
             ],
@@ -209,6 +212,9 @@ class Registry extends Component
             ],
             'EmployeeSalaryOpunitCosting' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\EmployeeSalaryOpunitCosting',
+            ],
+            'EmployeeWorkplace' => [
+                'modelClass' => 'CommunityDS\Deputy\Api\Model\EmployeeWorkplace',
             ],
             'EmploymentCondition' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\EmploymentCondition',

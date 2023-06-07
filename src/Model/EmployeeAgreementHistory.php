@@ -5,21 +5,20 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $agreementId
- * @property integer $payPoint
- * @property integer $empType
- * @property string $companyName
  * @property boolean $active
- * @property DateTime $startDate
+ * @property integer $agreementId
+ * @property string $companyName
  * @property integer $contract
- * @property integer $salaryPayRule
  * @property integer $contractFile
- * @property string $payrollId
- * @property integer $payPeriod
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property integer $empType
  * @property DateTime $modified
+ * @property integer $payPeriod
+ * @property integer $payPoint
+ * @property string $payrollId
+ * @property integer $salaryPayRule
+ * @property DateTime $startDate
  */
 class EmployeeAgreementHistory extends Record
 {

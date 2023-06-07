@@ -6,28 +6,138 @@ use CommunityDS\Deputy\Api\Schema\ResourceInfo;
 use DateTime;
 
 /**
- * @property integer $id
- *
- * @property string $system
- * @property string $f01                DeputyField (Blob)
- * @property string $f02                DeputyField (Blob)
- * @property string $f03                DeputyField (Blob)
- * @property string $f04                DeputyField (Blob)
- * @property string $f05                DeputyField (Blob)
- * @property string $f06                DeputyField (Blob)
- * @property string $f07                DeputyField (Blob)
- * @property string $f08                DeputyField (Blob)
- * @property string $f09                DeputyField (Blob)
- * @property string $f10                DeputyField (Blob)
- * @property string $f11                DeputyField (Blob)
- * @property string $f12                DeputyField (Blob)
- * @property string $f13                DeputyField (Blob)
- * @property string $f14                DeputyField (Blob)
- * @property string $f15                DeputyField (Blob)
- * @property string $f16                DeputyField (Blob)
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property mixed $f01
+ * @property mixed $f02
+ * @property mixed $f03
+ * @property mixed $f04
+ * @property mixed $f05
+ * @property mixed $f06
+ * @property mixed $f07
+ * @property mixed $f08
+ * @property mixed $f09
+ * @property mixed $f10
+ * @property mixed $f100
+ * @property mixed $f101
+ * @property mixed $f102
+ * @property mixed $f103
+ * @property mixed $f104
+ * @property mixed $f105
+ * @property mixed $f106
+ * @property mixed $f107
+ * @property mixed $f108
+ * @property mixed $f109
+ * @property mixed $f11
+ * @property mixed $f110
+ * @property mixed $f111
+ * @property mixed $f112
+ * @property mixed $f113
+ * @property mixed $f114
+ * @property mixed $f115
+ * @property mixed $f116
+ * @property mixed $f117
+ * @property mixed $f118
+ * @property mixed $f119
+ * @property mixed $f12
+ * @property mixed $f120
+ * @property mixed $f121
+ * @property mixed $f122
+ * @property mixed $f123
+ * @property mixed $f124
+ * @property mixed $f125
+ * @property mixed $f126
+ * @property mixed $f127
+ * @property mixed $f128
+ * @property mixed $f13
+ * @property mixed $f14
+ * @property mixed $f15
+ * @property mixed $f16
+ * @property mixed $f17
+ * @property mixed $f18
+ * @property mixed $f19
+ * @property mixed $f20
+ * @property mixed $f21
+ * @property mixed $f22
+ * @property mixed $f23
+ * @property mixed $f24
+ * @property mixed $f25
+ * @property mixed $f26
+ * @property mixed $f27
+ * @property mixed $f28
+ * @property mixed $f29
+ * @property mixed $f30
+ * @property mixed $f31
+ * @property mixed $f32
+ * @property mixed $f33
+ * @property mixed $f34
+ * @property mixed $f35
+ * @property mixed $f36
+ * @property mixed $f37
+ * @property mixed $f38
+ * @property mixed $f39
+ * @property mixed $f40
+ * @property mixed $f41
+ * @property mixed $f42
+ * @property mixed $f43
+ * @property mixed $f44
+ * @property mixed $f45
+ * @property mixed $f46
+ * @property mixed $f47
+ * @property mixed $f48
+ * @property mixed $f49
+ * @property mixed $f50
+ * @property mixed $f51
+ * @property mixed $f52
+ * @property mixed $f53
+ * @property mixed $f54
+ * @property mixed $f55
+ * @property mixed $f56
+ * @property mixed $f57
+ * @property mixed $f58
+ * @property mixed $f59
+ * @property mixed $f60
+ * @property mixed $f61
+ * @property mixed $f62
+ * @property mixed $f63
+ * @property mixed $f64
+ * @property mixed $f65
+ * @property mixed $f66
+ * @property mixed $f67
+ * @property mixed $f68
+ * @property mixed $f69
+ * @property mixed $f70
+ * @property mixed $f71
+ * @property mixed $f72
+ * @property mixed $f73
+ * @property mixed $f74
+ * @property mixed $f75
+ * @property mixed $f76
+ * @property mixed $f77
+ * @property mixed $f78
+ * @property mixed $f79
+ * @property mixed $f80
+ * @property mixed $f81
+ * @property mixed $f82
+ * @property mixed $f83
+ * @property mixed $f84
+ * @property mixed $f85
+ * @property mixed $f86
+ * @property mixed $f87
+ * @property mixed $f88
+ * @property mixed $f89
+ * @property mixed $f90
+ * @property mixed $f91
+ * @property mixed $f92
+ * @property mixed $f93
+ * @property mixed $f94
+ * @property mixed $f95
+ * @property mixed $f96
+ * @property mixed $f97
+ * @property mixed $f98
+ * @property mixed $f99
  * @property DateTime $modified
+ * @property string $system
  */
 class CustomFieldData extends Record
 {

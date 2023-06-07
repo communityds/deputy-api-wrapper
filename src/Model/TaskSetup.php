@@ -5,31 +5,31 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $groupId
- * @property integer $type
- * @property integer $parent
- * @property string $question
- * @property string $default
- * @property integer $sortOrder
- * @property integer $schedule
- * @property string $onYes
- * @property string $onNo
- * @property string $renderFunc
  * @property boolean $active
  * @property string $availableAfter
- * @property boolean $repeatIfNotCompleted
- * @property string $time
- * @property string $section
- * @property string $priority
- * @property string $helptext
- * @property boolean $supercedePrev
  * @property string $colour
- * @property string $onStart
- * @property string $onSubmit
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property string $default
+ * @property integer $duration
+ * @property integer $groupId
+ * @property mixed $helptext
  * @property DateTime $modified
+ * @property mixed $onNo
+ * @property mixed $onStart
+ * @property mixed $onSubmit
+ * @property mixed $onYes
+ * @property integer $parent
+ * @property string $priority
+ * @property string $question
+ * @property mixed $renderFunc
+ * @property boolean $repeatIfNotCompleted
+ * @property integer $schedule
+ * @property string $section
+ * @property integer $sortOrder
+ * @property boolean $supercedePrev
+ * @property mixed $time
+ * @property integer $type
  *
  * @property TaskGroupSetup $group
  * @property Schedule $scheduleObject

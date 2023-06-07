@@ -3,19 +3,19 @@
 namespace CommunityDS\Deputy\Api\Model;
 
 /**
+ * @property integer $company
+ * @property string $deputyVersion
+ * @property integer $employeeId
+ * @property string $firstName
+ * @property string $lastName
  * @property string $login
  * @property string $name
- * @property string $lastName
- * @property string $firstName
- * @property integer $company
+ * @property string[] $permissions
  * @property string $portfolio
- * @property string $deputyVersion
- * @property integer $userId
- * @property integer $employeeId
  * @property string $primaryEmail
  * @property string $primaryPhone
- * @property string[] $permissions
- * @property string $userSince
+ * @property integer $userId
+ * @property DateTime $userSince
  *
  * @property Company $companyObject
  * @property Employee $employeeObject

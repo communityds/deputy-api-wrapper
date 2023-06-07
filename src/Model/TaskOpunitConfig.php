@@ -5,23 +5,22 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $taskSetupId
- * @property integer $taskGroupId
  * @property boolean $active
- * @property integer $sortOrder
+ * @property string $availableAfter
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $modified
  * @property integer $opUnitId
  * @property integer $schedule
+ * @property integer $sortOrder
+ * @property integer $taskGroupId
+ * @property integer $taskSetupId
  * @property integer $type
- * @property string $availableAfter
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  *
- * @property TaskSetup $taskSetup
- * @property TaskGroupSetup $taskGroup
  * @property OperationalUnit $opUnit
  * @property Schedule $scheduleObject
+ * @property TaskGroupSetup $taskGroup
+ * @property TaskSetup $taskSetup
  */
 class TaskOpunitConfig extends Record
 {

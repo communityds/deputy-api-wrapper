@@ -5,19 +5,18 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $timesheet
- * @property integer $payRule
- * @property boolean $overridden
- * @property float $value
  * @property float $cost
- * @property string $overrideComment
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
  * @property DateTime $modified
+ * @property boolean $overridden
+ * @property string $overrideComment
+ * @property integer $payRule
+ * @property integer $timesheet
+ * @property float $value
  *
- * @property Timesheet $timesheetObject
  * @property PayRules $payRuleObject
+ * @property Timesheet $timesheetObject
  */
 class TimesheetPayReturn extends Record
 {

@@ -5,19 +5,18 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property DateTime $date
- * @property DateTime $timestamp
- * @property integer $employee
- * @property integer $operationalUnit
- * @property string $salesType
- * @property string $salesRef
- * @property float $salesQty
- * @property float $salesAmount
- * @property string $salesPayload
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $date
+ * @property integer $employee
  * @property DateTime $modified
+ * @property integer $operationalUnit
+ * @property float $salesAmount
+ * @property mixed $salesPayload
+ * @property float $salesQty
+ * @property string $salesRef
+ * @property string $salesType
+ * @property DateTime $timestamp
  *
  * @property Employee $employeeObject
  * @property OperationalUnit $operationalUnitObject

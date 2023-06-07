@@ -6,25 +6,24 @@ use DateInterval;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $name
- * @property string $description
+ * @property float $avgHoursPerDay
  * @property string $awardLevel
+ * @property DateTime $created
+ * @property integer $creator
+ * @property mixed $description
  * @property integer $employmentBasis
  * @property integer $employmentCategory
  * @property integer $employmentPeriod
  * @property integer $employmentStatus
- * @property integer $probationaryPeriod
- * @property float $workingDaysPerPeriod
- * @property DateInterval $usualStartTime
- * @property DateInterval $usualFinishTime
- * @property DateInterval $usualMealbreak
- * @property float $avgHoursPerDay
- * @property float $minHoursPerDay
  * @property float $minHoursForLeave
- * @property integer $creator
- * @property DateTime $created
+ * @property float $minHoursPerDay
  * @property DateTime $modified
+ * @property string $name
+ * @property integer $probationaryPeriod
+ * @property DateTime $usualFinishTime
+ * @property DateTime $usualMealbreak
+ * @property DateTime $usualStartTime
+ * @property float $workingDaysPerPeriod
  */
 class EmploymentCondition extends Record
 {

@@ -5,21 +5,20 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property DateTime $date
- * @property integer $empId
- * @property integer $companyId
  * @property integer $balanceId
- * @property integer $usageType
- * @property integer $usageRecordId
- * @property float $usage
- * @property string $description
- * @property integer $creator
+ * @property integer $companyId
  * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $date
+ * @property string $description
+ * @property integer $empId
  * @property DateTime $modified
+ * @property float $usage
+ * @property integer $usageRecordId
+ * @property integer $usageType
  *
- * @property Company $company
  * @property SystemUsageBalance $balance
+ * @property Company $company
  */
 class SystemUsageTracking extends Record
 {

@@ -5,12 +5,11 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $title
- * @property integer $schedule
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
  * @property DateTime $modified
+ * @property integer $schedule
+ * @property string $title
  *
  * @property Schedule $scheduleObject
  *

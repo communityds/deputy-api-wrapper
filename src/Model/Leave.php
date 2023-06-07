@@ -5,29 +5,29 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
+ * @property string $approvalComment
+ * @property integer $approverPay
+ * @property integer $approverTime
+ * @property string $comment
+ * @property integer $company
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $dateEnd
+ * @property DateTime $dateStart
+ * @property float $days
  * @property integer $employee
  * @property integer $employeeHistory
- * @property integer $company
- * @property integer $leaveRule
- * @property integer $start
- * @property DateTime $dateStart
  * @property integer $end
- * @property DateTime $dateEnd
- * @property float $days
- * @property integer $approverTime
- * @property integer $approverPay
- * @property string $comment
- * @property integer $status
- * @property string $approvalComment
- * @property float $totalHours
- * @property integer $creator
- * @property DateTime $created
+ * @property string $externalId
+ * @property integer $leaveRule
  * @property DateTime $modified
+ * @property integer $start
+ * @property integer $status
+ * @property float $totalHours
  *
- * @property Employee $employeeObject
- * @property EmployeeHistory $employeeHistoryObject
  * @property Company $companyObject
+ * @property EmployeeHistory $employeeHistoryObject
+ * @property Employee $employeeObject
  * @property LeaveRules $leaveRuleObject
  */
 class Leave extends Record

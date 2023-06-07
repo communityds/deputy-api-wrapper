@@ -5,21 +5,20 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
+ * @property integer $agreementHistory
+ * @property float $cost
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $date
+ * @property integer $dayTimestamp
  * @property integer $employee
  * @property integer $employeeAgreement
- * @property integer $agreementHistory
- * @property integer $dayTimestamp
- * @property DateTime $date
- * @property integer $opUnit
- * @property float $cost
  * @property boolean $final
- * @property integer $creator
- * @property DateTime $created
  * @property DateTime $modified
+ * @property integer $opUnit
  *
- * @property Employee $employeeObject
  * @property EmployeeAgreement $employeeAgreementObject
+ * @property Employee $employeeObject
  * @property OperationalUnit $opUnitObject
  */
 class EmployeeSalaryOpunitCosting extends Record
