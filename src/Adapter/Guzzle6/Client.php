@@ -5,7 +5,7 @@ namespace CommunityDS\Deputy\Api\Adapter\Guzzle6;
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\Component;
 use CommunityDS\Deputy\Api\Helper\ClientHelper;
-use CommunityDS\Deputy\Api\WrapperLocatorTrait;
+use CommunityDS\Deputy\Api\LoggerLocatorTrait;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 
@@ -16,7 +16,7 @@ use GuzzleHttp\Exception\ClientException;
  */
 class Client extends Component implements ClientInterface
 {
-    use WrapperLocatorTrait;
+    use LoggerLocatorTrait;
 
     /**
      * The configuration settings for the Guzzle client.
@@ -90,6 +90,7 @@ class Client extends Component implements ClientInterface
         $options['headers']['dp-meta-option'] = 'none';
 
         try {
+            $this->getLogger()->debug("{$method} {$uri}");
             $response = $this->getHttpClient()->request($method, $uri, $options);
         } catch (ClientException $e) {
             $response = $e->getResponse();
@@ -101,19 +102,18 @@ class Client extends Component implements ClientInterface
             }
         }
 
+        $body = $response->getBody()->getContents();
+        $this->getLogger()->debug("Response Code: {$response->getStatusCode()}" . PHP_EOL . PHP_EOL . $body);
+
         if ($response->getStatusCode() != $successCode) {
-            $content = ClientHelper::unserialize(
-                $response->getBody(true)
-            );
+            $content = ClientHelper::unserialize($body);
             if ($content) {
                 $this->_lastError = $content;
             }
             return false;
         }
 
-        return ClientHelper::unserialize(
-            $response->getBody(true)
-        );
+        return ClientHelper::unserialize($body);
     }
 
     public function get($uri, $successCode = null)
