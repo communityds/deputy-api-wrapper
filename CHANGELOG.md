@@ -3,6 +3,10 @@
 ## Next
 
 * Forced `Slots` in `Roster` schema to be an array ([#19](https://github.com/communityds/deputy-api-wrapper/pull/19))
+* Added missing properties on `OperationalUnit` ([#18](https://github.com/communityds/deputy-api-wrapper/pull/18))
+* Added `logger` service ([#20](https://github.com/communityds/deputy-api-wrapper/pull/20))
+* Added missing models ([#20](https://github.com/communityds/deputy-api-wrapper/pull/20))
+* Updated model `@property` and wrapper `@method` tags ([#20](https://github.com/communityds/deputy-api-wrapper/pull/20))
 
 ## 1.5.1
 
