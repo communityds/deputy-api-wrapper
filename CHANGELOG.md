@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## 1.6.0
 
 * Forced `Slots` in `Roster` schema to be an array ([#19](https://github.com/communityds/deputy-api-wrapper/pull/19))
 * Added missing properties on `OperationalUnit` ([#18](https://github.com/communityds/deputy-api-wrapper/pull/18))
