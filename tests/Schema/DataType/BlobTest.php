@@ -23,11 +23,12 @@ class BlobTest extends TestCase
         $dataType = $this->dataType();
         $this->assertDataType(null, $dataType->fromApi(null));
         $this->assertDataType('', $dataType->fromApi(''));
-        $this->assertDataType('0', $dataType->fromApi(0));
-        $this->assertDataType('', $dataType->fromApi(false));
-        $this->assertDataType('1', $dataType->fromApi(true));
+        $this->assertDataType(0, $dataType->fromApi(0));
+        $this->assertDataType(false, $dataType->fromApi(false));
+        $this->assertDataType(true, $dataType->fromApi(true));
         $this->assertDataType('Testing', $dataType->fromApi('Testing'));
         $this->assertDataType("Testing\nMulti-Line", $dataType->fromApi("Testing\nMulti-Line"));
+        $this->assertDataType(['one', 'two', 'three'], $dataType->fromApi(['one', 'two', 'three']));
     }
 
     public function testToApi()
