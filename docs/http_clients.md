@@ -7,6 +7,47 @@ By default, the wrapper uses the `Guzzle` HTTP wrapper which by default uses `cu
 
 ## Adapters
 
+### Guzzle 7
+
+> NOTE: This version of the adapter applies to PHP 8.0+ environments.
+
+The Guzzle adapter uses the Guzzle HTTP library loaded via Composer.
+The adapter uses the default configuration of Guzzle so in effect acts as a `curl` wrapper.
+
+If you wish to configure the Guzzle wrapper then you need to:
+
+* Add Guzzle to your composer requirements:
+
+```bash
+composer require guzzlehttp/guzzle ^7.0
+```
+
+* Modify the `client` property to contain:
+
+```php
+[
+    'class' => 'CommunityDS\Deputy\Api\Adapter\Guzzle7\Client',
+]
+```
+
+* A more advanced example is:
+
+```php
+[
+    'class' => 'CommunityDS\Deputy\Api\Adapter\Guzzle7\Client',
+    'config' => [
+        'verify' => false,
+    ],
+    'options' => [
+        'curl' => [
+            CURLOPT_SSLVERSION => 6,
+            CURLOPT_PROXY => '192.168.0.1',
+            CURLOPT_PROXYPORT => '8080'
+        ],
+    ],
+]
+```
+
 ### Guzzle 6
 
 > NOTE: This version of the adapter applies to PHP 5.5+ environments.
@@ -51,39 +92,6 @@ composer require guzzlehttp/guzzle ^6.0
 See the Guzzle HTTP documentation for more examples on how the client can be configured.
 
 Note that due to issues with `curl` you may need to specify the ssl version that is used by the Deputy API.
-
-### Guzzle 3
-
-> NOTE: **This adapter has been deprecated** and applies to PHP 5.3 environments.
-> Please use the appropriate Guzzle adapter based on your environment. 
-
-The Guzzle adapter uses the Guzzle HTTP library loaded via Composer.
-The adapter uses the default configuration of Guzzle so in effect acts as a `curl` wrapper.
-
-If you wish to configure the Guzzle wrapper then you need to:
-
-* Add Guzzle to your composer requirements:
-
-```bash
-composer require guzzle/guzzle ^3.0
-```
-
-* Modify the `client` property. For example:
-
-```php
-[
-    'class' => 'CommunityDS\Deputy\Api\Adapter\Guzzle3\Client',
-    'config' => [
-        'curl.options' => [
-            CURLOPT_SSLVERSION => 6,
-            CURLOPT_PROXY => '192.168.0.1',
-            CURLOPT_PROXYPORT => '8080'
-        ],
-    ],
-]
-```
-
-Note that due to issues with `curl` you must specify the ssl version that is used by the Deputy API.
 
 ### Custom
 
