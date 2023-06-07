@@ -9,6 +9,8 @@ Allows interaction with the [Deputy API (Version 1)](https://www.deputy.com/api-
 
 [View the documentation](docs/index.md) on how to use the wrapper.
 
+[Use the CLI tool](https://github.com/communityds/deputy-api-console) to explore the wrapper.
+
 ## Installation
 
 This package can be installed via Composer:
