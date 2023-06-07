@@ -5,6 +5,7 @@ namespace CommunityDS\Deputy\Api;
 use CommunityDS\Deputy\Api\Adapter\AuthenticationInterface;
 use CommunityDS\Deputy\Api\Adapter\CacheInterface;
 use CommunityDS\Deputy\Api\Adapter\ClientInterface;
+use CommunityDS\Deputy\Api\Adapter\LoggerInterface;
 use CommunityDS\Deputy\Api\Adapter\TargetConfigInterface;
 use CommunityDS\Deputy\Api\Model\CustomField;
 use CommunityDS\Deputy\Api\Model\Me;
@@ -371,6 +372,13 @@ class Wrapper extends Component
     public $client = 'CommunityDS\Deputy\Api\Adapter\Guzzle6\Client';
 
     /**
+     * Configuration or instance of logger interface.
+     *
+     * @var LoggerInterface
+     */
+    public $logger = 'CommunityDS\Deputy\Api\Adapter\Logger\NullLogger';
+
+    /**
      * Configuration or instance of persistent Cache.
      *
      * @var CacheInterface|array
@@ -403,6 +411,7 @@ class Wrapper extends Component
         parent::init();
         $this->auth = Component::createObject($this->auth);
         $this->client = Component::createObject($this->client);
+        $this->logger = Component::createObject($this->logger);
         $this->persistent = Component::createObject($this->persistent);
         $this->runtime = Component::createObject($this->runtime);
         $this->schema = Component::createObject($this->schema);

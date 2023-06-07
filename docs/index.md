@@ -11,6 +11,7 @@ The Deputy API Wrapper allows for interacting with the Deputy API Version 1 usin
 * [Caching](caching.md)
 * [Data Types](datatypes.md)
 * [HTTP Clients](http_clients.md)
+* [Logging](logging.md)
 * [Resources](resources.md)
 
 ## Looking ahead
