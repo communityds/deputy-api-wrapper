@@ -5,15 +5,14 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
  * @property string $category
+ * @property DateTime $created
+ * @property integer $creator
  * @property string $group
+ * @property DateTime $modified
  * @property integer $sortOrder
  * @property boolean $stafflog
  * @property boolean $system
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  *
  * @property Comment $comment
  * @property EmployeeRole $employeeRole

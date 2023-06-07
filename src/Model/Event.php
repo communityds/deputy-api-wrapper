@@ -5,16 +5,15 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $title
- * @property integer $schedule
- * @property string $colour
- * @property boolean $showOnRoster
  * @property float $addToBudget
  * @property boolean $blockTimeOff
- * @property integer $creator
+ * @property string $colour
  * @property DateTime $created
+ * @property integer $creator
  * @property DateTime $modified
+ * @property integer $schedule
+ * @property boolean $showOnRoster
+ * @property mixed $title
  *
  * @property Schedule $scheduleObject
  *

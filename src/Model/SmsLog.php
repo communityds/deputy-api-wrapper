@@ -5,15 +5,14 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $destination
- * @property string $message
  * @property integer $count
- * @property string $smsId
- * @property string $deliveryReport
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property string $deliveryReport
+ * @property string $destination
+ * @property mixed $message
  * @property DateTime $modified
+ * @property string $smsId
  */
 class SmsLog extends Record
 {

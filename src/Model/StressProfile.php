@@ -5,17 +5,16 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $name
- * @property float $maxHoursPerShift
- * @property float $maxHoursPerPeriod
+ * @property DateTime $created
+ * @property integer $creator
+ * @property string $customRules
+ * @property float $gapHoursBetweenShifts
  * @property float $maxDaysPerPeriod
  * @property float $maxHoursPerDay
- * @property float $gapHoursBetweenShifts
- * @property string $customRules
- * @property integer $creator
- * @property DateTime $created
+ * @property float $maxHoursPerPeriod
+ * @property float $maxHoursPerShift
  * @property DateTime $modified
+ * @property string $name
  */
 class StressProfile extends Record
 {

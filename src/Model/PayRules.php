@@ -5,41 +5,44 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $payTitle
- * @property integer $remunerationType
- * @property integer $remunerationBy
+ * @property mixed $advancedCalculation
  * @property float $annualSalary
+ * @property mixed $comment
+ * @property string $crId
+ * @property DateTime $created
+ * @property integer $creator
+ * @property string $ctId
+ * @property integer $dexmlScript
+ * @property mixed $dexmlScriptParam
  * @property float $hourlyRate
+ * @property boolean $isExported
  * @property boolean $isMultiplier
- * @property float $multiplierValue
- * @property integer $multiplierBaseRate
- * @property integer $minimumType
+ * @property string $maximumShiftLength
  * @property integer $maximumType
- * @property float $minimumValue
  * @property float $maximumValue
  * @property string $minimumShiftLength
- * @property string $maximumShiftLength
- * @property string $advancedCalculation
- * @property boolean $isExported
- * @property float $unitValue
- * @property integer $schedule
- * @property integer $recommendWith
- * @property integer $dexmlScript
- * @property string $dexmlScriptParam
- * @property integer $periodType
- * @property integer $payPortionRule
- * @property string $payrollCategory
- * @property string $comment
- * @property integer $creator
- * @property DateTime $created
+ * @property integer $minimumType
+ * @property float $minimumValue
  * @property DateTime $modified
+ * @property integer $multiplierBaseRate
+ * @property float $multiplierValue
+ * @property integer $payPortionRule
+ * @property string $payTitle
+ * @property string $payrollCategory
+ * @property integer $periodType
+ * @property string $rateTag
+ * @property integer $rateType
+ * @property integer $recommendWith
+ * @property integer $remunerationBy
+ * @property integer $remunerationType
+ * @property integer $schedule
+ * @property float $unitValue
  *
  * @property PayRules $multiplierBaseRateObject
  * @property Schedule $scheduleObject
  *
- * @property EmploymentContract $payRules
  * @property OperationalUnit $operationUnit
+ * @property EmploymentContract $payRules
  */
 class PayRules extends Record
 {

@@ -5,20 +5,19 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $sourceRoster
- * @property integer $targetRoster
+ * @property DateTime $created
+ * @property integer $creator
  * @property integer $employee
- * @property integer $status
+ * @property DateTime $modified
  * @property string $requestMessage
  * @property string $responseMessage
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
+ * @property integer $sourceRoster
+ * @property integer $status
+ * @property integer $targetRoster
  *
+ * @property Employee $employeeObject
  * @property Roster $sourceRosterObject
  * @property Roster $targetRosterObject
- * @property Employee $employeeObject
  */
 class RosterSwap extends Record
 {

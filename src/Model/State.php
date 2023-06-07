@@ -5,15 +5,14 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $country
- * @property string $code
  * @property boolean $active
+ * @property string $code
+ * @property integer $country
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $modified
  * @property integer $sortOrder
  * @property string $state
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  *
  * @property Country $countryObject
  *

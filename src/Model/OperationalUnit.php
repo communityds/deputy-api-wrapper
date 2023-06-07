@@ -5,40 +5,36 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
- * @property integer $company
- * @property string $workType
- * @property integer $parentOperationalUnit
- * @property string $operationalUnitName
  * @property boolean $active
- * @property string $payrollExportName
  * @property integer $address
+ * @property string $colour
+ * @property integer $company
  * @property integer $contact
+ * @property DateTime $created
+ * @property integer $creator
+ * @property float $dailyRosterBudget
+ * @property DateTime $modified
+ * @property string $operationalUnitName
+ * @property integer $operationalUnitType
+ * @property integer $parentOperationalUnit
+ * @property string $payrollExportName
+ * @property integer $rosterActiveHoursSchedule
  * @property integer $rosterSortOrder
  * @property boolean $showOnRoster
- * @property string $colour
- * @property integer $rosterActiveHoursSchedule
- * @property float $dailyRosterBudget
- * @property integer $operationalUnitType
+ * @property string $workType
  *
- * @property Company $companyObject
- * @property OperationalUnit $parentOperationalUnitObject
  * @property Address $addressObject
+ * @property Company $companyObject
  * @property Contact $contactObject
+ * @property OperationalUnit $parentOperationalUnitObject
  * @property Schedule $rosterActiveHoursScheduleObject
  *
- * @property string $companyCode
- * @property string $companyName
- * @property PublicHoliday $operationUnit
  * @property EmployeeAgreement $employeeSalaryOpunits
- * @property Event $operationalUnit
  * @property Employee $managementEmployeeOperationalUnit
- * @property TrainingModule $trainingModule
+ * @property Event $operationalUnit
  * @property Employee $rosterEmployeeOperationalUnit
  * @property TaskGroupSetup $taskGroupOpUnit
+ * @property TrainingModule $trainingModule
  *
  * @property string $displayName
  */

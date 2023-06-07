@@ -5,18 +5,17 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
+ * @property boolean $active
  * @property string $code
  * @property string $codeA3
- * @property string $region
- * @property boolean $active
- * @property integer $sortOrder
  * @property string $country
- * @property string $zipValidatePreg
- * @property string $phoneDisplayPreg
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
  * @property DateTime $modified
+ * @property string $phoneDisplayPreg
+ * @property string $region
+ * @property integer $sortOrder
+ * @property string $zipValidatePreg
  *
  * @property string $displayName
  */

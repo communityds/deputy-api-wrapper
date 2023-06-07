@@ -5,20 +5,21 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $orm
- * @property integer $recId
- * @property string $longitude
- * @property string $latitude
+ * @property float $accuracy
+ * @property string $action
+ * @property integer $country
+ * @property DateTime $created
+ * @property integer $creator
+ * @property float $latitude
+ * @property float $longitude
+ * @property DateTime $modified
  * @property string $no
+ * @property string $orm
+ * @property string $postcode
+ * @property integer $recId
+ * @property string $state
  * @property string $street
  * @property string $suburb
- * @property string $state
- * @property string $postcode
- * @property integer $country
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  */
 class Geo extends Record
 {

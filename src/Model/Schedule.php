@@ -6,24 +6,23 @@ use DateInterval;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $name
- * @property DateTime $startDate
- * @property DateInterval $startTime
- * @property DateInterval $endTime
- * @property integer $repeatType
- * @property integer $repeatEvery
- * @property string $weeklyOnDays
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $endDate
+ * @property DateTime $endTime
+ * @property string $exception
+ * @property DateTime $modified
  * @property string $monthlyOnDates
  * @property string $monthlyOnDays
- * @property DateTime $endDate
- * @property string $exception
- * @property boolean $saved
+ * @property string $name
  * @property string $orm
+ * @property integer $repeatEvery
+ * @property integer $repeatType
+ * @property boolean $saved
+ * @property DateTime $startDate
+ * @property DateTime $startTime
  * @property boolean $template
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
+ * @property string $weeklyOnDays
  */
 class Schedule extends Record
 {

@@ -5,33 +5,39 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $name
- * @property string $type
- * @property string $description
- * @property float $maxAllowedAnnually
- * @property boolean $paidLeave
  * @property boolean $annualRollOver
- * @property boolean $visible
- * @property boolean $payoutOnTermination
+ * @property mixed $calc
+ * @property integer $calcType
+ * @property DateTime $created
+ * @property integer $creator
+ * @property mixed $description
  * @property integer $entitlementAfterMonth
  * @property integer $exportType
- * @property string $payrollCategory
- * @property integer $calcType
- * @property string $calc
- * @property string $f00
- * @property string $f01
- * @property string $f02
- * @property string $f03
- * @property string $f04
- * @property string $f05
- * @property string $f06
- * @property string $f07
- * @property string $f08
- * @property string $f09
- * @property integer $creator
- * @property DateTime $created
+ * @property mixed $f00
+ * @property mixed $f01
+ * @property mixed $f02
+ * @property mixed $f03
+ * @property mixed $f04
+ * @property mixed $f05
+ * @property mixed $f06
+ * @property mixed $f07
+ * @property mixed $f08
+ * @property mixed $f09
+ * @property float $maxAllowedAnnually
  * @property DateTime $modified
+ * @property string $name
+ * @property boolean $paidLeave
+ * @property boolean $payoutOnTermination
+ * @property string $payrollCategory
+ * @property integer $resetSchedule
+ * @property integer $resetType
+ * @property float $resetValue
+ * @property string $svcLeavePolicyId
+ * @property string $type
+ * @property integer $unitType
+ * @property boolean $visible
+ *
+ * @property Schedule $resetScheduleObject
  */
 class LeaveRules extends Record
 {

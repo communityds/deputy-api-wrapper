@@ -3,7 +3,6 @@
 namespace CommunityDS\Deputy\Api\Model;
 
 /**
- * @property integer $id
  * @property string $displayName
  * @property integer $employee
  * @property string $photo

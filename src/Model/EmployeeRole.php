@@ -5,20 +5,19 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $role
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $modified
+ * @property mixed $permissions
  * @property integer $ranking
  * @property integer $reportTo
- * @property string $permissions
  * @property boolean $require2fa
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
+ * @property string $role
  *
  * @property EmployeeRole $reportToObject
  *
- * @property Category $employeeRole
  * @property EmployeeRole $alsoReportsTo
+ * @property Category $employeeRole
  *
  * @property string $displayName
  * @property Memo $roleObject

@@ -7,20 +7,28 @@ use CommunityDS\Deputy\Api\Schema\Registry;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $system
- * @property string $name
+ * @property integer $action
  * @property string $apiName
- * @property string $deputyField The corresponding property used on CustomFieldData
- * @property integer $sortOrder
- * @property string $default
- * @property integer $type ID number of the Data Type
- * @property string $valueList
- * @property string $validation
- * @property string $helpText
- * @property integer $creator
+ * @property string $conditionalRules
  * @property DateTime $created
+ * @property integer $creator
+ * @property string $default
+ * @property string $deputyField
+ * @property integer $displayTiming
+ * @property string $helptext
  * @property DateTime $modified
+ * @property string $name
+ * @property integer $published
+ * @property integer $sortOrder
+ * @property string $system
+ * @property integer $triggerScript
+ * @property integer $type
+ * @property string $validation
+ * @property string $valuelist
+ * @property boolean $visible
+ *
+ * @property EmploymentContract $customField
+ * @property OperationalUnit $operationUnit
  */
 class CustomField extends Record
 {

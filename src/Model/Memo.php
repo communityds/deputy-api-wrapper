@@ -7,20 +7,20 @@ use CommunityDS\Deputy\Api\NotSupportedException;
 use DateTime;
 
 /**
- * @property integer $id
- * @property DateTime $showFrom
  * @property boolean $active
+ * @property string $confirmText
+ * @property mixed $content
+ * @property DateTime $created
+ * @property integer $creator
+ * @property boolean $disableComment
+ * @property integer $file
+ * @property mixed $keyword
+ * @property DateTime $modified
+ * @property DateTime $showFrom
  * @property DateTime $showTill
  * @property string $title
- * @property string $content
  * @property integer $type
- * @property integer $file
  * @property string $url
- * @property string $confirmText
- * @property string $keyword
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  *
  * @property Company $company
  * @property EmployeeRole $role

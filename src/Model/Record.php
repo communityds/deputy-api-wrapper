@@ -146,7 +146,6 @@ abstract class Record extends Component implements ModelInterface
      */
     public function getErrors($attribute = null)
     {
-
         if ($this->_errors !== null) {
             if ($attribute === null) {
                 return $this->_errors;
@@ -260,7 +259,6 @@ abstract class Record extends Component implements ModelInterface
      */
     public function getAttribute($name)
     {
-
         $dataKey = $this->dataKey($name);
         if (array_key_exists($dataKey, $this->_data)) {
             return $this->_data[$dataKey];
@@ -401,7 +399,6 @@ abstract class Record extends Component implements ModelInterface
      */
     public function getRelation($relation)
     {
-
         $relationName = $this->getSchema()->relationName($relation);
         if ($relationName == null) {
             throw UnknownRelationException::create($this, $relation);
@@ -411,17 +408,20 @@ abstract class Record extends Component implements ModelInterface
         if (!array_key_exists($dataKey, $this->_populated)) {
             $resourceName = $this->getSchema()->relationResource($relationName);
             $resourceSchema = $this->getWrapper()->schema->resource($resourceName);
-
-            $query = $resourceSchema->find();
-            $query->primaryModel = $this;
-            $query->foreignName = $relationName;
-            if (array_key_exists($dataKey, $this->_related)) {
-                $query->data = $this->_related[$dataKey];
-                if (!is_array($query->data)) {
-                    $query->data = [$query->data];
+            if ($resourceSchema) {
+                $query = $resourceSchema->find();
+                $query->primaryModel = $this;
+                $query->foreignName = $relationName;
+                if (array_key_exists($dataKey, $this->_related)) {
+                    $query->data = $this->_related[$dataKey];
+                    if (!is_array($query->data)) {
+                        $query->data = [$query->data];
+                    }
                 }
+                $this->_related[$dataKey] = $query->one();
+            } else {
+                $this->_related[$dataKey] = null;
             }
-            $this->_related[$dataKey] = $query->one();
             $this->_populated[$dataKey] = true;
         }
 
@@ -500,7 +500,6 @@ abstract class Record extends Component implements ModelInterface
      */
     public function insert($attributeNames = null)
     {
-
         $payload = $this->insertPayload($attributeNames);
 
         $route = $this->schema->route();
@@ -537,7 +536,6 @@ abstract class Record extends Component implements ModelInterface
      */
     protected function insertPayload($attributeNames)
     {
-
         if ($this->getPrimaryKey()) {
             throw new InvalidParamException('New records can not contain an Id');
         }
@@ -580,7 +578,6 @@ abstract class Record extends Component implements ModelInterface
      */
     public function update($attributeNames = null)
     {
-
         $payload = $this->updatePayload($attributeNames);
 
         $route = null;
@@ -633,7 +630,6 @@ abstract class Record extends Component implements ModelInterface
      */
     protected function updatePayload($attributeNames)
     {
-
         if ($this->getPrimaryKey() == null) {
             throw new InvalidParamException('Existing records must contain an Id');
         }
@@ -687,7 +683,6 @@ abstract class Record extends Component implements ModelInterface
      */
     public function delete()
     {
-
         if ($this->getPrimaryKey() == null) {
             throw new InvalidParamException('Existing records must contain an Id');
         }
@@ -727,7 +722,7 @@ abstract class Record extends Component implements ModelInterface
 
     public static function populateRecord($record, $data)
     {
-        /* @var ResourceInfo $schema */
+        /** @var ResourceInfo $schema */
         $schema = $record->schema;
 
         $record->clearData();

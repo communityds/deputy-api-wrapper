@@ -5,28 +5,29 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $employeeId
- * @property integer $payPoint
- * @property integer $empType
- * @property string $companyName
  * @property boolean $active
- * @property DateTime $startDate
+ * @property float $baseRate
+ * @property string $companyName
  * @property integer $contract
- * @property integer $salaryPayRule
  * @property integer $contractFile
- * @property string $payrollId
- * @property integer $payPeriod
- * @property integer $historyId
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property integer $empType
+ * @property integer $employeeId
+ * @property DateTime $endDate
+ * @property integer $historyId
  * @property DateTime $modified
+ * @property integer $payPeriod
+ * @property integer $payPoint
+ * @property string $payrollId
+ * @property integer $salaryPayRule
+ * @property DateTime $startDate
  *
- * @property Employee $employee
- * @property Company $payPointObject
  * @property EmploymentContract $contractObject
- * @property PayRules $salaryPayRuleObject
+ * @property Employee $employee
  * @property PayPeriod $payPeriodObject
+ * @property Company $payPointObject
+ * @property PayRules $salaryPayRuleObject
  *
  * @property OperationalUnit $employeeSalaryOpunits
  */

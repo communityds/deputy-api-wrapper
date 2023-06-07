@@ -6,39 +6,39 @@ use CommunityDS\Deputy\Api\NotSupportedException;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $portfolio
- * @property string $code
  * @property boolean $active
- * @property integer $parentCompany
- * @property string $companyName
- * @property string $tradingName
- * @property string $businessNumber
- * @property string $companyNumber
- * @property boolean $isWorkplace
- * @property boolean $isPayrollEntity
- * @property string $payrollExportCode
  * @property integer $address
+ * @property string $businessNumber
+ * @property string $code
+ * @property string $companyName
+ * @property string $companyNumber
  * @property integer $contact
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property boolean $isPayrollEntity
+ * @property boolean $isWorkplace
  * @property DateTime $modified
+ * @property integer $parentCompany
+ * @property string $payrollExportCode
+ * @property integer $portfolio
+ * @property string $tradingName
  *
- * @property Company $parentCompanyObject
  * @property Address $addressObject
  * @property Contact $contactObject
+ * @property Company $parentCompanyObject
  *
- * @property Team $team
  * @property Memo $company
+ * @property Team $team
  *
  * @property Employee[] $employeeObjects
- * @property OperationalUnit[] $operationalUnitObjects
  *
  * @property string $displayName
- * @property float $latitude
- * @property float $longitude
- * @property string $operationalUnitNames
- * @property string $timeZone
+ * @property OperationalUnit[] $operationalUnitObjects
+ *
+ * @property-write float $latitude Only when creating a company
+ * @property-write float $longitude Only when creating a company
+ * @property-write string[] $operationalUnitNames Only when creating a company
+ * @property-write string $timeZone Only when creating a company
  */
 class Company extends Record implements CompanySettingsInterface
 {

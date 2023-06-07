@@ -5,15 +5,15 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
+ * @property string $comment
+ * @property DateTime $created
+ * @property integer $creator
+ * @property integer $file
+ * @property boolean $ignorePermission
+ * @property boolean $inFeed
+ * @property DateTime $modified
  * @property string $orm
  * @property integer $recId
- * @property boolean $inFeed
- * @property boolean $ignorePermission
- * @property string $comment
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  *
  * @property Category $commentObject
  */

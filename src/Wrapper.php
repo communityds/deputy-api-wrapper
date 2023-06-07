@@ -56,6 +56,12 @@ use CommunityDS\Deputy\Api\Schema\Registry;
  * @method Model\Country[] getCountries()
  * @method Query findCountries()
  *
+ * @method Model\CustomAppData createCustomAppData()
+ * @method Model\CustomAppData deleteCustomAppData($id)
+ * @method Model\CustomAppData getCustomAppData($id)
+ * @method Model\CustomAppData[] getCustomAppDatas()
+ * @method Query findCustomAppDatas()
+ *
  * @method Model\CustomField createCustomField()
  * @method Model\CustomField deleteCustomField($id)
  * @method Model\CustomField getCustomField($id)
@@ -127,6 +133,12 @@ use CommunityDS\Deputy\Api\Schema\Registry;
  * @method Model\EmployeeSalaryOpunitCosting getEmployeeSalaryOpunitCosting($id)
  * @method Model\EmployeeSalaryOpunitCosting[] getEmployeeSalaryOpunitCostings()
  * @method Query findEmployeeSalaryOpunitCostings()
+ *
+ * @method Model\EmployeeWorkplace createEmployeeWorkplace()
+ * @method Model\EmployeeWorkplace deleteEmployeeWorkplace($id)
+ * @method Model\EmployeeWorkplace getEmployeeWorkplace($id)
+ * @method Model\EmployeeWorkplace[] getEmployeeWorkplaces()
+ * @method Query findEmployeeWorkplaces()
  *
  * @method Model\EmploymentCondition createEmploymentCondition()
  * @method Model\EmploymentCondition deleteEmploymentCondition($id)

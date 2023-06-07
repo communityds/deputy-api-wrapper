@@ -5,16 +5,15 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $start
+ * @property integer $company
+ * @property DateTime $created
+ * @property integer $creator
+ * @property DateTime $dateEnd
  * @property DateTime $dateStart
  * @property integer $end
- * @property DateTime $dateEnd
- * @property integer $company
- * @property integer $payPeriod
- * @property integer $creator
- * @property DateTime $created
  * @property DateTime $modified
+ * @property integer $payPeriod
+ * @property integer $start
  *
  * @property Company $companyObject
  * @property PayPeriod $payPeriodObject

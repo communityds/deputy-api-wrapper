@@ -5,25 +5,24 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property integer $employeeId
+ * @property float $costTotal
+ * @property DateTime $created
+ * @property integer $creator
+ * @property integer $employeeAgreementHistoryId
  * @property integer $employeeAgreementId
- * @property integer $periodId
- * @property boolean $recommendedLoadings
- * @property integer $timesheets
- * @property integer $timesheetsTimeApproved
- * @property integer $timesheetsPayApproved
+ * @property integer $employeeId
+ * @property integer $exportId
+ * @property boolean $exported
+ * @property DateTime $modified
+ * @property boolean $paid
  * @property integer $paycycleRules
  * @property integer $paycycleRulesApproved
- * @property boolean $exported
- * @property integer $exportId
- * @property boolean $paid
+ * @property integer $periodId
+ * @property boolean $recommendedLoadings
  * @property float $timeTotal
- * @property float $costTotal
- * @property integer $employeeAgreementHistoryId
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
+ * @property integer $timesheets
+ * @property integer $timesheetsPayApproved
+ * @property integer $timesheetsTimeApproved
  *
  * @property Employee $employee
  * @property EmployeeAgreement $employeeAgreement

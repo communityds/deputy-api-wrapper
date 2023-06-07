@@ -8,39 +8,42 @@ use DateInterval;
 use DateTime;
 
 /**
- * @property integer $id
- * @property DateTime $date
- * @property DateTime $startTime
- * @property DateTime $endTime
- * @property DateTime $mealbreak
- * @property array $slots
- * @property float $totalTime
- * @property float $cost
- * @property integer $operationalUnit
- * @property integer $employee
+ * @property boolean $approvalRequired
  * @property string $comment
+ * @property integer $confirmBy
+ * @property string $confirmComment
+ * @property integer $confirmStatus
+ * @property integer $confirmTime
+ * @property integer $connectStatus
+ * @property float $cost
+ * @property DateTime $created
+ * @property integer $creator
+ * @property integer $customFieldData
+ * @property DateTime $date
+ * @property integer $employee
+ * @property DateTime $endTime
+ * @property integer $matchedByTimesheet
+ * @property DateTime $mealbreak
+ * @property DateTime $modified
+ * @property boolean $open
+ * @property integer $operationalUnit
+ * @property integer $parentId
+ * @property boolean $published
+ * @property integer $shiftTemplate
+ * @property array $slots
+ * @property DateTime $startTime
+ * @property integer $swapManageBy
+ * @property integer $swapStatus
+ * @property float $totalTime
  * @property string $warning
  * @property string $warningOverrideComment
- * @property boolean $published
- * @property integer $matchedByTimesheet
- * @property boolean $open
- * @property integer $confirmStatus
- * @property string $confirmComment
- * @property integer $confirmBy
- * @property integer $confirmTime
- * @property integer $swapStatus
- * @property integer $swapManageBy
- * @property integer $connectStatus
- * @property integer $creator
- * @property DateTime $created
- * @property DateTime $modified
  *
- * @property OperationalUnit $operationalUnitObject
+ * @property Employee $confirmByObject
+ * @property CustomFieldData $customFieldDataObject
  * @property Employee $employeeObject
  * @property Timesheet $matchedByTimesheetObject
- * @property Employee $confirmByObject
- *
- * @property integer $mealbreakMinutes
+ * @property OperationalUnit $operationalUnitObject
+ * @property Roster $parent
  */
 class Roster extends Record
 {

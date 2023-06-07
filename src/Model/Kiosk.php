@@ -5,19 +5,19 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property integer $id
- * @property string $name
- * @property string $installationId
+ * @property integer $authenticationMode
  * @property integer $company
  * @property integer $connectionMode
- * @property string $subnetRestriction
- * @property integer $authenticationMode
- * @property boolean $useBiometric
- * @property string $lastActivity
- * @property string $ipAddress
- * @property integer $creator
  * @property DateTime $created
+ * @property integer $creator
+ * @property boolean $enableMultiLocations
+ * @property string $installationId
+ * @property string $ipAddress
+ * @property string $lastActivity
  * @property DateTime $modified
+ * @property string $name
+ * @property mixed $subnetRestriction
+ * @property boolean $useBiometric
  *
  * @property Company $companyObject
  */
