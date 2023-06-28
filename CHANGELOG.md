@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.1
+
+* Removed development files from Composer archive.
+
 ## 1.6.0
 
 * Forced `Slots` in `Roster` schema to be an array ([#19](https://github.com/communityds/deputy-api-wrapper/pull/19))
