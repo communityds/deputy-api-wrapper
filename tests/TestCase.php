@@ -2,16 +2,16 @@
 
 namespace CommunityDS\Deputy\Api\Tests;
 
+use CommunityDS\Deputy\Api\Tests\Bridge\BridgeTestCase;
 use CommunityDS\Deputy\Api\Wrapper;
 
 /**
  * Base test case class that provides helper functions.
  */
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends BridgeTestCase
 {
-    protected function tearDown()
+    public function tearDownCustom()
     {
-        parent::tearDown();
         Wrapper::setInstance(null);
     }
 

@@ -2,17 +2,11 @@
 
 namespace CommunityDS\Deputy\Api\Tests\Adapter;
 
-use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\Tests\TestCase;
 use PHPUnit\Framework\Assert;
 
 abstract class AdapterTestCase extends TestCase
 {
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
     protected function path($path)
     {
         $class = new \ReflectionClass($this);
