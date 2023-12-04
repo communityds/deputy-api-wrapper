@@ -4,12 +4,10 @@ This is a list of features that should be added to the wrapper.
 
 ## General
 
-### PHP 8.x Support
+### PHP 5.6 Support
 
 * At this stage the library must be compatible with PHP 5.6.
-* This library should be compatible with PHP 8.x but this can not be tested.
-* Tests can not be run in PHP 8.x as it requires a newer version of phpunit.
-* When a PHP 8.x compatible version is installed, it causes a conflict with PHP 5.6 as the `setUp` and `tearDown` functions have explicit `void` return types.
+* A bridging framework has been created in the test suite to allow tests to be run in newer versions of PHP.
 
 ### Code Helpers
 

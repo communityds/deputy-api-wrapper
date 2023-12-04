@@ -3,6 +3,7 @@
 /vendor
 
 # Testing
+/.phpunit*
 /tests/Adapter/config.php
 /tests/Adapter/*/composer.lock
 /tests/Adapter/*/vendor
