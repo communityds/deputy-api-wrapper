@@ -39,6 +39,8 @@ class MockClient implements ClientInterface
 
     const CUSTOM_FIELD_NEW = 422;
 
+    const CUSTOM_FIELD_DATA_FIRST = 501;
+
     const EMPLOYEE_FIRST = 987235;
 
     const MEMO_FIRST = 432;
@@ -1065,6 +1067,174 @@ class MockClient implements ClientInterface
     }
 
     /**
+     * Returns response from GET /resource/CustomFieldData/:id endpoint.
+     *
+     * @param string $id CustomFieldData id
+     *
+     * @return array
+     *
+     * @throws InvalidCallException When id is unknown
+     */
+    protected function getResourceCustomfielddata($id)
+    {
+        switch (strtolower($id)) {
+            case 'info':
+                return [
+                    'fields' => [
+                        'Id' => 'Integer',
+                        'System' => 'VarChar',
+                        'F01' => 'Blob',
+                        'F02' => 'Blob',
+                        'F03' => 'Blob',
+                        'F04' => 'Blob',
+                        'F05' => 'Blob',
+                        'F06' => 'Blob',
+                        'F07' => 'Blob',
+                        'F08' => 'Blob',
+                        'F09' => 'Blob',
+                        'F10' => 'Blob',
+                        'F11' => 'Blob',
+                        'F12' => 'Blob',
+                        'F13' => 'Blob',
+                        'F14' => 'Blob',
+                        'F15' => 'Blob',
+                        'F16' => 'Blob',
+                        'F17' => 'Blob',
+                        'F18' => 'Blob',
+                        'F19' => 'Blob',
+                        'F20' => 'Blob',
+                        'F21' => 'Blob',
+                        'F22' => 'Blob',
+                        'F23' => 'Blob',
+                        'F24' => 'Blob',
+                        'F25' => 'Blob',
+                        'F26' => 'Blob',
+                        'F27' => 'Blob',
+                        'F28' => 'Blob',
+                        'F29' => 'Blob',
+                        'F30' => 'Blob',
+                        'F31' => 'Blob',
+                        'F32' => 'Blob',
+                        'F33' => 'Blob',
+                        'F34' => 'Blob',
+                        'F35' => 'Blob',
+                        'F36' => 'Blob',
+                        'F37' => 'Blob',
+                        'F38' => 'Blob',
+                        'F39' => 'Blob',
+                        'F40' => 'Blob',
+                        'F41' => 'Blob',
+                        'F42' => 'Blob',
+                        'F43' => 'Blob',
+                        'F44' => 'Blob',
+                        'F45' => 'Blob',
+                        'F46' => 'Blob',
+                        'F47' => 'Blob',
+                        'F48' => 'Blob',
+                        'F49' => 'Blob',
+                        'F50' => 'Blob',
+                        'F51' => 'Blob',
+                        'F52' => 'Blob',
+                        'F53' => 'Blob',
+                        'F54' => 'Blob',
+                        'F55' => 'Blob',
+                        'F56' => 'Blob',
+                        'F57' => 'Blob',
+                        'F58' => 'Blob',
+                        'F59' => 'Blob',
+                        'F60' => 'Blob',
+                        'F61' => 'Blob',
+                        'F62' => 'Blob',
+                        'F63' => 'Blob',
+                        'F64' => 'Blob',
+                        'F65' => 'Blob',
+                        'F66' => 'Blob',
+                        'F67' => 'Blob',
+                        'F68' => 'Blob',
+                        'F69' => 'Blob',
+                        'F70' => 'Blob',
+                        'F71' => 'Blob',
+                        'F72' => 'Blob',
+                        'F73' => 'Blob',
+                        'F74' => 'Blob',
+                        'F75' => 'Blob',
+                        'F76' => 'Blob',
+                        'F77' => 'Blob',
+                        'F78' => 'Blob',
+                        'F79' => 'Blob',
+                        'F80' => 'Blob',
+                        'F81' => 'Blob',
+                        'F82' => 'Blob',
+                        'F83' => 'Blob',
+                        'F84' => 'Blob',
+                        'F85' => 'Blob',
+                        'F86' => 'Blob',
+                        'F87' => 'Blob',
+                        'F88' => 'Blob',
+                        'F89' => 'Blob',
+                        'F90' => 'Blob',
+                        'F91' => 'Blob',
+                        'F92' => 'Blob',
+                        'F93' => 'Blob',
+                        'F94' => 'Blob',
+                        'F95' => 'Blob',
+                        'F96' => 'Blob',
+                        'F97' => 'Blob',
+                        'F98' => 'Blob',
+                        'F99' => 'Blob',
+                        'F100' => 'Blob',
+                        'F101' => 'Blob',
+                        'F102' => 'Blob',
+                        'F103' => 'Blob',
+                        'F104' => 'Blob',
+                        'F105' => 'Blob',
+                        'F106' => 'Blob',
+                        'F107' => 'Blob',
+                        'F108' => 'Blob',
+                        'F109' => 'Blob',
+                        'F110' => 'Blob',
+                        'F111' => 'Blob',
+                        'F112' => 'Blob',
+                        'F113' => 'Blob',
+                        'F114' => 'Blob',
+                        'F115' => 'Blob',
+                        'F116' => 'Blob',
+                        'F117' => 'Blob',
+                        'F118' => 'Blob',
+                        'F119' => 'Blob',
+                        'F120' => 'Blob',
+                        'F121' => 'Blob',
+                        'F122' => 'Blob',
+                        'F123' => 'Blob',
+                        'F124' => 'Blob',
+                        'F125' => 'Blob',
+                        'F126' => 'Blob',
+                        'F127' => 'Blob',
+                        'F128' => 'Blob',
+                        'Creator' => 'Integer',
+                        'Created' => 'DateTime',
+                        'Modified' => 'DateTime',
+                    ],
+                    'joins' => [],
+                    'assocs' => [],
+                    'count' => 1,
+                ];
+            case static::CUSTOM_FIELD_DATA_FIRST:
+                return [
+                    'Id' => static::CUSTOM_FIELD_DATA_FIRST,
+                    'System' => 'Timesheet',
+                    'F01' => '10',
+                    'F02' => '20',
+                    'Created' => '2017-02-13T11:56:23+10:30',
+                    'Modified' => '2017-03-01T12:55:37+10:30',
+                    'traveldistance' => '10',
+                    'traveltime' => '20',
+                ];
+        }
+        throw new InvalidCallException('Unknown customFieldData id ' . $id);
+    }
+
+    /**
      * Returns response from GET /userinfo/:Id endpoint.
      *
      * @param integer $id User id
@@ -1127,6 +1297,25 @@ class MockClient implements ClientInterface
      */
     protected function getResourceMemo($id)
     {
+        if ($id === static::MEMO_NULL) {
+            return [
+                'Id' => null,
+                'ShowFrom' => '2018-08-01T00:00:00+09:30',
+                'Active' => true,
+                'ShowTill' => null,
+                'Title' => null,
+                'Content' => 'New Memo Content',
+                'Type' => 1,
+                'File' => null,
+                'Url' => null,
+                'ConfirmText' => '',
+                'Keyword' => null,
+                'Creator' => static::USER_ADMIN,
+                'Created' => '2018-08-01T14:36:34+09:30',
+                'Modified' => '2018-08-01T14:36:34+09:30',
+            ];
+        }
+
         switch (strtolower($id)) {
             case 'info':
                 return [
@@ -1184,23 +1373,6 @@ class MockClient implements ClientInterface
                     'Url' => null,
                     'ConfirmText' => '',
                     'Keyword' => 'New Memo Content',
-                    'Creator' => static::USER_ADMIN,
-                    'Created' => '2018-08-01T14:36:34+09:30',
-                    'Modified' => '2018-08-01T14:36:34+09:30',
-                ];
-            case static::MEMO_NULL:
-                return [
-                    'Id' => null,
-                    'ShowFrom' => '2018-08-01T00:00:00+09:30',
-                    'Active' => true,
-                    'ShowTill' => null,
-                    'Title' => null,
-                    'Content' => 'New Memo Content',
-                    'Type' => 1,
-                    'File' => null,
-                    'Url' => null,
-                    'ConfirmText' => '',
-                    'Keyword' => null,
                     'Creator' => static::USER_ADMIN,
                     'Created' => '2018-08-01T14:36:34+09:30',
                     'Modified' => '2018-08-01T14:36:34+09:30',

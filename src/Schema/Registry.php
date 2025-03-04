@@ -18,7 +18,7 @@ class Registry extends Component
      * List of resources where key is Resource name and value is model
      * class name or configuration array of used to represent the resource.
      *
-     * @var string[]
+     * @var string[]|array[]
      */
     public $resources = [];
 
@@ -173,6 +173,9 @@ class Registry extends Component
             ],
             'CustomField' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\CustomField',
+                'fields' => [
+                    'Validation' => 'Array',
+                ],
             ],
             'CustomFieldData' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\CustomFieldData',
@@ -407,18 +410,13 @@ class Registry extends Component
     }
 
     /**
-     * Helper to translate from Deputy type id (as returned by the API) to the name of the relevant DataType Class Name
-     * eg.
-     * 0 => 'Varchar'
-     * 2 => 'Integer'
+     * Returns a list of type ids and their corresponding data type.
      *
-     * @param integer $typeId
-     *
-     * @return DataTypeInterface|null Instance of DataType or null if not found
+     * @return string[]
      */
-    public static function getDataTypeById($typeId)
+    public function customFieldDataTypes()
     {
-        $typeIdToDataTypeClassNameMap = [
+        return [
             1 => 'VarChar',         // Text
             2 => 'Integer',         // Number
             3 => 'VarChar',         // Large text
@@ -426,13 +424,24 @@ class Registry extends Component
             5 => 'VarCharArray',    // List
             6 => 'VarCharArray',    // Multi list
             7 => 'Blob',            // File
+            8 => 'Bit',             // Boolean/Checkbox - Yes with comment required
+            9 => 'Bit',             // Boolean/Checkbox - No with comment required
         ];
+    }
 
-        $dataTypeClassName = key_exists($typeId, $typeIdToDataTypeClassNameMap) ? $typeIdToDataTypeClassNameMap[$typeId] : null;
-        if (empty($dataTypeClassName)) {
+    /**
+     * Returns the data type that matches the custom field data type id.
+     *
+     * @param integer $type The type of field
+     *
+     * @return string|null
+     */
+    public function getCustomFieldDataType($type)
+    {
+        $types = $this->customFieldDataTypes();
+        if (!isset($types[$type])) {
             return null;
         }
-        $dataTypeClass = "\\CommunityDS\\Deputy\\Api\\Schema\\DataType\\{$dataTypeClassName}";
-        return new $dataTypeClass();
+        return $types[$type];
     }
 }

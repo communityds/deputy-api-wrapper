@@ -2,7 +2,6 @@
 
 namespace CommunityDS\Deputy\Api\Model;
 
-use CommunityDS\Deputy\Api\Schema\ResourceInfo;
 use DateTime;
 
 /**
@@ -141,57 +140,50 @@ use DateTime;
  */
 class CustomFieldData extends Record
 {
-    /**
-     * Support the setting of CustomFieldData by using either:
-     * - the fXX property directly (or any other property)
-     * - or if the a CustomField 'ApiName' (aka alias) is set then also set the fXX property
-     *
-     * Example of CustomField properties:
-     *  "Name": "Travel Time",
-     *  "ApiName": "traveltime",
-     *  "DeputyField": "f02",
-     *
-     * eg. if $var is "traveltime" then ALSO set $this->f02 = $value
-     *
-     * @param string $var
-     * @param mixed $value
-     *
-     * @return CustomFieldData this instance
-     */
-    public function __set($var, $value)
+    public function __set($name, $value)
     {
-        $propertyName = $this->getPropertyName($var);
-        if ($var != $propertyName) {
+        // Support the setting of CustomFieldData by using either:
+        // - the fXX property directly (or any other property)
+        // - or if the a CustomField 'ApiName' (aka alias) is set then also set the fXX property
+        //
+        // Example of CustomField properties:
+        //  "Name": "Travel Time",
+        //  "ApiName": "traveltime",
+        //  "DeputyField": "f02",
+        //
+        // eg. if $var is "traveltime" then ALSO set $this->f02 = $value
+
+        $propertyName = $this->getDeputyFieldName($name);
+        if ($propertyName) {
             // Also set the relevant fXX (ie. DeputyField) to match the alias supplied in $var (ie. ApiFieldname)
             $this->$propertyName = $value;
         }
 
-        return parent::__set($var, $value);
+        parent::__set($name, $value);
     }
 
-    /**
-     * Override Record::getSchema() to add other potential customFields configured through UI of Deputy
-     * Merge the base fields for CustomFieldData (ie. F01, F02, etc)
-     * with any CustomField(s) (eg. traveltime)
-     *
-     * @return ResourceInfo|null
-     */
     public function getSchema()
     {
-        $cacheKey = strtolower('resource-customFieldData-schema');
-        $schemaRecourceInfo = $this->getWrapper()->persistent->get($cacheKey, null);
+        // Override to add other potential customFields configured through UI of Deputy
+        // that are included in CustomFieldData results.
+        // e.g. {"Id":3,"System":"Timesheet","F01":3,"Creator":1,"Created":"...","Modified":"...","traveltime":3}
 
-        if ($schemaRecourceInfo === null) {
+        // Merge the base fields for CustomFieldData (ie. F01, F02, etc)
+        // with any CustomField(s) (eg. traveltime).
+
+        $schemaResourceInfo = $this->getWrapper()->persistent->get(static::schemaCacheKey(), null);
+
+        if ($schemaResourceInfo === null) {
             // Get CustomFieldData Schema fields and update/merge with any Custom Fields
-            $schemaRecourceInfo = $this->getWrapper()->schema->resource($this->getResourceName());
-            $schemaRecourceInfo->fields = array_merge(
+            $schemaResourceInfo = parent::getSchema();
+            $schemaResourceInfo->fields = array_merge(
                 $this->getSchemaFieldsForCustomFields(),
-                $schemaRecourceInfo->fields
+                $schemaResourceInfo->fields
             );
 
-            $this->getWrapper()->persistent->set($cacheKey, $schemaRecourceInfo);
+            $this->getWrapper()->persistent->set(static::schemaCacheKey(), $schemaResourceInfo);
         }
-        return $schemaRecourceInfo;
+        return $schemaResourceInfo;
     }
 
     /**
@@ -199,14 +191,16 @@ class CustomFieldData extends Record
      * an array that merged with 'fields' schema for CustomFieldData
      * eg. ['traveltime' => 'Integer']
      *
-     * @return array With format ['<apiName>' => '<DateType Class Name>']
+     * @return array With format ['<apiName>' => '<DateType Name>']
      */
     protected function getSchemaFieldsForCustomFields()
     {
         $schemaPartialForCustomFields = [];
         foreach ($this->getWrapper()->getCustomFieldsCached() as $customField) {
-            $dataTypeClassName = end(explode('\\', get_class($customField->getDataType())));
-            $schemaPartialForCustomFields[$customField->apiName] = $dataTypeClassName;
+            $dataType = $customField->getDataType();
+            if ($dataType) {
+                $schemaPartialForCustomFields[$customField->apiName] = $dataType;
+            }
         }
         return $schemaPartialForCustomFields;
     }
@@ -214,17 +208,34 @@ class CustomFieldData extends Record
     /**
      * Get Property Name, also checking customField collection
      *
-     * @param string $name Property Name (potentially a CustomField 'apiName'/alias)
+     * @param string $name Property name
      *
-     * @return string If property name is found in customField collection then return the customField->deputyField (ie. 'fXX'); otherwise $name
+     * @return string|null Returns the deputyField property for a customField that matches the given name; or null if not found
      */
-    private function getPropertyName($name)
+    protected function getDeputyFieldName($name)
     {
         $customField = $this->getWrapper()->getCustomFieldByApiName($name);
-        if (empty($customField)) {
-            return $name;
+        if ($customField == null) {
+            return null;
         }
-        // CustomField detected
         return $customField->deputyField;
+    }
+
+    /**
+     * Returns the key of the schema cache.
+     *
+     * @return string
+     */
+    protected static function schemaCacheKey()
+    {
+        return strtolower('resource-customFieldData-schema');
+    }
+
+    /**
+     * Flushes the schema cache to ensure custom field schemas are updated.
+     */
+    public static function flushSchema()
+    {
+        static::getWrapperStatic()->persistent->remove(static::schemaCacheKey());
     }
 }
