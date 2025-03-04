@@ -146,6 +146,9 @@ class Registry extends Component
             'Address' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Address',
                 'pluralName' => 'Addresses',
+                'fields' => [
+                    'Notes' => 'VarChar',
+                ],
             ],
             'Category' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Category',
@@ -153,6 +156,9 @@ class Registry extends Component
             ],
             'Comment' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Comment',
+                'fields' => [
+                    'Comment' => 'VarChar',
+                ],
             ],
             'Company' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Company',
@@ -196,8 +202,8 @@ class Registry extends Component
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\EmployeeAvailability',
                 'pluralName' => 'EmployeeAvailabilities',
                 'fields' => [
-                    'StartTime' => 'UnixTimestamp',
                     'EndTime' => 'UnixTimestamp',
+                    'StartTime' => 'UnixTimestamp',
                 ],
             ],
             'EmployeeHistory' => [
@@ -224,6 +230,9 @@ class Registry extends Component
             ],
             'EmploymentContract' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\EmploymentContract',
+                'fields' => [
+                    'Description' => 'VarChar',
+                ],
             ],
             'EmploymentContractLeaveRules' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\EmploymentContractLeaveRules',
@@ -235,8 +244,8 @@ class Registry extends Component
             'Geo' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Geo',
                 'fields' => [
-                    'Longitude' => 'Float',
                     'Latitude' => 'Float',
+                    'Longitude' => 'Float',
                 ],
             ],
             'Journal' => [
@@ -247,6 +256,10 @@ class Registry extends Component
             ],
             'Leave' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Leave',
+                'fields' => [
+                    'ApprovalComment' => 'VarChar',
+                    'Comment' => 'VarChar',
+                ],
             ],
             'LeaveAccrual' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\LeaveAccrual',
@@ -287,9 +300,10 @@ class Registry extends Component
             'Roster' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Roster',
                 'fields' => [
-                    'StartTime' => 'UnixTimestamp',
+                    'Comment' => 'VarChar',
                     'EndTime' => 'UnixTimestamp',
                     'Slots' => 'Array',
+                    'StartTime' => 'UnixTimestamp',
                 ],
             ],
             'RosterOpen' => [
@@ -307,6 +321,9 @@ class Registry extends Component
             ],
             'Schedule' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Schedule',
+            ],
+            'ShiftTemplate' => [
+                'modelClass' => 'CommunityDS\Deputy\Api\Model\ShiftTemplate',
             ],
             'SmsLog' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\SmsLog',
@@ -335,12 +352,16 @@ class Registry extends Component
             'TaskGroup' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\TaskGroup',
                 'fields' => [
+                    'Comment' => 'VarChar',
                     'DayTimestamp' => 'UnixTimestamp',
                     'OrigDayTimestamp' => 'UnixTimestamp',
                 ],
             ],
             'TaskGroupSetup' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\TaskGroupSetup',
+                'fields' => [
+                    'Comment' => 'VarChar',
+                ],
             ],
             'TaskOpunitConfig' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\TaskOpunitConfig',
@@ -354,20 +375,30 @@ class Registry extends Component
             'Timesheet' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\Timesheet',
                 'fields' => [
+                    'EmployeeComment' => 'VarChar',
+                    'EndTime' => 'UnixTimestamp',
                     'MealbreakSlots' => 'Array',   // API returns array but defined as VarChar in schema
                     'Slots' => 'Array',
                     'StartTime' => 'UnixTimestamp',
-                    'EndTime' => 'UnixTimestamp',
                 ],
+            ],
+            'TimesheetExport' => [
+                'modelClass' => 'CommunityDS\Deputy\Api\Model\TimesheetExport',
             ],
             'TimesheetPayReturn' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\TimesheetPayReturn',
             ],
             'TrainingModule' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\TrainingModule',
+                'fields' => [
+                    'Comment' => 'VarChar',
+                ],
             ],
             'TrainingRecord' => [
                 'modelClass' => 'CommunityDS\Deputy\Api\Model\TrainingRecord',
+                'fields' => [
+                    'Comment' => 'VarChar',
+                ],
             ],
             'User' => array_merge(
                 [

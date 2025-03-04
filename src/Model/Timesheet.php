@@ -39,7 +39,7 @@ use DateTime;
  * @property DateTime $markedPaidUnpaidAt
  * @property DateTime $mealbreak
  * @property array $mealbreakSlots
- * @property string $metadata
+ * @property mixed $metadata
  * @property DateTime $modified
  * @property integer $operationalUnit
  * @property integer $parentId
@@ -47,6 +47,7 @@ use DateTime;
  * @property boolean $payStaged
  * @property integer $paycycleId
  * @property boolean $realTime
+ * @property integer $reviewState
  * @property integer $roster
  * @property array $slots
  * @property integer $stagingId
@@ -68,6 +69,8 @@ use DateTime;
  * @property Timesheet $parent
  * @property EmployeePaycycle $paycycle
  * @property Roster $rosterObject
+ *
+ * @property TimesheetExport $export
  *
  * @property integer $mealbreakMinutes
  */

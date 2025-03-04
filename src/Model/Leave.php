@@ -5,6 +5,7 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
+ * @property boolean $allDay
  * @property string $approvalComment
  * @property integer $approverPay
  * @property integer $approverTime

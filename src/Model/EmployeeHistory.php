@@ -13,6 +13,7 @@ use DateTime;
  * @property string $displayName
  * @property integer $emergencyAddress
  * @property integer $employeeId
+ * @property string $externalLinkId
  * @property string $firstName
  * @property integer $gender
  * @property integer $jobAppId

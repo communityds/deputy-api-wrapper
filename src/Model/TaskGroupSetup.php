@@ -15,10 +15,10 @@ use DateTime;
  * @property boolean $laborModel
  * @property DateTime $modified
  * @property string $name
- * @property string $notification
- * @property string $oncreate
- * @property string $onsubmit
- * @property string $plugins
+ * @property mixed $notification
+ * @property mixed $oncreate
+ * @property mixed $onsubmit
+ * @property mixed $plugins
  *
  * @property OperationalUnit $taskGroupOpUnit
  */

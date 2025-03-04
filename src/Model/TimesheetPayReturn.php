@@ -8,6 +8,7 @@ use DateTime;
  * @property float $cost
  * @property DateTime $created
  * @property integer $creator
+ * @property mixed $eventIds
  * @property DateTime $modified
  * @property boolean $overridden
  * @property string $overrideComment

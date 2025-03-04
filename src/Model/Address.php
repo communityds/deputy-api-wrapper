@@ -23,6 +23,7 @@ use DateTime;
  * @property string $streetNo
  * @property string $suiteNo
  * @property string $unitNo
+ * @property DateTime $verified
  *
  * @property string $displayName
  *
