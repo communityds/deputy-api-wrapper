@@ -398,6 +398,7 @@ class Registry extends Component
             'DateTime'      => 'CommunityDS\Deputy\Api\Schema\DataType\DateTime',
             'Float'         => 'CommunityDS\Deputy\Api\Schema\DataType\FloatingPoint',
             'Integer'       => 'CommunityDS\Deputy\Api\Schema\DataType\Integer',
+            'Json'          => 'CommunityDS\Deputy\Api\Schema\DataType\Json',
             'Time'          => 'CommunityDS\Deputy\Api\Schema\DataType\Time',
             'UnixTimestamp' => 'CommunityDS\Deputy\Api\Schema\DataType\UnixTimestamp',
             'VarChar'       => 'CommunityDS\Deputy\Api\Schema\DataType\VarChar',
