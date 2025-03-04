@@ -5,7 +5,7 @@ namespace CommunityDS\Deputy\Api\Model;
 use DateTime;
 
 /**
- * @property string $comment
+ * @property mixed $comment
  * @property float $cost
  * @property DateTime $created
  * @property integer $creator

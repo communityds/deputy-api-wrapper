@@ -8,6 +8,7 @@ use DateTime;
  * @property boolean $active
  * @property float $baseRate
  * @property string $companyName
+ * @property mixed $config
  * @property integer $contract
  * @property integer $contractFile
  * @property DateTime $created
@@ -16,7 +17,9 @@ use DateTime;
  * @property integer $employeeId
  * @property DateTime $endDate
  * @property integer $historyId
+ * @property integer $levelId
  * @property DateTime $modified
+ * @property integer $payCalendarId
  * @property integer $payPeriod
  * @property integer $payPoint
  * @property string $payrollId

@@ -8,6 +8,7 @@ use DateTime;
  * @property mixed $advancedCalculation
  * @property float $annualSalary
  * @property mixed $comment
+ * @property mixed $config
  * @property string $crId
  * @property DateTime $created
  * @property integer $creator
@@ -41,6 +42,7 @@ use DateTime;
  * @property PayRules $multiplierBaseRateObject
  * @property Schedule $scheduleObject
  *
+ * @property CustomField $customField
  * @property OperationalUnit $operationUnit
  * @property EmploymentContract $payRules
  */

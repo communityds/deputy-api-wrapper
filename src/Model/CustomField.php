@@ -21,11 +21,11 @@ use DateTime;
  * @property string $system
  * @property integer $triggerScript
  * @property integer $type
- * @property string $validation
- * @property string $valuelist
+ * @property array $validation
+ * @property mixed $valuelist
  * @property boolean $visible
  *
- * @property EmploymentContract $customField
+ * @property PayRules $customField
  * @property OperationalUnit $operationUnit
  */
 class CustomField extends Record

@@ -44,6 +44,7 @@ use DateTime;
  * @property Timesheet $matchedByTimesheetObject
  * @property OperationalUnit $operationalUnitObject
  * @property Roster $parent
+ * @property ShiftTemplate $shiftTemplateObject
  */
 class Roster extends Record
 {

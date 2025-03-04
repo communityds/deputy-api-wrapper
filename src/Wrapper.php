@@ -263,6 +263,12 @@ use CommunityDS\Deputy\Api\Schema\Registry;
  * @method Model\Schedule[] getSchedules()
  * @method Query findSchedules()
  *
+ * @method Model\ShiftTemplate createShiftTemplate()
+ * @method Model\ShiftTemplate deleteShiftTemplate($id)
+ * @method Model\ShiftTemplate getShiftTemplate($id)
+ * @method Model\ShiftTemplate[] getShiftTemplates()
+ * @method Query findShiftTemplates()
+ *
  * @method Model\SmsLog createSmsLog()
  * @method Model\SmsLog deleteSmsLog($id)
  * @method Model\SmsLog getSmsLog($id)

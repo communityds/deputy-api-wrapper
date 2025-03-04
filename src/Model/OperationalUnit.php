@@ -31,6 +31,7 @@ use DateTime;
  *
  * @property EmployeeAgreement $employeeSalaryOpunits
  * @property Employee $managementEmployeeOperationalUnit
+ * @property ShiftTemplate $operationUnit
  * @property Event $operationalUnit
  * @property Employee $rosterEmployeeOperationalUnit
  * @property TaskGroupSetup $taskGroupOpUnit

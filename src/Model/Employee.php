@@ -16,6 +16,11 @@ use DateTime;
  * @property DateTime $dateOfBirth
  * @property string $displayName
  * @property integer $emergencyAddress
+ * @property string $employmentEndComment
+ * @property DateTime $employmentEndDate
+ * @property mixed $employmentEndReason
+ * @property mixed $employmentEndSentiment
+ * @property string $externalLinkId
  * @property string $firstName
  * @property integer $gender
  * @property boolean $higherDuty
