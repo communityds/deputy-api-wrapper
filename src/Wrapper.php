@@ -8,6 +8,7 @@ use CommunityDS\Deputy\Api\Adapter\ClientInterface;
 use CommunityDS\Deputy\Api\Adapter\LoggerInterface;
 use CommunityDS\Deputy\Api\Adapter\TargetConfigInterface;
 use CommunityDS\Deputy\Api\Model\CustomField;
+use CommunityDS\Deputy\Api\Model\CustomFieldData;
 use CommunityDS\Deputy\Api\Model\Me;
 use CommunityDS\Deputy\Api\Schema\Registry;
 
@@ -489,6 +490,60 @@ class Wrapper extends Component
     }
 
     /**
+     * Returns the cache key for custom fields.
+     *
+     * @return string
+     */
+    protected function customFieldsCacheKey()
+    {
+        return strtolower('resource-customFields-Collection');
+    }
+
+    /**
+     * Get CustomFields from cache; populate cache if not already set
+     *
+     * @return CustomField[] Empty array if none found
+     */
+    public function getCustomFieldsCached()
+    {
+        $customFields = $this->persistent->get($this->customFieldsCacheKey(), null);
+        if ($customFields === null) {
+            $customFields = $this->findCustomFields()->all();
+            $this->persistent->set($this->customFieldsCacheKey(), $customFields);
+        }
+        return $customFields;
+    }
+
+    /**
+     * Get the internal 'deputyfield' (eg. f03) from given 'apiname' (eg. 'casenotes')
+     *
+     * @param string $apiName Eg. 'casenotes'
+     *
+     * @return CustomField|null The matching CustomField instance where 'apiName' (eg. 'casenotes') matches param - otherwise, null
+     */
+    public function getCustomFieldByApiName($apiName)
+    {
+        foreach ($this->getCustomFieldsCached() as $customField) {
+            if ($customField->apiName == $apiName) {
+                return $customField;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Flushes the custom fields cache.
+     *
+     * @return $this
+     */
+    public function flushCustomFieldsCache()
+    {
+        $this->persistent->remove($this->customFieldsCacheKey());
+        CustomFieldData::flushSchema();
+        return $this;
+    }
+
+    /**
      * Returns the current instance of the API wrapper.
      *
      * @return static|null
@@ -512,37 +567,5 @@ class Wrapper extends Component
         }
         static::$instance = $instance;
         return $instance;
-    }
-
-    /**
-     * Get CustomFields from cache; populate cache if not already set
-     *
-     * @return CustomField[] Empty array if none found
-     */
-    public function getCustomFieldsCached()
-    {
-        $cacheKey = strtolower('resource-customFields-Collection');
-        $customFields = $this->persistent->get($cacheKey, null);
-        if ($customFields === null) {
-            $customFields = $this->findCustomFields()->all();
-            $this->persistent->set($cacheKey, $customFields);
-        }
-        return $customFields;
-    }
-
-    /**
-     * Get the internal 'deputyfield' (eg. f03) from given 'apiname' (eg. 'casenotes')
-     *
-     * @param string $apiName Eg. 'casenotes'
-     *
-     * @return CustomField|null The matching CustomField instance where 'apiName' (eg. 'casenotes') matches param - otherwise, null
-     */
-    public function getCustomFieldByApiName($apiName)
-    {
-        $customFieldsCollection = $this->getCustomFieldsCached();
-        $customFieldsMatching = array_filter($customFieldsCollection, function ($customField) use ($apiName) {
-            return ($customField->apiName == $apiName) ? true : false;
-        });
-        return array_pop($customFieldsMatching); // matching item or null
     }
 }

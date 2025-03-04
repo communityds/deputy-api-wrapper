@@ -96,22 +96,22 @@ abstract class Record extends Component implements ModelInterface
         }
     }
 
-    public function __get($var)
+    public function __get($name)
     {
         try {
-            return parent::__get($var);
+            return parent::__get($name);
         } catch (InvalidParamException $e) {
             // Check attributes and relations when not part of class
         }
 
         try {
-            return $this->getAttribute($var);
+            return $this->getAttribute($name);
         } catch (UnknownFieldException $e) {
             // skip unknown attributes
         }
 
         try {
-            return $this->getRelation($var);
+            return $this->getRelation($name);
         } catch (UnknownRelationException $ee) {
             // skip unknown relationships
         } catch (\Exception $ee) {
@@ -122,15 +122,16 @@ abstract class Record extends Component implements ModelInterface
         throw $e;
     }
 
-    public function __set($var, $value)
+    public function __set($name, $value)
     {
         try {
-            return parent::__set($var, $value);
+            parent::__set($name, $value);
+            return;
         } catch (InvalidParamException $e) {
             // Assume value is for an attribute if not part of class
         }
 
-        return $this->setAttribute($var, $value);
+        $this->setAttribute($name, $value);
     }
 
     /**

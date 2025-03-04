@@ -13,4 +13,14 @@ trait WrapperLocatorTrait
     {
         return Wrapper::getInstance();
     }
+
+    /**
+     * Returns wrapper instance.
+     *
+     * @return Wrapper
+     */
+    protected static function getWrapperStatic()
+    {
+        return Wrapper::getInstance();
+    }
 }

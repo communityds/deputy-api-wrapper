@@ -43,7 +43,6 @@ class Component
      */
     public function __get($name)
     {
-
         $getter = 'get' . ucfirst($name);
         if (method_exists($this, $getter)) {
             return $this->{$getter}();
@@ -63,13 +62,10 @@ class Component
      * @param string $name Name of property
      * @param mixed $value Value of property
      *
-     * @return mixed
-     *
      * @throws InvalidParamException If the property is unknown or read-only
      */
     public function __set($name, $value)
     {
-
         $setter = 'set' . ucfirst($name);
         if (method_exists($this, $setter)) {
             $this->{$setter}($value);

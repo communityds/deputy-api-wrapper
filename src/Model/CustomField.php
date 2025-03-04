@@ -2,8 +2,6 @@
 
 namespace CommunityDS\Deputy\Api\Model;
 
-use CommunityDS\Deputy\Api\Schema\DataType\Integer;
-use CommunityDS\Deputy\Api\Schema\Registry;
 use DateTime;
 
 /**
@@ -32,8 +30,13 @@ use DateTime;
  */
 class CustomField extends Record
 {
+    /**
+     * Translates the numerical type into the data type defined in the schema.
+     *
+     * @return string
+     */
     public function getDataType()
     {
-        return Registry::getDataTypeById($this->type);
+        return $this->getWrapper()->schema->getCustomFieldDataType($this->type);
     }
 }
