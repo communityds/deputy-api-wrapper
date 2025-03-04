@@ -15,7 +15,7 @@ class UnixTimestamp extends DataType
         if ($value === null) {
             return null;
         }
-        $dateTime = new \DateTime(null, new \DateTimeZone('UTC'));
+        $dateTime = new \DateTime('now', new \DateTimeZone('UTC'));
         $dateTime->setTimestamp($value);
         return $dateTime;
     }
