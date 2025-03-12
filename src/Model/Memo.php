@@ -79,7 +79,6 @@ class Memo extends Record
      */
     protected function postSuperviseMemo($original)
     {
-
         $payload = [];
         if ($this->getPrimaryKey()) {
             throw new NotSupportedException('postSuperviseMemo does not support updating Memo');
@@ -127,7 +126,7 @@ class Memo extends Record
                     $this->{$key} = $value;
                     $updateRecord = true;
                 }
-            } elseif (!array_key_exists($key, $response)) {
+            } else {
                 $this->{$key} = $value;
                 $updateRecord = true;
             }
