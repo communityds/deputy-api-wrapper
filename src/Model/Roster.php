@@ -140,7 +140,6 @@ class Roster extends Record
      */
     protected function postSuperviseRoster($original)
     {
-
         $payload = [];
         if ($this->getPrimaryKey()) {
             $payload['intRosterId'] = $this->getPrimaryKey();
@@ -210,7 +209,7 @@ class Roster extends Record
                     $this->{$key} = $value;
                     $updateRecord = true;
                 }
-            } elseif (!array_key_exists($key, $response)) {
+            } else {
                 $this->{$key} = $value;
                 $updateRecord = true;
             }
