@@ -49,6 +49,22 @@ use DateTime;
 class Roster extends Record
 {
     /**
+     * Creates a timesheet object using the details of this roster
+     * as the default values.
+     *
+     * @return Timesheet
+     */
+    public function createTimesheet()
+    {
+        $timesheet = $this->getWrapper()->createTimesheet();
+        $timesheet->startTime = $this->startTime;
+        $timesheet->endTime = $this->endTime;
+        $timesheet->employee = $this->employee;
+        $timesheet->operationalUnit = $this->operationalUnit;
+        return $timesheet;
+    }
+
+    /**
      * Returns the number of minutes allocated for the mealbreak.
      *
      * @return integer|null
