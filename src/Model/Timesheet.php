@@ -77,6 +77,31 @@ use DateTime;
 class Timesheet extends Record
 {
     /**
+     * Sets the values of custom fields that are linked to this timesheet.
+     *
+     * @param array $values Key as api name; value as field value
+     *
+     * @return $this
+     */
+    public function withCustomFields($values)
+    {
+        $customFieldData = $this->customFieldDataObject;
+        if ($customFieldData == null) {
+            $customFieldData = $this->getWrapper()->createCustomFieldData();
+            $customFieldData->system = 'Timesheet';
+        }
+
+        foreach ($values as $name => $value) {
+            $customFieldData->{$name} = $value;
+        }
+
+        $customFieldData->save();
+        $this->customFieldData = $customFieldData->id;
+
+        return $this;
+    }
+
+    /**
      * Returns the number of minutes allocated for the mealbreak.
      *
      * @return integer|null
@@ -147,7 +172,7 @@ class Timesheet extends Record
         foreach ($original as $name => $value) {
             switch ($name) {
                 case 'Employee':
-                    $payload["intEmployeeId"] = $value;
+                    $payload['intEmployeeId'] = $value;
                     unset($original[$name]);
                     break;
                 case 'OperationalUnit':
@@ -187,6 +212,54 @@ class Timesheet extends Record
         }
 
         static::populateRecord($this, $response);
+
+        // Determine additional fields that the supervise/timesheet/update endpoint
+        // does not support and if any are found then change their value
+        // within the model and force an update.
+
+        $updateRecord = false;
+        foreach ($original as $key => $value) {
+            if (array_key_exists($key, $response)) {
+                if ($response[$key] != $value) {
+                    $this->{$key} = $value;
+                    $updateRecord = true;
+                }
+            } else {
+                $this->{$key} = $value;
+                $updateRecord = true;
+            }
+        }
+
+        if ($updateRecord) {
+            return parent::update();
+        }
+
+        return true;
+    }
+
+    /**
+     * Approves the timesheet.
+     *
+     * @return boolean True if approved successfully; false otherwise
+     *
+     * @throws NotSupportedException When attempting to approve a new timesheet
+     */
+    public function approve()
+    {
+        if ($this->getPrimaryKey() == null) {
+            throw new NotSupportedException('Approvals can only be on existing timesheet records');
+        }
+
+        $response = $this->getWrapper()->client->post(
+            'supervise/timesheet/approve',
+            [
+                'intTimesheetId' => $this->getPrimaryKey(),
+            ]
+        );
+        if ($response === false) {
+            $this->setErrorsFromResponse($this->getWrapper()->client->getLastError());
+            return false;
+        }
 
         return true;
     }
