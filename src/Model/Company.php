@@ -45,32 +45,11 @@ class Company extends Record implements CompanySettingsInterface
     use CompanySettingsTrait;
 
     /**
-     * Names of operational units to create for new companies.
+     * Values to send when creating a company.
      *
-     * @var string[]
+     * @var array
      */
-    private $_operationalUnitNames;
-
-    /**
-     * Name of timezone to assign to new company.
-     *
-     * @var string
-     */
-    private $_timeZone;
-
-    /**
-     * Latitude of company address.
-     *
-     * @var float
-     */
-    private $_latitude;
-
-    /**
-     * Longitude of company address.
-     *
-     * @var float
-     */
-    private $_longitude;
+    private $_create = [];
 
     /**
      * Returns the company name.
@@ -152,7 +131,7 @@ class Company extends Record implements CompanySettingsInterface
         if ($this->getPrimaryKey() != null) {
             throw new NotSupportedException('Operational Unit names can only be set on new companies');
         }
-        $this->_operationalUnitNames = $names;
+        $this->_create['arrAreaNames'] = $names;
     }
 
     /**
@@ -169,7 +148,7 @@ class Company extends Record implements CompanySettingsInterface
         if ($this->getPrimaryKey() != null) {
             throw new NotSupportedException('Time Zone can only be set on new companies');
         }
-        $this->_timeZone = $timeZone;
+        $this->_create['strWorkplaceTimezone'] = $timeZone;
     }
 
     /**
@@ -178,10 +157,15 @@ class Company extends Record implements CompanySettingsInterface
      * @param float $latitude Latitude value
      *
      * @return void
+     *
+     * @throws NotSupportedException When setting latitude on an existing company
      */
     public function setLatitude($latitude)
     {
-        $this->_latitude = $latitude;
+        if ($this->getPrimaryKey() != null) {
+            throw new NotSupportedException('Latitude can only be set on new companies');
+        }
+        $this->_create['strLat'] = $latitude;
     }
 
     /**
@@ -190,19 +174,21 @@ class Company extends Record implements CompanySettingsInterface
      * @param float $longitude Longitude value
      *
      * @return void
+     *
+     * @throws NotSupportedException When setting longitude on an existing company
      */
     public function setLongitude($longitude)
     {
-        $this->_longitude = $longitude;
+        if ($this->getPrimaryKey() != null) {
+            throw new NotSupportedException('Longitude can only be set on new companies');
+        }
+        $this->_create['strLon'] = $longitude;
     }
 
     public function clearData()
     {
         parent::clearData();
-        $this->_longitude = null;
-        $this->_latitude = null;
-        $this->_timeZone = null;
-        $this->_operationalUnitNames = null;
+        $this->_create = [];
     }
 
     /**
@@ -216,28 +202,18 @@ class Company extends Record implements CompanySettingsInterface
      */
     public function insert($attributeNames = null)
     {
-
         $insertPayload = $this->insertPayload($attributeNames);
 
         // Create payload for my/setup/addNewWorkplace by extracting
         // the expected values.
 
-        $payload = [
-            'strWorkplaceTimezone' => 'UTC', // no default timezone is known
-            'strAddress' => '.',    // force addresses to always be created
-        ];
-        if ($this->_operationalUnitNames) {
-            $payload['arrAreaNames'] = $this->_operationalUnitNames;
-        }
-        if ($this->_timeZone) {
-            $payload['strWorkplaceTimezone'] = $this->_timeZone;
-        }
-        if ($this->_latitude !== null) {
-            $payload['strLat'] = (string) $this->_latitude;
-        }
-        if ($this->_longitude !== null) {
-            $payload['strLon'] = (string) $this->_longitude;
-        }
+        $payload = array_merge(
+            [
+                'strWorkplaceTimezone' => 'UTC', // no default timezone is known
+                'strAddress' => '.',    // force addresses to always be created
+            ],
+            $this->_create
+        );
 
         // Derive address information from the address object
         $address = $this->addressObject;
@@ -289,7 +265,7 @@ class Company extends Record implements CompanySettingsInterface
                     $this->{$key} = $value;
                     $updateRecord = true;
                 }
-            } elseif (!array_key_exists($key, $response)) {
+            } else {
                 $this->{$key} = $value;
                 $updateRecord = true;
             }
