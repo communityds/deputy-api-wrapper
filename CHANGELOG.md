@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.7.0
+
+* Support PHP 8.1 ([#23](https://github.com/communityds/deputy-api-wrapper/pull/23))
+* Updated resource models to match Deputy Schema ([#24](https://github.com/communityds/deputy-api-wrapper/pull/24))
+* Added `Json` data type ([#24](https://github.com/communityds/deputy-api-wrapper/pull/24))
+* Refactor handling of custom fields ([#24](https://github.com/communityds/deputy-api-wrapper/pull/24))
+* Support creating `Employee` and `Timesheet` resources ([#24](https://github.com/communityds/deputy-api-wrapper/pull/24))
+
 ## 1.6.1
 
 * Removed development files from Composer archive.
